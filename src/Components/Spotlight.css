@@ -1,0 +1,91 @@
+.spotlight-main {
+  & .spotlight-container {
+    & .spotlight-header {
+      height: 5rem;
+      display: flex;
+      justify-content: space-between;
+      background-color: wheat;
+      align-items: center;
+      & h2 {
+        font-size: 2rem;
+        color: grey;
+        margin-left: 4rem;
+      }
+      & .spotlight-right-header {
+        display: flex;
+        margin-right: 2rem;
+        & button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: transparent;
+          border: none;
+          gap: 2rem;
+          font-size: 1.2rem;
+          cursor: pointer;
+          & img {
+            width: 3rem;
+          }
+        }
+        & img {
+          margin-right: 2rem;
+          height: 3rem;
+        }
+      }
+    }
+    & .spotlight-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      .card-one {
+        height: 20rem;
+        width: 15%;
+        display: flex;
+        background-color: brown;
+        flex-direction: column;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        & img {
+          height: 13rem;
+          width: 100%;
+        }
+        & h2 {
+          font-size: 2rem;
+        }
+        & h3 {
+          font-size: 1.5rem;
+        }
+        & h4 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 120px) and (max-width: 767px) {
+  .spotlight-main {
+    & .spotlight-container {
+      & .spotlight-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        & h2 {
+          font-size: 1.5rem;
+        }
+      }
+      & .spotlight-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        & .card-one {
+          width: 70%;
+        }
+      }
+    }
+  }
+}

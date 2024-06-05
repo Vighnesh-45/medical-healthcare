@@ -1,0 +1,55 @@
+.navbar-main {
+  & .navbar-container {
+    display: flex;
+    height: 6rem;
+
+    & .logo {
+      width: 25%;
+    }
+    & nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+
+      & .navbar-list {
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+      }
+      & ul {
+        & li {
+          display: inline-block;
+          margin-right: 2rem;
+          font-size: 1.5rem;
+        }
+      }
+    }
+    & .nav-right {
+      width: 25%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+
+      & img {
+        height: 2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar-main {
+    & .navbar-container {
+      & nav {
+        & .navbar-list {
+        }
+      }
+      & .nav-right {
+        & img {
+        }
+      }
+    }
+  }
+}
