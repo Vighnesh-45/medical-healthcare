@@ -1,0 +1,183 @@
+.shop-main {
+  & .shop-container {
+    & .shop-header {
+      background-image: url("./../assets/home-header.png");
+      height: 10rem;
+      & h2 {
+        font-size: 3rem;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        line-height: 2;
+      }
+      & p {
+        font-size: 2rem;
+      }
+    }
+    & .shop-nav {
+      height: 7rem;
+      background-color: #5f9ea0;
+      display: flex;
+      justify-content: space-around;
+
+      & .nav-icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        & p {
+          font-size: 1.2rem;
+        }
+        & hr {
+          height: 2rem;
+        }
+      }
+
+      & .shop-nav-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .nav-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          & p {
+            font-size: 1.2rem;
+          }
+          & input {
+            width: 10%;
+            height: 1.5rem;
+          }
+          & select {
+            width: 20%;
+            height: 1.5rem;
+          }
+        }
+      }
+    }
+    & .shop-cards {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      .card-one {
+        height: 20rem;
+        width: 20%;
+        display: flex;
+        background-color: rgb(16, 230, 16);
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        & img {
+          height: 13rem;
+          width: 100%;
+        }
+        & h2 {
+          font-size: 2rem;
+        }
+        & h3 {
+          font-size: 1.5rem;
+        }
+        & h4 {
+          font-size: 1rem;
+        }
+      }
+    }
+    & .shop-footer {
+      height: 5rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+      & button {
+        background: transparent;
+        border: none;
+        font-size: 1.2rem;
+        height: 2rem;
+        width: 3%;
+        background-color: #24b6a3;
+        cursor: pointer;
+        border-radius: 0.4rem;
+      }
+      & .next {
+        width: 5%;
+      }
+      button:hover {
+        color: white;
+        background-color: rgb(16, 230, 16);
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 120px) and (max-width: 767px) {
+  .shop-main {
+    & .shop-container {
+      & .shop-nav {
+        flex-direction: column;
+        padding: 1rem;
+        & .shop-nav-left {
+          & .nav-icons {
+            flex-direction: column;
+          }
+        }
+        & .shop-nav-right {
+          display: flex;
+        }
+      }
+      & .shop-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        & .card-one {
+          width: 70%;
+        }
+      }
+      & .shop-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        & button {
+          width: 2rem;
+          aspect-ratio: 1;
+        }
+        & .next {
+          width: 4rem;
+          aspect-ratio: 1;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+    .shop-main{
+        & .shop-container{
+            & .shop-footer {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                & button {
+                  width: 3rem;
+                  aspect-ratio: 1;
+                }
+                & .next {
+                  width: 4rem;
+                  aspect-ratio: 1;
+                }
+              }
+        }
+    }
+}
+

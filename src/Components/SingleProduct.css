@@ -1,0 +1,177 @@
+.singleproduct-main {
+  & .singleproduct-container {
+    & .singleproduct-header {
+      display: flex;
+      height: 4rem;
+      background-color: thistle;
+      align-items: center;
+      gap: 1rem;
+      & hr {
+        height: 3rem;
+      }
+    }
+    & .product-info {
+      display: flex;
+      align-items: self-start;
+      & .product-info-left {
+        height: 30rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(68, 173, 163);
+        & .info-left-container {
+          background-image: url("./../assets/dabur.png");
+          height: 25rem;
+          width: 45%;
+          aspect-ratio: 1;
+        }
+      }
+      & .product-info-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        & .info-right-header {
+          line-height: 1.5;
+
+          & h2 {
+            font-size: 2rem;
+          }
+          & h3 {
+            font-size: 1.5rem;
+          }
+        }
+        & .product-review {
+          display: flex;
+          gap: 1rem;
+          margin-top: 1rem;
+        }
+        & .product-description {
+          margin-top: 1rem;
+        }
+        & .product-btn {
+          display: flex;
+          gap: 2rem;
+          & .counter-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 5rem;
+
+            & .counter-button {
+              background: none;
+              border: none;
+              font-size: 24px;
+              cursor: pointer;
+              outline: none;
+            }
+
+            & .counter-display {
+              font-size: 24px;
+              margin: 0 15px;
+            }
+          }
+          & .cart-btn {
+            & button {
+              background: transparent;
+              border: 0.1rem solid black;
+              border-radius: 0.5rem;
+              height: 3rem;
+              width: 8rem;
+              cursor: pointer;
+            }
+          }
+          & .compare-btn {
+            & button {
+              background: transparent;
+              border: 0.1rem solid black;
+              border-radius: 0.5rem;
+              height: 3rem;
+              width: 8rem;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+    & .product-header {
+      & h2 {
+        font-size: 2rem;
+        text-align: center;
+      }
+    }
+    & .singleproduct-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      & .card-one {
+        height: 20rem;
+        width: 15%;
+        display: flex;
+        background-color: brown;
+        flex-direction: column;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        & img {
+          height: 13rem;
+          width: 100%;
+        }
+        & h2 {
+          font-size: 2rem;
+        }
+        & h3 {
+          font-size: 1.5rem;
+        }
+        & h4 {
+          font-size: 1rem;
+        }
+      }
+    }
+    & .show-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem;
+      & button {
+        background: transparent;
+        border: 1px solid rgb(84, 243, 84);
+        font-size: 1rem;
+        color: rgb(32, 161, 32);
+        height: 3rem;
+        width: 18%;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 120px) and (max-width: 767px) {
+  .singleproduct-main {
+    & .singleproduct-container {
+      & .product-info {
+        display: flex;
+        flex-direction: column;
+      }
+      & .singleproduct-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        & .card-one {
+          width: 70%;
+        }
+      }
+      & .show-button {
+        & button {
+          height: 3rem;
+          width: 90%;
+        }
+      }
+    }
+  }
+}

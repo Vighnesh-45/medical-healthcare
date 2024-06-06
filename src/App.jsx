@@ -1,21 +1,25 @@
 import React from 'react'
-import Navbar from './Components/Layout/Navbar'
-import TopContainer from './Components/TopContainer'
-import Category from './Components/Category'
-import Spotlight from './Components/Spotlight'
-import Trending from './Components/Trending'
-import Footer from './Components/Layout/Footer'
+import { Routes, Route } from 'react-router-dom';
+import Home from "./Components/Pages/Home"
+import Contact from './Components/Contact';
+import Advertise from './Components/Layout/Advertise';
+import Shop from './Components/Shop';
+import SingleProduct from './Components/SingleProduct';
+import ProductComparison from './Components/ProductComparison';
 
 const App = () => {
   return (
     <>
-    {/* <Navbar/>
-    <TopContainer/>
-    <Category />
-    <Spotlight />
-    <Trending />
-    <Footer /> */}
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/contact' element={<Contact />}/>
+        <Route path='/advertise' element={<Advertise />}/>
+        <Route path='/shop' element={<Shop />}/>
+        <Route path='/SingleProduct' element={<SingleProduct />}/>
+        <Route path='/ProductComparison' element={<ProductComparison />}/>
+      </Routes>
     </>
+
   )
 }
 
