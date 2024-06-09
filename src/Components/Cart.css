@@ -1,0 +1,105 @@
+.cart-main {
+  & .cart-container {
+    & .cart-header {
+      background-image: url("./../assets/home-header.png");
+      height: 10rem;
+      & h2 {
+        font-size: 3rem;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        line-height: 2;
+      }
+      & p {
+        font-size: 2rem;
+      }
+    }
+    & .cart-overview {
+      display: flex;
+      justify-content: space-around;
+      & .cart-review {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 5rem;
+        background-color: cadetblue;
+        gap: 2rem;
+        width: 50%;
+        margin: 2rem;
+        & h4 {
+          font-size: 1.5rem;
+        }
+      }
+      & .cart-total {
+        margin: 2rem;
+        height: 18rem;
+        width: 20rem;
+        background-color: rgb(37, 173, 37);
+        & .total-header {
+          & h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+          }
+        }
+        & .total-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 3rem;
+          & h4 {
+            font-size: 1.8rem;
+            line-height: 2;
+          }
+          & p {
+            font-size: 1.4rem;
+            line-height: 2;
+          }
+        }
+        & .checkout-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+          & button {
+            background: transparent;
+            border: 0.1rem solid black;
+            font-size: 1.5rem;
+            border-radius: 0.5rem;
+            height: 3rem;
+            width: 10rem;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 120px) and (max-width: 767px){
+    .cart-main{
+        & .cart-container{
+            & .cart-overview{
+                display: flex;
+                flex-direction: column;
+                & .cart-review{
+                    width: 85%;
+                    gap: 0.5rem !important;
+                    & h4{
+                        font-size: 1rem !important;
+                    }
+                }
+                & .cart-total{
+                    width: 85%;
+                    & h4{
+                        font-size: 1rem !important;
+                    }
+                }
+            }
+        }
+    }
+}

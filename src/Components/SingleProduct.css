@@ -13,6 +13,7 @@
     & .product-info {
       display: flex;
       align-items: self-start;
+      justify-content: space-around;
       & .product-info-left {
         height: 30rem;
         display: flex;
@@ -30,6 +31,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
+        width: 50%;
 
         & .info-right-header {
           line-height: 1.5;
@@ -48,6 +50,11 @@
         }
         & .product-description {
           margin-top: 1rem;
+          width: 70%;
+          margin-bottom: 1rem;
+          & p{
+            text-align: justify;
+          }
         }
         & .product-btn {
           display: flex;
@@ -59,14 +66,16 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             padding: 10px;
-            width: 5rem;
-
+            width: 3rem;
             & .counter-button {
               background: none;
               border: none;
               font-size: 24px;
               cursor: pointer;
               outline: none;
+            }
+            & .disabled{
+              cursor: not-allowed;
             }
 
             & .counter-display {
@@ -80,7 +89,7 @@
               border: 0.1rem solid black;
               border-radius: 0.5rem;
               height: 3rem;
-              width: 8rem;
+              width: 6rem;
               cursor: pointer;
             }
           }
@@ -90,7 +99,7 @@
               border: 0.1rem solid black;
               border-radius: 0.5rem;
               height: 3rem;
-              width: 8rem;
+              width: 5rem;
               cursor: pointer;
             }
           }
@@ -112,7 +121,7 @@
         height: 20rem;
         width: 15%;
         display: flex;
-        background-color: brown;
+        background-color: rgb(84, 243, 84);
         flex-direction: column;
         justify-content: space-around;
         flex-wrap: wrap;
@@ -156,6 +165,14 @@
       & .product-info {
         display: flex;
         flex-direction: column;
+        & .product-info-right{
+          width: 100%;
+          & .product-btn{
+            & button{
+              font-size: 0.8rem;
+            }
+          }
+        }
       }
       & .singleproduct-cards {
         display: flex;

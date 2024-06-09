@@ -1,0 +1,95 @@
+.shoppingcart-main {
+  width: 30vw;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  & .shoppingcart-container {
+    background-color: white;
+    width: 30%;
+    height: 37rem;
+    & .shoppingcart-header {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+      & h2 {
+        font-size: 2rem;
+        border-bottom: 0.1rem solid black;
+        width: 55%;
+      }
+    }
+    & .cart-summary {
+      display: flex;
+      justify-content: space-around;
+
+      & .summary-img {
+        height: 7rem;
+        width: 10rem;
+        background-color: thistle;
+        border-radius: 0.3rem;
+        margin-top: 1rem;
+        & img {
+          height: 7rem;
+        }
+      }
+      & .summary-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 1rem;
+        justify-content: center;
+        align-items: center;
+        & .content-details {
+          display: flex;
+          gap: 1rem;
+        }
+      }
+      & .summary-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    & .cart-subtotal {
+      display: flex;
+      gap: 2rem;
+      justify-content: space-around;
+      align-items: flex-end;
+      height: 10rem;
+      margin-bottom: 2rem;
+      & h4 {
+        font-size: 1.3rem;
+      }
+      & p {
+        font-size: 1.2rem;
+      }
+    }
+    & .cart-buttons{
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        & button{
+            background: transparent;
+            border: 0.1rem solid black;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            width: 8rem;
+            cursor: pointer;
+        }
+    }
+  }
+}
+
+@media only screen and (min-width: 767px){
+  .shoppingcart-main{
+    & .shoppingcart-container{
+      width: 100%;
+      height: 38rem;
+    }
+  }
+}

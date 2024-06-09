@@ -21,7 +21,7 @@
         height: 20rem;
         width: 15%;
         display: flex;
-        background-color: brown;
+        background-color: rgb(70, 224, 70);
         flex-direction: column;
         justify-content: space-around;
         flex-wrap: wrap;
@@ -56,37 +56,68 @@
           background-color: rgb(50, 205, 50);
           color: white;
         }
+        & option:hover {
+          background-color: white;
+          color: black;
+        }
       }
     }
-    & .productcomparison-related {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        margin-top: 2rem;
-        .card-one {
-          height: 20rem;
-          width: 15%;
-          display: flex;
-          background-color: brown;
-          flex-direction: column;
-          justify-content: space-around;
-          flex-wrap: wrap;
-          align-items: center;
-          & img {
-            height: 13rem;
+    & .product-warranty {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+
+      & .warranty-table {
+        align-self: center;
+        & table {
+          width: 100%;
+          & tr,
+          td,
+          th {
             width: 100%;
+            padding: 1.5rem;
+            text-align: center;
           }
-          & h2 {
-            font-size: 2rem;
-          }
-          & h3 {
-            font-size: 1.5rem;
-          }
-          & h4 {
-            font-size: 1rem;
+          & button {
+            background: transparent;
+            border: none;
+            height: 3rem;
+            width: 6rem;
+            background-color: aquamarine;
+            cursor: pointer;
           }
         }
       }
+    }
+    & .productcomparison-related {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      & .card-one {
+        height: 20rem;
+        width: 15%;
+        display: flex;
+        background-color: rgb(50, 205, 50);
+        flex-direction: column;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        & img {
+          height: 13rem;
+          width: 100%;
+        }
+        & h2 {
+          font-size: 2rem;
+        }
+        & h3 {
+          font-size: 1.5rem;
+        }
+        & h4 {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }
 
@@ -102,6 +133,42 @@
           width: 70%;
         }
       }
+      & .product-warranty {
+        & .warranty-info {
+          & .warranty-info-description {
+            & p {
+              font-size: 1rem;
+            }
+            & button {
+              width: 4rem;
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+      & .product-warranty {
+        & .warranty-table {
+          width: auto;
+          & table {
+            & td {
+              & button {
+                width: 3rem;
+                font-size: 0.6rem;
+              }
+            }
+          }
+        }
+      }
+      & .productcomparison-related {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        & .card-one {
+          width: 70%;
+        }
+      }
+      
     }
   }
 }

@@ -42,7 +42,7 @@
         height: 20rem;
         width: 15%;
         display: flex;
-        background-color: brown;
+        background-color: rgb(50, 205, 50);
         flex-direction: column;
         justify-content: space-around;
         flex-wrap: wrap;

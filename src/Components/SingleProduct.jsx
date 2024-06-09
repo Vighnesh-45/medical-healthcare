@@ -11,7 +11,7 @@ const SingleProduct = () => {
     const [count, setCount] = useState(1);
 
     const increment = () => setCount(count + 1);
-    const decrement = () => setCount(count - 1);
+    const decrement = () =>count !==1?setCount(count - 1):null
     return (
         <section className="singleproduct-main">
             {/* <Navbar/> */}
@@ -60,7 +60,7 @@ const SingleProduct = () => {
                         </div>
                         <div className="product-btn">
                             <div className="counter-container">
-                                <button className="counter-button" onClick={decrement}>-</button>
+                                <button className="counter-button" onClick={decrement} >-</button>
                                 <span className="counter-display">{count}</span>
                                 <button className="counter-button" onClick={increment}>+</button>
                             </div>
@@ -70,7 +70,6 @@ const SingleProduct = () => {
                             <div className="compare-btn">
                                 <button>+ Compare</button>
                             </div>
-                            <hr className="vertical-line" />
                         </div>
                     </div>
                 </div>
