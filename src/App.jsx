@@ -13,6 +13,8 @@ import ShoppingCart from './Components/ShoppingCart';
 import Admin from './Components/Admin/Admin';
 import AddCategories from './Components/Admin/AddCategories';
 import AddProduct from './Components/Admin/AddProduct';
+import ViewProducts from './Components/Admin/ViewProducts';
+import ViewUsers from './Components/Admin/ViewUsers';
 
 const App = () => {
   return (
@@ -31,6 +33,8 @@ const App = () => {
         <Route path='/Admin' element={<Admin />}/>
         <Route path='/AddCategories' element={<AddCategories />}/>
         <Route path='/AddProduct' element={<AddProduct />}/>
+        <Route path='/ViewProducts' element={<ViewProducts />}/>
+        <Route path='/ViewUsers' element={<ViewUsers />}/>
       </Routes>
     </>
   )

@@ -55,7 +55,6 @@
     }
   }
 }
-
 .addcategories-main {
   & .addcategories-container {
     & .addcategories-input {
@@ -91,6 +90,38 @@
         border: 1px solid #dddddd;
         text-align: left;
         padding: 8px;
+      }
+    }
+  }
+}
+.viewproducts-main{
+  & .viewproducts-container{
+    & .viewproducts-header{
+      & h2 {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+    }
+    & .viewproducts-table{
+      margin-top: 2rem;
+      & table{
+        font-size: 1rem;
+      }
+    }
+  }
+}
+.viewusers-main{
+  & .viewusers-container{
+    & .viewusers-header{
+      & h2 {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+    }
+    & .viewusers-table{
+      margin-top: 2rem;
+      & table{
+        font-size: 1rem;
       }
     }
   }
