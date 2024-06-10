@@ -10,6 +10,9 @@ import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 import Shipping from './Components/Shipping';
 import ShoppingCart from './Components/ShoppingCart';
+import Admin from './Components/Admin/Admin';
+import AddCategories from './Components/Admin/AddCategories';
+import AddProduct from './Components/Admin/AddProduct';
 
 const App = () => {
   return (
@@ -25,6 +28,9 @@ const App = () => {
         <Route path='/Checkout' element={<Checkout />}/>
         <Route path='/Shipping' element={<Shipping />}/>
         <Route path='/ShoppingCart' element={<ShoppingCart />}/>
+        <Route path='/Admin' element={<Admin />}/>
+        <Route path='/AddCategories' element={<AddCategories />}/>
+        <Route path='/AddProduct' element={<AddProduct />}/>
       </Routes>
     </>
   )

@@ -12,7 +12,6 @@ const TopContainer = () => {
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt, aliquam.</p>
                 <button>BUY NOW</button>
                 </div>
-                
             </div>
         </div>
     </section>
