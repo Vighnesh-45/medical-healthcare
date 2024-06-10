@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Shop.css"
 import Navbar from './Layout/Navbar'
 import Footer from './Layout/Footer'
@@ -8,6 +8,27 @@ import aspirin from "./../assets/aspirin.png"
 import Advertise from './Layout/Advertise';
 
 const Shop = () => {
+    const [data, setdata] = useState([]);
+    const getData = async () => {
+        const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all", {
+            method: "GET",
+            header: {
+                "Content-type": "application/json"
+            }
+        })
+        const resdata = await response.json();
+
+        if (!resdata) {
+            console.log("error")
+        } else {
+            console.log(resdata)
+            setdata(resdata);
+        }
+    }
+    useEffect(() => {
+        getData();
+    }, [])
+
     return (
         <section className="shop-main">
             {/* <Navbar /> */}
@@ -38,78 +59,19 @@ const Shop = () => {
                     </div>
                 </div>
                 <div className="shop-cards">
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
+                    {data.map((res, id) => {
+                        console.log(res)
+                        return (
+                            <>
+                                <div className="card-one">
+                                    <img src={res.Image} alt="" />
+                                    <h1>{res.Heading}</h1>
+                                    <h4>{res.Subheading}</h4>
+                                    <h3>{res.SP}</h3>
+                                </div>
+                            </>
+                        )
+                    })}
                 </div>
                 <div className="shop-footer">
                     <button>1</button>
