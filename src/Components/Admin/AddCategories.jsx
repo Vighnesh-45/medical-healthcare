@@ -1,5 +1,5 @@
 import React from 'react'
-import "./AddCategories.css"
+import "./Admin.css"
 
 const AddCategories = () => {
     return (

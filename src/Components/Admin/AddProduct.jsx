@@ -1,5 +1,5 @@
 import React from 'react'
-import "./AddProduct.css"
+import "./Admin.css"
 // import diabetes from "./../../assets/diabetes.png"
 
 const AddProduct = () => {
