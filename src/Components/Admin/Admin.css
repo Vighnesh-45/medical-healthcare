@@ -21,11 +21,14 @@
     & .addproduct-header {
       & h2 {
         font-size: 2rem;
-        text-align: center;
       }
       & .addproduct-input {
         display: flex;
-        margin-top: 2rem;
+        flex-wrap: nowrap;
+        gap: 1.2rem;
+        margin: 3rem;
+        width: 65%;
+
         & input {
           width: 2rem;
           height: 1.5rem;
@@ -35,14 +38,19 @@
         }
       }
     }
-    & .addproduct-input {
+    & .addproduct-input-field{
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
+      width: 100%;
       margin-left: 1rem;
       & input {
-        width: 15rem;
+        width: 20rem;
         height: 2rem;
+      }
+      & textarea{ 
+        width: 15rem;
+        height: 4rem;
       }
       & button {
         cursor: pointer;
@@ -51,6 +59,21 @@
         border: none;
         border-bottom: 0.1rem solid black;
         width: 5rem;
+      }
+    }
+    & .disease-btn{
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      justify-content: center;
+      align-items: center;
+      & button{
+        cursor: pointer;
+        width: 5rem;
+        font-size: 1.2rem;
+        background: transparent;
+        border: none;
+        border-bottom: 0.1rem solid black;
       }
     }
   }
@@ -66,6 +89,7 @@
       & input {
         width: 20rem;
         height: 2rem;
+        text-align: center;
       }
       & button {
         cursor: pointer;
