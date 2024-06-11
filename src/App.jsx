@@ -11,6 +11,8 @@ import Shipping from './Components/Shipping';
 import ShoppingCart from './Components/ShoppingCart';
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
+import Signup from './Components/Auth/Signup';
+import Login from './Components/Auth/Login';
 
 
 const App = () => {
@@ -29,7 +31,8 @@ const App = () => {
         <Route path='/ShoppingCart' element={<ShoppingCart />}/>
         <Route path='/Admin' element={<Admin />}/>
         <Route path='/AddProduct' element={<AddProduct />}/>
-
+        <Route path='/Signup' element={<Signup />}/>
+        <Route path='/Login' element={<Login />}/>
       </Routes>
     </>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import "./Cart.css"
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Navbar from './Layout/Navbar';
