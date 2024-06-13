@@ -2,26 +2,47 @@
   & .navbar-container {
     display: flex;
     height: 6rem;
-
+    justify-content: space-between;
+    gap: 3rem;
     & .logo {
-      width: 25%;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      & h2{
+        font-size: 2rem;
+      }
+      & img{
+        height: 6rem;
+        width: 7rem;
+        margin-left: 1rem;
+      }
     }
     & nav {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 50%;
-
+      margin-left: 2rem;
       & .navbar-list {
+        display: flex;
+        gap: 2rem;
         align-items: center;
         justify-content: center;
         list-style: none;
-      }
-      & ul {
-        & li {
-          display: inline-block;
-          margin-right: 2rem;
-          font-size: 1.2rem;
+        font-size: 1.2rem;
+        & ul {
+          & li {
+            display: inline-block;
+            margin-right: 2rem;
+            border: none;
+          }
+        }
+        & a{
+          text-decoration: none;
+          color: black;
+        }
+        & a:hover{
+          background-color: cadetblue;
+          color: white;
         }
       }
     }
@@ -42,8 +63,11 @@
 @media only screen and (max-width: 767px) {
   .navbar-main {
     & .navbar-container {
+      display: flex;
+      flex-direction: column;
       & nav {
         & .navbar-list {
+          flex-direction: column;
         }
       }
       & .nav-right {
@@ -53,3 +77,4 @@
     }
   }
 }
+

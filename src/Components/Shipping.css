@@ -137,7 +137,6 @@
             display: flex;
             gap: 2rem;
             justify-content: center;
-            /* margin-top: 1rem; */
             & .login-btn {
               width: 6rem;
             }
@@ -152,6 +151,7 @@
             }
             & button:hover {
               background-color: #83dc1e;
+              color: white;
             }
           }
         }
@@ -162,6 +162,7 @@
         background-color: #d4f7c5;
         & h3 {
           text-align: center;
+          font-size: 1.5rem;
         }
         & .summary-card {
           display: flex;

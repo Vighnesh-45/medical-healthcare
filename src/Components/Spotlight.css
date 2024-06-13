@@ -41,17 +41,18 @@
         height: 20rem;
         width: 15%;
         display: flex;
-        background-color: #CBE78D;
+        background-color: #C2EDA8;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
         flex-wrap: wrap;
+        border-radius: 0.4rem;
         align-items: center;
         & img {
           height: 13rem;
           width: 100%;
         }
         & h2 {
-          font-size: 2rem;
+          font-size: 1.4rem;
         }
         & h3 {
           font-size: 1.5rem;

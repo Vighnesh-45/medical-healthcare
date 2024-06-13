@@ -73,12 +73,6 @@ const ProductComparison = ({ currentStep }) => {
                             </>
                         )
                     })}
-                    {/* <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div> */}
                     <div className="add-product">
                         <h2>Add A Product</h2>
                         <select name="cars" id="cars">
@@ -138,14 +132,13 @@ const ProductComparison = ({ currentStep }) => {
                             <tr>
                                 <th></th>
                                 <td><button onClick={nextpage}>Add to Cart</button></td>
-                                <td><button onClick={nextpage}>Add to Cart</button></td>
+                                {/* <td><button onClick={nextpage}>Add to Cart</button></td> */}
                             </tr>
                         </table>
                     </div>
                 </div>
                 <h2>Related Products</h2>
                 <div className="productcomparison-related">
-
                     <div className="card-one">
                         <img src={aspirin} alt="" />
                         <h2>Aspirin</h2>

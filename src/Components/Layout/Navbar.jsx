@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css"
+import { Link } from 'react-router-dom';
 import "../../Components/ShoppingCart.css"
-// import logo from "./../../assets/codifylogo.png"
 import person from "./../../assets/person.png"
 import search from "./../../assets/search.png"
 import heart from "./../../assets/heart.png"
@@ -9,6 +9,7 @@ import cart from "./../../assets/cart.png"
 import { RiCloseLine } from "react-icons/ri";
 import dabur from "./../../assets/dabur.png"
 import { RiCloseCircleFill } from "react-icons/ri";
+import logo from "./../../assets/logo.png"
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -22,14 +23,15 @@ const Navbar = () => {
     <section className="navbar-main">
       <div className="navbar-container">
         <div className="logo">
-          {/* <img src= {logo} alt="" /> */}
+          <img src= {logo} alt="" />
+          <h2>Furniro</h2>
         </div>
         <nav>
           <ul className="navbar-list">
-            <li>Home</li>
-            <li>Shop</li>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/Shop'>Shop</Link></li>
             <li>About</li>
-            <li>Contact</li>
+            <li><Link to='/Contact'>Contact</Link></li>
           </ul>
         </nav>
         <div className="nav-right">

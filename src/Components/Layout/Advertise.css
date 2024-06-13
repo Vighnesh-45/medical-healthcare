@@ -1,12 +1,14 @@
 .advertise-main {
   & .advertise-container {
-    height: 15rem;
-    background-color: steelblue;
+    height: 10rem;
+    background-color: #e0f6d1;
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin-bottom: 2rem;
     & .advertise-content {
       display: flex;
+      width: 100%;
+      justify-content: flex-start;
       gap: 5rem;
       padding: 1rem 3rem;
       & .content1 {
@@ -26,12 +28,9 @@
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .advertise-main {
     & .advertise-container {
-      & .advertise-content {
-        & .content1 {
-          display: flex;
-          flex-direction: column;
-        }
-      }
+      display: flex;
+      flex-direction: column;
+      height: auto;
     }
   }
 }

@@ -14,7 +14,7 @@ const SingleProduct = () => {
     const decrement = () =>count !==1?setCount(count - 1):null
     return (
         <section className="singleproduct-main">
-            {/* <Navbar/> */}
+            <Navbar/>
             <div className="singleproduct-container">
                 <div className="singleproduct-header">
                     <p>Home</p>
@@ -106,7 +106,7 @@ const SingleProduct = () => {
                     <button>Show More</button>
                 </div>
             </div>
-            {/* <Footer/> */}
+            <Footer/>
         </section>
     )
 }

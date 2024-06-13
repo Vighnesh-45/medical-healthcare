@@ -6,8 +6,11 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
 import aspirin from "./../assets/aspirin.png"
 import Advertise from './Layout/Advertise';
+import { useLocation } from 'react-router-dom';
 
-const Shop = () => {
+const CategoryShop = () => {
+    const location = useLocation();
+    const { category } = location.state || {};
     const [data, setdata] = useState([]);
     const getData = async () => {
         const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all", {
@@ -61,16 +64,18 @@ const Shop = () => {
                 <div className="shop-cards">
                     {data.map((res, id) => {
                         console.log(res)
-                        return (
-                            <>
-                                <div className="card-one">
-                                    <img src={res.Image} alt="" />
-                                    <h2>{res.Heading}</h2>
-                                    <h4>{res.Subheading}</h4>
-                                    <h3>Rs. {res.SP}</h3>
-                                </div>
-                            </>
-                        )
+                        if(category === res.Categories[0]){
+                            return (
+                                <>
+                                    <div className="card-one">
+                                        <img src={res.Image} alt="" />
+                                        <h2>{res.Heading}</h2>
+                                        <h4>{res.Subheading}</h4>
+                                        <h3>Rs. {res.SP}</h3>
+                                    </div>
+                                </>
+                            )
+                        }
                     })}
                 </div>
                 <div className="shop-footer">
@@ -86,4 +91,4 @@ const Shop = () => {
     )
 }
 
-export default Shop
+export default CategoryShop

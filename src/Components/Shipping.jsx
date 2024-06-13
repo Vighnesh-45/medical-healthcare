@@ -5,13 +5,8 @@ import aspirin from "./../assets/aspirin.png"
 const Shipping = ({ currentStep }) => {
     const [count, setCount] = useState(1);
 
-    const increment = () => {
-        setCount(count + 1);
-    };
-
-    const decrement = () => {
-        setCount(count - 1);
-    };
+    const increment = () => setCount(count + 1);
+    const decrement = () => count !== 1 ? setCount(count - 1) : null
     return (
         <section className="shipping-main">
             <div className="shipping-container">
@@ -50,7 +45,7 @@ const Shipping = ({ currentStep }) => {
                                 <input type="text" />
                                 <div className="shipping-extra-details">
                                     <div className="shipping-detail-left">
-                                    <label htmlFor="">Street Name</label>
+                                    <label htmlFor="">Post Code</label>
                                     <input type="text" />
                                     </div>
                                     <label htmlFor="">Enter saved Adress

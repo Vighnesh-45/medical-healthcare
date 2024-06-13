@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Cart.css"
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { Link } from 'react-router-dom';
 import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import Advertise from './Layout/Advertise';
@@ -9,7 +10,7 @@ import Advertise from './Layout/Advertise';
 const Cart = () => {
     return (
         <section className="cart-main">
-            {/* <Navbar/> */}
+            <Navbar />
             <div className="cart-container">
                 <div className="cart-header">
                     <h2>Cart
@@ -36,13 +37,13 @@ const Cart = () => {
                             <p>Rs. 250</p>
                         </div>
                         <div className="checkout-btn">
-                        <button>Check Out</button>
+                            <button><Link to="/Checkout">Checkout</Link></button>
                         </div>
                     </div>
                 </div>
             </div>
-            {/* <Advertise /> */}
-            {/* <Footer/> */}
+            <Advertise />
+            <Footer />
         </section>
     )
 }

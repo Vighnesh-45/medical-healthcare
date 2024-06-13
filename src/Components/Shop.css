@@ -1,7 +1,7 @@
 .shop-main {
   & .shop-container {
     & .shop-header {
-      background-image: url("./../assets/home-header.png");
+      background-image: url("./../assets/shop-header.png");
       height: 10rem;
       & h2 {
         font-size: 3rem;
@@ -20,7 +20,7 @@
     }
     & .shop-nav {
       height: 7rem;
-      background-color: #5f9ea0;
+      background-color: #E0F6D1;
       display: flex;
       justify-content: space-around;
 
@@ -65,25 +65,26 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 3rem;
+      gap: 5rem;
       margin-top: 2rem;
       .card-one {
         height: 20rem;
-        width: 20%;
+        width: 13%;
         display: flex;
-        background-color: rgb(16, 230, 16);
+        background-color: #c2eda8;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
+        border-radius: 0.4rem;
         align-items: center;
         & img {
           height: 13rem;
           width: 100%;
         }
         & h2 {
-          font-size: 2rem;
+          font-size: 1.2rem;
         }
         & h3 {
-          font-size: 1.5rem;
+          font-size: 1.4rem;
         }
         & h4 {
           font-size: 1rem;
@@ -103,7 +104,7 @@
         font-size: 1.2rem;
         height: 2rem;
         width: 3%;
-        background-color: #24b6a3;
+        background-color: #E0F6D1;
         cursor: pointer;
         border-radius: 0.4rem;
       }
@@ -112,7 +113,7 @@
       }
       button:hover {
         color: white;
-        background-color: rgb(16, 230, 16);
+        background-color: #5BB82F;
       }
     }
   }
@@ -146,7 +147,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
+        gap: 1rem;
         & button {
           width: 2rem;
           aspect-ratio: 1;
@@ -160,24 +161,28 @@
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1023px){
-    .shop-main{
-        & .shop-container{
-            & .shop-footer {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                & button {
-                  width: 3rem;
-                  aspect-ratio: 1;
-                }
-                & .next {
-                  width: 4rem;
-                  aspect-ratio: 1;
-                }
-              }
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .shop-main {
+    & .shop-container {
+      & .shop-header {
+        & img {
+          width: 100% !important;
         }
+      }
+      & .shop-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        & button {
+          width: 3rem;
+          aspect-ratio: 1;
+        }
+        & .next {
+          width: 4rem;
+          aspect-ratio: 1;
+        }
+      }
     }
+  }
 }
-

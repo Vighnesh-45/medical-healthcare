@@ -41,17 +41,18 @@
         height: 20rem;
         width: 15%;
         display: flex;
-        background-color: #CBE78D;
+        background-color: #C2EDA8;
         flex-direction: column;
-        justify-content: space-around;
         flex-wrap: wrap;
         align-items: center;
+        border-radius: 0.4rem;
+        justify-content: space-between;
         & img {
           height: 13rem;
           width: 100%;
         }
         & h2 {
-          font-size: 2rem;
+          font-size: 1.3rem;
         }
         & h3 {
           font-size: 1.5rem;
@@ -61,19 +62,23 @@
         }
       }
     }
+
     & .show-button {
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 2rem;
-      & button {
-        background: transparent;
-        border: 1px solid rgb(84, 243, 84);
-        font-size: 1rem;
-        color: rgb(32, 161, 32);
-        height: 3rem;
-        width: 18%;
-        cursor: pointer;
+      & a {
+        & button {
+          background: transparent;
+          border: 1px solid rgb(84, 243, 84);
+          font-size: 1rem;
+          color: rgb(32, 161, 32);
+          height: 3rem;
+          width: 100%;
+          padding: 1rem;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -100,10 +105,10 @@
           width: 70%;
         }
       }
-      & .show-button{
-        & button{
-            height: 3rem;
-            width: 90%;
+      & .show-button {
+        & button {
+          height: 3rem;
+          width: 90%;
         }
       }
     }

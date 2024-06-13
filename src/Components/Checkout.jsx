@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./Checkout.css"
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { Link } from 'react-router-dom';
 import aspirin from "./../assets/aspirin.png"
 import Footer from './Layout/Footer';
 import Navbar from './Layout/Navbar';
@@ -10,23 +11,18 @@ import Advertise from './Layout/Advertise';
 const Checkout = ({ currentStep }) => {
     const [count, setCount] = useState(1);
 
-    const increment = () => {
-        setCount(count + 1);
-    };
-
-    const decrement = () => {
-        setCount(count - 1);
-    };
+    const increment = () => setCount(count + 1);
+    const decrement = () => count !== 1 ? setCount(count - 1) : null
     return (
         <section className="checkout-main">
-            {/* <Navbar/> */}
+            <Navbar />
             <div className="checkout-container">
                 <div className="checkout-header">
                     <h2>Checkout</h2>
                     <p>Home <MdKeyboardArrowRight />Checkout</p>
                 </div>
-                <div className="checkout-cards">
-                    <div className="checkout-details">
+                <div className="checkout-summary">
+                    <div className="checkout-details-left">
                         <div className="progress-steps">
                             <div className={`step ${currentStep >= 1 ? 'completed' : ''}`}>
                                 <div className="circle">✔</div>
@@ -41,15 +37,14 @@ const Checkout = ({ currentStep }) => {
                                 <span>Payment</span>
                             </div>
                         </div>
-                        <div className="detail-header">
-                            <h3>Account Details</h3>
-                        </div>
+
                         <div className="checkout-form">
+                                <h3>Account Details</h3>
                             <form action="">
                                 <label htmlFor="">Email Address</label>
-                                <input type="email" />
+                                <input type="email" placeholder='Enter Your Email ID'/>
                                 <label htmlFor="">Password</label>
-                                <input type="text" />
+                                <input type="text" placeholder='Enter Your Password' />
                             </form>
                             <div className="checkout-btn">
                                 <button>Register for Account</button>
@@ -57,11 +52,11 @@ const Checkout = ({ currentStep }) => {
                             </div>
                             <div className="shipping-btn">
                                 <button>Cancel Order</button>
-                                <button>Shipping Details</button>
+                                <button><Link to='/Shipping'>Shipping Details</Link></button>
                             </div>
                         </div>
                     </div>
-                    <div className="checkout-summary">
+                    <div className="checkout-details-right">
                         <h3>Order Summary</h3>
                         <div className="summary-card">
                             <div className="card-one">
@@ -71,7 +66,6 @@ const Checkout = ({ currentStep }) => {
                         <div className="summary-content">
                             <div className="summmary-content-left">
                                 <h4>Pudin Hara</h4>
-                                {/* <h4>250.00</h4> */}
                                 <p>Subtotal</p>
                                 <p>Tax</p>
                                 <p>Shipping</p>
@@ -91,9 +85,10 @@ const Checkout = ({ currentStep }) => {
                         </div>
                     </div>
                 </div>
+
             </div>
-            {/* <Advertise/> */}
-            {/* <Footer/> */}
+            <Advertise />
+            <Footer />
         </section>
     )
 }
