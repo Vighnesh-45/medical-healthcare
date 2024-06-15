@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./Checkout.css"
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import aspirin from "./../assets/aspirin.png"
 import Footer from './Layout/Footer';
 import Navbar from './Layout/Navbar';
@@ -13,6 +13,37 @@ const Checkout = ({ currentStep }) => {
 
     const increment = () => setCount(count + 1);
     const decrement = () => count !== 1 ? setCount(count - 1) : null
+    const navigate = useNavigate
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log("button press")
+        try {
+            const response = await fetch('http://localhost:8000/medical/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ Email: email, Pass: pass }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+
+            const data = await response.json();
+            console.log(data)
+
+            // Redirect based on user role using navigate
+            navigate('/')
+
+        } catch (error) {
+            console.error('Login error:', error);
+            // Handle error, show error message to user
+        }
+    };
     return (
         <section className="checkout-main">
             <Navbar />
@@ -39,16 +70,19 @@ const Checkout = ({ currentStep }) => {
                         </div>
 
                         <div className="checkout-form">
-                                <h3>Account Details</h3>
+                            <h3>Account Details</h3>
                             <form action="">
                                 <label htmlFor="">Email Address</label>
-                                <input type="email" placeholder='Enter Your Email ID'/>
+                                <input type="text" placeholder="Email" value={email}
+                                    onChange={(e) => setEmail(e.target.value)} />
+
                                 <label htmlFor="">Password</label>
-                                <input type="text" placeholder='Enter Your Password' />
+                                <input type="password" name="Pass" value={pass}
+                                    onChange={(e) => setPass(e.target.value)} />
                             </form>
                             <div className="checkout-btn">
                                 <button>Register for Account</button>
-                                <button className='login-btn'>Login</button>
+                                <button onClick={handleSubmit} className='login-btn'>Login</button>
                             </div>
                             <div className="shipping-btn">
                                 <button>Cancel Order</button>

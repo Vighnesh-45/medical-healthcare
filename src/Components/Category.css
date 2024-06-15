@@ -33,7 +33,7 @@
           align-items: center;
           & img {
             height: 13rem;
-            width: 100%;
+            width: 50%;
           }
           & h2 {
             font-size: 1.3rem;

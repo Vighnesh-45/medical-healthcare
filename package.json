@@ -24,6 +24,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.23.1",
     "sort-by": "^1.2.0",
+    "styled-components": "^6.1.11",
     "vite-plugin-ssr": "^0.4.142"
   },
   "devDependencies": {

@@ -49,7 +49,7 @@ const Trending = () => {
                 <div className="trending-header">
                     <h2>Top Trending Products</h2>
                     <div className="trending-right-header">
-                        <button>View All<img src={rightarrow} alt="Right Arrow" /></button>
+                    <Link to='/Shop'><button>View All<img src={rightarrow} /></button></Link>
                     </div>
                 </div>
                 <div className="trending-cards">

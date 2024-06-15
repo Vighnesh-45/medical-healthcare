@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import "./ProductComparison.css"
 import Navbar from './Layout/Navbar';
@@ -32,7 +32,7 @@ const ProductComparison = ({ currentStep }) => {
         }
     }
     const getSingleData = async () => {
-        const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/get/6661ee43ed59d50902896461", {
+        const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/get/66680fc57adcf1ef853da05f", {
             method: "GET",
             header: {
                 "Content-type": "application/json"
@@ -125,8 +125,8 @@ const ProductComparison = ({ currentStep }) => {
                             </tr>
                             <tr>
                                 <th>Effectiveness</th>
-                                <td>{singleData.Rating.Review}</td>
-                                <td>{singleData.Rating.Review}</td>
+                                <td>{singleData.Disease}</td>
+                                <td>{singleData.Disease}</td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -165,8 +165,8 @@ const ProductComparison = ({ currentStep }) => {
                     </div>
                 </div>
             </div>
-            {/* <Advertise /> */}
-            {/* <Footer /> */}
+            <Advertise />
+            <Footer />
         </section>
     )
 }

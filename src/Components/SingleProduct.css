@@ -3,7 +3,7 @@
     & .singleproduct-header {
       display: flex;
       height: 4rem;
-      background-color: thistle;
+      background-color: #e0f6d1;
       align-items: center;
       gap: 1rem;
       & hr {
@@ -52,7 +52,7 @@
           margin-top: 1rem;
           width: 70%;
           margin-bottom: 1rem;
-          & p{
+          & p {
             text-align: justify;
           }
         }
@@ -74,7 +74,7 @@
               cursor: pointer;
               outline: none;
             }
-            & .disabled{
+            & .disabled {
               cursor: not-allowed;
             }
 
@@ -84,13 +84,15 @@
             }
           }
           & .cart-btn {
-            & button {
-              background: transparent;
-              border: 0.1rem solid black;
-              border-radius: 0.5rem;
-              height: 3rem;
-              width: 6rem;
-              cursor: pointer;
+            & a {
+              & button {
+                background: transparent;
+                border: 0.1rem solid black;
+                border-radius: 0.5rem;
+                height: 3rem;
+                width: 6rem;
+                cursor: pointer;
+              }
             }
           }
           & .compare-btn {
@@ -165,10 +167,10 @@
       & .product-info {
         display: flex;
         flex-direction: column;
-        & .product-info-right{
+        & .product-info-right {
           width: 100%;
-          & .product-btn{
-            & button{
+          & .product-btn {
+            & button {
               font-size: 0.8rem;
             }
           }

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import {Link} from "react-router-dom"
 import "./Spotlight.css"
 import rightarrow from "./../assets/right-arrow.png"
 import aspirin from "./../assets/aspirin.png"
+import { IoShareSocialSharp } from "react-icons/io5";
+import { MdCompareArrows } from "react-icons/md";
+import { IoIosHeartEmpty } from "react-icons/io";
+
+
 
 const Spotlight = () => {
     const [data, setData] = useState([]);
@@ -50,11 +56,11 @@ const Spotlight = () => {
                 <div className="spotlight-header">
                     <h2>In The Spotlight</h2>
                     <div className="spotlight-right-header">
-                        <button>View All<img src={rightarrow} /></button>
+                    <Link to='/Shop'><button>View All<img src={rightarrow} /></button></Link>
                     </div>
                 </div>
                 <div className="spotlight-cards">
-                {randomArray.map((res, id) => (
+                    {randomArray.map((res, id) => (
                         <div className="card-one" key={id}>
                             <img src={res.Image} alt="" />
                             <h2>{res.Heading}</h2>
@@ -62,8 +68,16 @@ const Spotlight = () => {
                             <h3>Rs. {res.SP}</h3>
                         </div>
                     ))}
-                    
                 </div>
+                {/* <div className="hover-content">
+                    <button>Add to Cart</button>
+                    <p>Share</p>
+                    <IoShareSocialSharp />
+                    <p>Compare</p>
+                    <MdCompareArrows />
+                    <p>Like</p>
+                    <IoIosHeartEmpty />
+                </div> */}
 
             </div>
         </section>

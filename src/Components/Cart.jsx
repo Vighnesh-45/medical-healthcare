@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import logo from "./../assets/logo.png"
 import "./Cart.css"
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from 'react-router-dom';
@@ -13,6 +14,7 @@ const Cart = () => {
             <Navbar />
             <div className="cart-container">
                 <div className="cart-header">
+                <img src={logo} alt="" />
                     <h2>Cart
                         <p>Home<MdKeyboardArrowRight />Cart</p>
                     </h2>
@@ -37,7 +39,7 @@ const Cart = () => {
                             <p>Rs. 250</p>
                         </div>
                         <div className="checkout-btn">
-                            <button><Link to="/Checkout">Checkout</Link></button>
+                            <Link to="/Checkout"><button>Checkout</button></Link>
                         </div>
                     </div>
                 </div>

@@ -2,17 +2,23 @@
   & .shop-container {
     & .shop-header {
       background-image: url("./../assets/shop-header.png");
-      height: 10rem;
+      height: 12rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       & h2 {
         font-size: 3rem;
-        color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100%;
-        width: 100%;
-        line-height: 2;
+        line-height: 1.5;
+      }
+      & img{
+        height: 5rem;
+        width: 5rem;
+        
       }
       & p {
         font-size: 2rem;
@@ -20,7 +26,7 @@
     }
     & .shop-nav {
       height: 7rem;
-      background-color: #E0F6D1;
+      background-color: #e0f6d1;
       display: flex;
       justify-content: space-around;
 
@@ -65,11 +71,11 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 5rem;
+      gap: 2rem;
       margin-top: 2rem;
       .card-one {
-        height: 20rem;
-        width: 13%;
+        height: 100%;
+        width: 20%;
         display: flex;
         background-color: #c2eda8;
         flex-direction: column;
@@ -77,17 +83,21 @@
         border-radius: 0.4rem;
         align-items: center;
         & img {
-          height: 13rem;
-          width: 100%;
+          height: 15rem;
+          width: 80%;
+          margin: 1rem;
         }
         & h2 {
           font-size: 1.2rem;
+          padding: 0.5rem;
         }
         & h3 {
           font-size: 1.4rem;
+          padding: 0.5rem;
         }
         & h4 {
           font-size: 1rem;
+          padding: 0.5rem;
         }
       }
     }
@@ -104,7 +114,7 @@
         font-size: 1.2rem;
         height: 2rem;
         width: 3%;
-        background-color: #E0F6D1;
+        background-color: #e0f6d1;
         cursor: pointer;
         border-radius: 0.4rem;
       }
@@ -113,7 +123,7 @@
       }
       button:hover {
         color: white;
-        background-color: #5BB82F;
+        background-color: #5bb82f;
       }
     }
   }

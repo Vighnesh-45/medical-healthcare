@@ -1,5 +1,6 @@
 import React from 'react'
 import "./ShoppingCart.css"
+import {Link} from "react-router-dom"
 import { RiCloseLine } from "react-icons/ri";
 import dabur from "./../assets/dabur.png"
 import { RiCloseCircleFill } from "react-icons/ri";
@@ -57,9 +58,9 @@ const ShoppingCart = ({ items, onClose }) => {
         </div>
         <hr />
         <div className="cart-buttons">
-          <button>Cart</button>
-          <button>Checkout</button>
-          <button>Comparison</button>
+          <Link to="/Cart"><button>Cart</button></Link>
+          <Link to="/Checkout"><button>Checkout</button></Link>
+          <Link to="/ProductComparison"><button>Comparison</button></Link>
         </div>
       </div>
     </section>

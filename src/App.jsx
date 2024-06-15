@@ -1,4 +1,3 @@
-import React from 'react'
 import { Routes, Route } from 'react-router-dom';
 import Home from "./Components/Pages/Home"
 import Contact from './Components/Contact';
@@ -12,10 +11,10 @@ import ProductComparison from './Components/ProductComparison';
 import ShoppingCart from './Components/ShoppingCart';
 import Profile from './Components/Profile';
 import Admin from './Components/Admin/Admin';
-import AddCategories from './Components/Admin/AddCategories';
 import AddProduct from './Components/Admin/AddProduct';
-import ViewProducts from './Components/Admin/ViewProducts';
-import ViewUsers from './Components/Admin/ViewUsers';
+import Signup from './Components/Auth/Signup';
+import Login from './Components/Auth/Login';
+
 import CategoryShop from './Components/CategoryShop';
 
 const App = () => {
@@ -34,10 +33,9 @@ const App = () => {
         <Route path='/ShoppingCart' element={<ShoppingCart />}/>
         <Route path='/Profile' element={<Profile />}/>
         <Route path='/Admin' element={<Admin />}/>
-        <Route path='/AddCategories' element={<AddCategories />}/>
         <Route path='/AddProduct' element={<AddProduct />}/>
-        <Route path='/ViewProducts' element={<ViewProducts />}/>
-        <Route path='/ViewUsers' element={<ViewUsers />}/>
+        <Route path='/Signup' element={<Signup />}/>
+        <Route path='/Login' element={<Login />}/>
         <Route path='/CategoryShop' element={<CategoryShop />}/>
       </Routes>
     </>

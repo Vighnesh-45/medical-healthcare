@@ -10,7 +10,7 @@ import { MdOutlineAccessTime } from "react-icons/md";
 const Contact = () => {
     return (
         <section className='contact-main'>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="contact-container">
                 <div className="contact-header">
                     <h2>Contact</h2>
@@ -53,7 +53,7 @@ const Contact = () => {
                                 <label htmlFor="subject">Subject </label>
                                 <input type="text" placeholder='This is an optional' />
                                 <label htmlFor="message">Message </label>
-                                <textarea name="message" id="" cols={60} rows={5} >Hi i would like to ask about</textarea>
+                                <textarea name="message" id="" cols={60} rows={5} ></textarea>
                                 <button>Submit</button>
                             </form>
                         </div>

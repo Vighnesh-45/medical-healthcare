@@ -34,31 +34,36 @@
     }
     & .spotlight-cards {
       display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
       gap: 2rem;
       margin-top: 2rem;
-      .card-one {
-        height: 20rem;
-        width: 15%;
+      & .card-one {
+        height: 100%;
+        width: 20%;
         display: flex;
-        background-color: #C2EDA8;
+        background-color: #c2eda8;
         flex-direction: column;
         justify-content: space-between;
-        flex-wrap: wrap;
         border-radius: 0.4rem;
         align-items: center;
         & img {
-          height: 13rem;
-          width: 100%;
+          height: 15rem;
+          width: 80%;
+          margin: 1rem;
         }
         & h2 {
           font-size: 1.4rem;
+          padding: 0.5rem;
         }
         & h3 {
           font-size: 1.5rem;
+          padding: 0.5rem;
         }
         & h4 {
           font-size: 1rem;
+          padding: 0.5rem;
         }
       }
     }

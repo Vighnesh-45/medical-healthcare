@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./SingleProduct.css"
+import {Link} from "react-router-dom"
 import Navbar from './Layout/Navbar'
 import Footer from './Layout/Footer'
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -65,10 +66,10 @@ const SingleProduct = () => {
                                 <button className="counter-button" onClick={increment}>+</button>
                             </div>
                             <div className="cart-btn">
-                                <button>Add to Cart</button>
+                                <Link to='/Cart'><button>Add to Cart</button></Link>
                             </div>
                             <div className="compare-btn">
-                                <button>+ Compare</button>
+                                <Link to='/ProductComparison'><button>+ Compare</button></Link>
                             </div>
                         </div>
                     </div>

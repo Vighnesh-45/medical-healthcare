@@ -1,4 +1,4 @@
-import React from 'react'
+
 import "./Admin.css"
 // import diabetes from "./../../assets/diabetes.png"
 
@@ -35,23 +35,26 @@ const AddProduct = () => {
                         <label htmlFor="vehicle1">Newly Launched Generic Medicine</label>
                     </div>
                 </div>
-                <div className="addproduct-input">
+                <div className="addproduct-input-field">
                     <input type="text" placeholder='Id' />
                     <input type="text" placeholder='Image' />
                     <input type="text" placeholder='Heading' />
                     <input type="text" placeholder='Subheading' />
                     <input type="text" placeholder='MRP' />
                     <input type="text" placeholder='SP' />
-                    <input type="text" placeholder='Disclaimer' />
-                    <input type="text" placeholder='htmlFormulation' />
+                    <textarea name="" id="" placeholder="Disclaimer"></textarea>
+                    <input type="text" placeholder='Formulation' />
                     <input type="text" placeholder='Manufacturer' />
                     <input type="text" placeholder='Brand' />
                     <input type="text" placeholder='Storage' />
                     <input type="text" placeholder='Dosage' />
-                    <label htmlhtmlFor="">Disease</label>
+                    <label htmlFor="">Disease</label>
                     <input type="text" />
                     <button>Add New</button>
                 </div>
+                <div className="disease-btn">
+                        <button>Submit</button>
+                    </div>
             </div>
         </section>
     )
