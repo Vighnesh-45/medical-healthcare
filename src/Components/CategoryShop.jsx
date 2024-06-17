@@ -35,10 +35,13 @@ const CategoryShop = () => {
         getData();
     }, []);
 
+    // Filter data by category
+    const filteredData = data.filter(item => item.Categories.includes(category));
+
     // Calculate the index range of the current page
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
     // Handle page change
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -57,7 +60,7 @@ const CategoryShop = () => {
                         <VscSettings />
                         <p>Filter</p>
                         <hr />
-                        <p>Showing {indexOfFirstItem + 1}–{Math.min(indexOfLastItem, data.length)} of {data.length} results</p>
+                        <p>Showing {indexOfFirstItem + 1}–{Math.min(indexOfLastItem, filteredData.length)} of {filteredData.length} results</p>
                     </div>
 
                     <div className="shop-nav-right">
@@ -74,22 +77,18 @@ const CategoryShop = () => {
                 </div>
                 <div className="shop-cards">
                     {currentItems.map((res, id) => {
-                        console.log(res);
-                        if (category === res.Categories[0]) {
-                            return (
-                                <div className="card-one" key={id}>
-                                    <img src={res.Image} alt="" />
-                                    <h2>{res.Heading}</h2>
-                                    <h4>{res.Subheading}</h4>
-                                    <h3>Rs. {res.SP}</h3>
-                                </div>
-                            );
-                        }
-                        return null;
+                        return (
+                            <div className="card-one" key={id}>
+                                <img src={res.Image} alt="" />
+                                <h2>{res.Heading}</h2>
+                                <h4>{res.Subheading}</h4>
+                                <h3>Rs. {res.SP}</h3>
+                            </div>
+                        );
                     })}
                 </div>
                 <div className="shop-footer">
-                    {[...Array(Math.ceil(data.length / itemsPerPage)).keys()].map(number => (
+                    {[...Array(Math.ceil(filteredData.length / itemsPerPage)).keys()].map(number => (
                         <button key={number} onClick={() => paginate(number + 1)}>
                             {number + 1}
                         </button>
