@@ -55,103 +55,77 @@
             }
           }
         }
-        & .detail-header {
+        & .card-left {
           display: flex;
-          justify-content: center;
-          margin-top: 2rem;
-          margin-bottom: 1rem;
-        }
-        & .shipping-form {
-          & form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: center;
-            & label {
-              display: flex;
-              align-items: center;
-              gap: 2rem;
-              & .dropdown-container {
-                display: inline-block;
-                background-color: #d4f7c5;
-                border-radius: 10px;
-                padding: 10px;
-                & .dropdown {
-                  background-color: #d4f7c5;
-                  border: none;
-                  padding: 5px;
-                  font-size: 16px;
-                  color: #000;
-                  border-radius: 10px;
-                  width: 11rem;
-                  box-shadow: none;
-                }
-              }
-            }
-            & input {
-              width: 15rem;
-            }
-            & .shipping-extra-details {
-              display: flex;
-              margin-top: 1rem;
-              gap: 2rem;
-              & .shipping-detail-left {
-                flex-direction: column;
-                gap: 1rem;
-                display: flex;
-                & input {
-                  height: 2rem;
-                  width: 8rem;
-                }
-              }
-              & label {
-                flex-direction: column;
-                gap: 1rem;
-                & .dropdown-container {
-                  background-color: #d4f7c5;
-                  border-radius: 10px;
-                  padding: 10px;
-                  & .dropdown {
-                    background-color: #d4f7c5;
-                    border: none;
-                    padding: 5px;
-                    font-size: 16px;
-                    color: #000;
-                    border-radius: 10px;
-                    width: 11rem;
-                    box-shadow: none;
-                  }
-                }
-                & input {
-                  width: 15rem;
-                }
-              }
-            }
+          flex-direction: column;
+          gap: 2rem;
+          & h2 {
+            font-size: 1.5rem;
           }
-          & hr {
-            width: 90%;
-            margin-left: 2rem;
-            margin-top: 2rem;
-          }
-          & .checkout-btn {
+          & .saved-address{
             display: flex;
             gap: 2rem;
-            justify-content: center;
-            & .login-btn {
-              width: 6rem;
-            }
-            & button {
-              background: transparent;
-              cursor: pointer;
-              border: none;
-              margin-top: 2rem;
+            align-items: center;
+            & select {
               width: 10rem;
-              height: 2rem;
-              border-radius: 0.4rem;
+              height: 2.5rem;
+              padding: 0.5rem;
+              background-color: #C2EDA8;
+              border: none;
+              border-radius: 0.3rem;
+              
+              & option{
+                background-color: white;
+              }
             }
-            & button:hover {
-              background-color: #83dc1e;
-              color: white;
+          }
+          & .shipping-address {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            & input {
+              width: 25rem;
+              height: 2rem;
+              background-color: #c2eda8;
+              border: none;
+              padding: 0.5rem;
+            }
+          }
+          & .shipping-info {
+            display: flex;
+            gap: 2rem;
+            & .shipping-post {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+              & input{
+                width: 12rem;
+                height: 2.5rem;
+                background-color: #C2EDA8;
+                border: none;
+                border-radius: 0.3rem;
+                padding: 0.5rem;
+              }
+            }
+            & .shipping-mode {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+              & select {
+                width: 10rem;
+                height: 3.5rem;
+                padding: 0.5rem;
+                background-color: #C2EDA8;
+                border: none;
+                border-radius: 0.3rem;
+                & select:focus{
+                  border: none;
+                  outline: none;
+                }
+                & option{
+                  background-color: white;
+                }
+              }
             }
           }
         }
@@ -229,24 +203,28 @@
     }
   }
 }
+& select:focus{
+  border: none;
+  outline: none;
+}
 
 @media only screen and (min-width: 120px) and (max-width: 767px) {
-    .shipping-main {
-      & .shipping-container {
-        & .shipping-cards {
-          display: flex;
-          flex-direction: column;
-          & .shipping-details{
+  .shipping-main {
+    & .shipping-container {
+      & .shipping-cards {
+        display: flex;
+        flex-direction: column;
+        & .shipping-details {
+          width: 100%;
+          font-size: 1rem;
+          & .progress-steps {
             width: 100%;
-            font-size: 1rem;
-            & .progress-steps{
-              width: 100%;
-            }
           }
-          & .shipping-summary{
-            width: 100% !important;
-          }
+        }
+        & .shipping-summary {
+          width: 100% !important;
         }
       }
     }
   }
+}

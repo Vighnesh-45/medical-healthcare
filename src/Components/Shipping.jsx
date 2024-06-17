@@ -26,42 +26,33 @@ const Shipping = ({ currentStep }) => {
                                 <span>Payment</span>
                             </div>
                         </div>
-                        <div className="detail-header">
-                            <h3>Shipping Details</h3>
-                        </div>
-                        <div className="shipping-form">
-                            <form action="">
-                                <label htmlFor="">Enter saved Adress
-                                    <div className="dropdown-container">
-                                        <select className="dropdown">
-                                            <option>123, Electric avenue</option>
-                                            <option>Another address</option>
-                                            <option>Yet another address</option>
-                                        </select>
-                                    </div></label>
+                        <div className="card-left">
+                            <h2>Shipping Details</h2>
+                            <div className="saved-address">
+                                <label htmlFor="">Use Saved Address</label>
+                                <select name="Address" id="add">
+                                    <option value="add1">123, Avenue</option>
+                                    <option value="saab">456, electric avenue</option>
+                                </select>
+                            </div>
+                            <div className="shipping-address">
                                 <label htmlFor="">First line of Address</label>
-                                <input type="email" />
+                                <input type="text" placeholder="Enter your address" />
                                 <label htmlFor="">Street Name</label>
-                                <input type="text" />
-                                <div className="shipping-extra-details">
-                                    <div className="shipping-detail-left">
-                                    <label htmlFor="">Post Code</label>
-                                    <input type="text" />
-                                    </div>
-                                    <label htmlFor="">Enter saved Adress
-                                        <div className="dropdown-container">
-                                            <select className="dropdown">
-                                                <option>123, Electric avenue</option>
-                                                <option>Another address</option>
-                                                <option>Yet another address</option>
-                                            </select>
-                                        </div></label>
+                                <input type="text" placeholder="123 Electric Avenue" />
+                            </div>
+                            <div className="shipping-info">
+                                <div className="shipping-post">
+                                    <label htmlFor="">Postcode</label>
+                                    <input type="text" placeholder='ABC-123' />
                                 </div>
-                            </form>
-                            <hr />
-                            <div className="checkout-btn">
-                                <button>Cancel Order</button>
-                                <button className='login-btn'>Payment</button>
+                                <div className="shipping-mode">
+                                    <label htmlFor="">Select Shipping</label>
+                                    <select name="Mode of Shipping" id="delivery">
+                                        <option value="add1">Cash on Delivery</option>
+                                        <option value="saab">Online Payment</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
