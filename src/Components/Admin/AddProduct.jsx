@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Admin.css";
 
-const API_BASE_URL = "https://codify-api-541e.onrender.com/medical/medicine/all";
-
 const AddProduct = () => {
     const [image, setImage] = useState('');
     const [heading, setHeading] = useState('');
@@ -21,7 +19,7 @@ const AddProduct = () => {
 
     const getData = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/medical/medicine/all`, {
+            const response = await fetch("http://localhost:8000/medical/medicine/all", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -66,7 +64,6 @@ const AddProduct = () => {
             });
 
             if (res.status === 201) {
-                // Clear the form fields
                 setImage('');
                 setHeading('');
                 setSubHeading('');
@@ -80,7 +77,7 @@ const AddProduct = () => {
                 setDosage('');
                 setDisease('');
                 alert('Product created successfully!');
-                getData(); // Refresh the data
+                getData();
             } else {
                 console.error('Failed to create product:', await res.json());
             }
@@ -117,7 +114,7 @@ const AddProduct = () => {
                 <div className="addproduct-header">
                     <h2>Add Product</h2>
                     <div className="addproduct-input">
-                        {/* Checkbox categories here */}
+                        {/* Add your checkbox categories here */}
                     </div>
                 </div>
                 <div className="addproduct-input-field">
@@ -167,7 +164,7 @@ const AddProduct = () => {
                     <tbody>
                         {data.map((product, index) => (
                             <tr key={index}>
-                                <td>{product.Image}</td>
+                                <td><img src={product.Image} alt={product.Heading} /></td>
                                 <td>{product.Heading}</td>
                                 <td>{product.Subheading}</td>
                                 <td>{product.MRP}</td>
