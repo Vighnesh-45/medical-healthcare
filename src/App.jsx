@@ -16,6 +16,7 @@ import Signup from './Components/Auth/Signup';
 import Login from './Components/Auth/Login';
 
 import CategoryShop from './Components/CategoryShop';
+import AddCategories from './Components/Admin/AddCategories';
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
         <Route path='/Signup' element={<Signup />}/>
         <Route path='/Login' element={<Login />}/>
         <Route path='/CategoryShop' element={<CategoryShop />}/>
+        <Route path='/AddCategory' element={<AddCategories />}/>
       </Routes>
     </>
   )

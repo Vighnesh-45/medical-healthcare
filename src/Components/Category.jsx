@@ -26,6 +26,7 @@ const Category = () => {
     useEffect(() => {
         getData();
     }, [])
+    
     return (
         <section className="category-main">
             <div className="category-container">

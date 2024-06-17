@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import "./Shop.css";
-import logo from "./../assets/logo.png"
+import logo from "./../assets/logo.png";
 import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import { Link } from 'react-router-dom';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
-import aspirin from "./../assets/aspirin.png";
 import Advertise from './Layout/Advertise';
 
 const Shop = () => {
     const [data, setData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
     const getData = async () => {
         const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all", {
@@ -26,6 +27,7 @@ const Shop = () => {
         } else {
             console.log(resData);
             setData(resData);
+            setTotalPages(Math.ceil(resData.length / 12));
         }
     };
 
@@ -34,14 +36,21 @@ const Shop = () => {
     }, []);
 
     const handleAddToCart = (id) => {
-        // Get the existing cart items from local storage
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        // Add the new item to the cart
         cart.push(id);
-
-        // Save the updated cart back to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
+    };
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
+    const getPaginatedData = () => {
+        const startIndex = (currentPage - 1) * 12;
+        const endIndex = startIndex + 12;
+        return data.slice(startIndex, endIndex);
     };
 
     return (
@@ -59,7 +68,7 @@ const Shop = () => {
                         <VscSettings />
                         <p>Filter</p>
                         <hr />
-                        <p>Showing 1–16 of 32 results</p>
+                        <p>Showing {((currentPage - 1) * 12) + 1}–{Math.min(currentPage * 12, data.length)} of {data.length} results</p>
                     </div>
 
                     <div className="shop-nav-right">
@@ -75,26 +84,35 @@ const Shop = () => {
                     </div>
                 </div>
                 <div className="shop-cards">
-                    {data.map((res, id) => {
-                        console.log(res);
-                        return (
-                            <div className="card-one" key={id}>
-                                <img src={res.Image} alt="" />
-                                <h2>{res.Heading}</h2>
-                                <h4>{res.Subheading}</h4>
-                                <h3>Rs. {res.SP}</h3>
-                                <Link to="/Cart">
-                                    <button onClick={() => handleAddToCart(res._id)}>Add to Cart</button>
-                                </Link>
-                            </div>
-                        );
-                    })}
+                    {getPaginatedData().map((res, id) => (
+                        <div className="card-one" key={id}>
+                            <img src={res.Image} alt="" />
+                            <h2>{res.Heading}</h2>
+                            <h4>{res.Subheading}</h4>
+                            <h3>Rs. {res.SP}</h3>
+                            <Link to="/Cart">
+                                <button onClick={() => handleAddToCart(res._id)}>Add to Cart</button>
+                            </Link>
+                        </div>
+                    ))}
                 </div>
                 <div className="shop-footer">
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button className='next'>Next</button>
+                    {[...Array(totalPages).keys()].map(page => (
+                        <button
+                            key={page + 1}
+                            onClick={() => handlePageChange(page + 1)}
+                            className={currentPage === page + 1 ? 'active' : ''}
+                        >
+                            {page + 1}
+                        </button>
+                    ))}
+                    <button
+                        className='next'
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage >= totalPages}
+                    >
+                        Next
+                    </button>
                 </div>
                 <Advertise />
             </div>
