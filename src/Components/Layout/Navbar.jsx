@@ -12,7 +12,6 @@ import { FiMenu } from "react-icons/fi"; // Import hamburger icon
 import logo from "./../../assets/logo.png";
 
 const Navbar = () => {
-  const [click, setClick] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State to control mobile menu
 
@@ -24,34 +23,37 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }
 
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false); // Close menu on link click
+  }
+
   return (
     <>
       <section className="navbar-main">
         <div className="navbar-container">
           <div className="logo">
-            <img src={logo} alt="" />
+            <img src={logo} alt="logo" />
             <h2>Furniro</h2>
           </div>
           <nav>
             <ul className={`navbar-list ${isMobileMenuOpen ? 'active' : ''}`}>
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/Shop'>Shop</Link></li>
-              <li>About</li>
-              <li><Link to='/Contact'>Contact</Link></li>
+              <li><Link to='/' onClick={handleLinkClick}>Home</Link></li>
+              <li><Link to='/Shop' onClick={handleLinkClick}>Shop</Link></li>
+              <li><Link to='/About' onClick={handleLinkClick}>About</Link></li>
+              <li><Link to='/Contact' onClick={handleLinkClick}>Contact</Link></li>
             </ul>
             <div className="hamburger-icon" onClick={handleMenuToggle}>
               <FiMenu />
             </div>
           </nav>
           <div className="nav-right">
-            <img src={person} alt="" />
-            <img src={search} alt="" />
-            <img src={heart} alt="" />
-            <img src={cart} alt="" onClick={onButtonClick} />
+            <img src={person} alt="person" />
+            <img src={heart} alt="heart" />
+            <img src={cart} alt="cart" onClick={onButtonClick} />
           </div>
         </div>
       </section>
-      {showPopup ? <>
+      {showPopup && (
         <section className="shoppingcart-main">
           <div className="shoppingcart-container">
             <div className="shoppingcart-header">
@@ -60,7 +62,7 @@ const Navbar = () => {
             </div>
             <div className="cart-summary">
               <div className="summary-img">
-                <img src={dabur} alt="" />
+                <img src={dabur} alt="product" />
               </div>
               <div className="summary-content">
                 <div className="content-heading">
@@ -88,7 +90,7 @@ const Navbar = () => {
             </div>
           </div>
         </section>
-      </> : null}
+      )}
     </>
   );
 }

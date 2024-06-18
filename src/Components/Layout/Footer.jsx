@@ -24,7 +24,7 @@ const Footer = () => {
                 <div className='help'>
                     <h4>Help</h4>
                     <ul>
-                        <Link to="/"><li>Paymemt Option</li></Link>
+                        <Link to="/"><li>Payment Option</li></Link>
                         <Link to="/"><li>Returns</li></Link>
                         <Link to="/"><li>Privacy Policies</li></Link>
                     </ul>
