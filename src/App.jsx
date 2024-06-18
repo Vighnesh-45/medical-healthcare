@@ -18,6 +18,8 @@ import Login from './Components/Auth/Login';
 
 import CategoryShop from './Components/CategoryShop';
 import AddCategories from './Components/Admin/AddCategories';
+import ViewProducts from './Components/Admin/ViewProducts';
+import ViewUsers from './Components/Admin/ViewUsers';
 
 const App = () => {
   return (
@@ -41,6 +43,9 @@ const App = () => {
         <Route path='/Login' element={<Login />}/>
         <Route path='/CategoryShop' element={<CategoryShop />}/>
         <Route path='/AddCategory' element={<AddCategories />}/>
+        <Route path='/ViewProducts' element={<ViewProducts />}/>
+        <Route path='/ViewUsers' element={<ViewUsers />}/>
+
       </Routes>
     </>
   )
