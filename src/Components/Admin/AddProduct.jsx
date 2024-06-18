@@ -14,19 +14,26 @@ const AddProduct = () => {
     const [storage, setStorage] = useState('');
     const [dosage, setDosage] = useState('');
     const [disease, setDisease] = useState('');
+    const [generic, setGeneric] = useState(false);
+    const [ratingCount, setRatingCount] = useState('');
+    const [ratingReview, setRatingReview] = useState('');
     const [getDisease, setGetDisease] = useState([]);
     const [data, setData] = useState([]);
 
     const getData = async () => {
         try {
-            const response = await fetch("http://localhost:8000/medical/medicine/all", {
+            const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const resData = await response.json();
             setData(resData);
+            console.log(resData);
         } catch (error) {
             console.error('Failed to fetch data:', error);
         }
@@ -51,11 +58,16 @@ const AddProduct = () => {
             Brand: brand,
             Storage: storage,
             Dosage: dosage,
-            Disease: disease
+            Disease: disease,
+            Generic: generic,
+            Rating: {
+                Count: ratingCount,
+                Review: ratingReview
+            }
         };
 
         try {
-            const res = await fetch("http://localhost:8000/medical/medicine/add", {
+            const res = await fetch("https://codify-api-541e.onrender.com/medical/medicine/add", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -76,10 +88,14 @@ const AddProduct = () => {
                 setStorage('');
                 setDosage('');
                 setDisease('');
+                setGeneric(false);
+                setRatingCount('');
+                setRatingReview('');
                 alert('Product created successfully!');
                 getData();
             } else {
-                console.error('Failed to create product:', await res.json());
+                const errorData = await res.json();
+                console.error('Failed to create product:', errorData);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -90,7 +106,7 @@ const AddProduct = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`http://localhost:8000/medical/medicine/${data}/${disease}/add`, {
+            const res = await fetch(`https://codify-api-541e.onrender.com/medical/medicine/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -99,9 +115,11 @@ const AddProduct = () => {
             });
 
             if (res.status === 201) {
+                setGetDisease(prevState => [...prevState, disease]);
                 setDisease("");
             } else {
-                console.error('Failed to store disease:', await res.json());
+                const errorData = await res.json();
+                console.error('Failed to store disease:', errorData);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -123,14 +141,18 @@ const AddProduct = () => {
                     <input type="text" placeholder='Subheading' value={subHeading} onChange={(e) => setSubHeading(e.target.value)} />
                     <input type="text" placeholder='MRP' value={mrp} onChange={(e) => setMrp(e.target.value)} />
                     <input type="text" placeholder='SP' value={sp} onChange={(e) => setSp(e.target.value)} />
-                    <textarea name="" id="" placeholder="Disclaimer" value={disclaimer} onChange={(e) => setDisclaimer(e.target.value)}></textarea>
+                    <textarea placeholder="Disclaimer" value={disclaimer} onChange={(e) => setDisclaimer(e.target.value)}></textarea>
                     <input type="text" placeholder='Formulation' value={formulation} onChange={(e) => setFormulation(e.target.value)} />
                     <input type="text" placeholder='Manufacturer' value={manufacturer} onChange={(e) => setManufacturer(e.target.value)} />
                     <input type="text" placeholder='Brand' value={brand} onChange={(e) => setBrand(e.target.value)} />
                     <input type="text" placeholder='Storage' value={storage} onChange={(e) => setStorage(e.target.value)} />
                     <input type="text" placeholder='Dosage' value={dosage} onChange={(e) => setDosage(e.target.value)} />
                     <label htmlFor="">Disease</label>
-                    <input type="text" placeholder='disease' onChange={(e) => setDisease(e.target.value)} value={disease} />
+                    <input type="text" placeholder='Disease' onChange={(e) => setDisease(e.target.value)} value={disease} />
+                    <label htmlFor="">Generic</label>
+                    <input type="checkbox" checked={generic} onChange={(e) => setGeneric(e.target.checked)} />
+                    <input type="number" placeholder='Rating Count' value={ratingCount} onChange={(e) => setRatingCount(e.target.value)} />
+                    <input type="text" placeholder='Rating Review' value={ratingReview} onChange={(e) => setRatingReview(e.target.value)} />
                     <button onClick={storeDisease}>Add New</button>
                     <div className="skillData">
                         {getDisease.map((element, id) => (
@@ -159,23 +181,29 @@ const AddProduct = () => {
                             <th>Storage</th>
                             <th>Dosage</th>
                             <th>Disease</th>
+                            <th>Generic</th>
+                            <th>Rating Count</th>
+                            <th>Rating Review</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((product, index) => (
-                            <tr key={index}>
-                                <td><img src={product.Image} alt={product.Heading} /></td>
-                                <td>{product.Heading}</td>
-                                <td>{product.Subheading}</td>
-                                <td>{product.MRP}</td>
-                                <td>{product.SP}</td>
-                                <td>{product.Disclaimer}</td>
-                                <td>{product.Formulation}</td>
-                                <td>{product.Manufacturer}</td>
-                                <td>{product.Brand}</td>
-                                <td>{product.Storage}</td>
-                                <td>{product.Dosage}</td>
-                                <td>{product.Disease}</td>
+                        {data.map((res, id) => (
+                            <tr key={id}>
+                                <td><img src={res.Image} alt="" width="100%" height="100%" /></td>
+                                <td>{res.Heading}</td>
+                                <td>{res.Subheading}</td>
+                                <td>{res.MRP}</td>
+                                <td>{res.SP}</td>
+                                <td>{res.Disclaimer}</td>
+                                <td>{res.Formulation}</td>
+                                <td>{res.Manufacturer}</td>
+                                <td>{res.Brand ? "Brand" : "Generic"}</td>
+                                <td>{res.Storage}</td>
+                                <td>{res.Dosage}</td>
+                                <td>{res.Disease}</td>
+                                <td>{res.Generic ? "Yes" : "No"}</td>
+                                <td>{res.Rating?.Count}</td>
+                                <td>{res.Rating?.Review}</td>
                             </tr>
                         ))}
                     </tbody>

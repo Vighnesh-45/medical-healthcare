@@ -1,37 +1,89 @@
-import "./Admin.css"
+import { useEffect, useState } from "react";
+import "./Admin.css";
 
 const ViewProducts = () => {
-  return (
-    <section className="viewproducts-main">
-        <div className="viewproducts-container">
-            <div className="viewproducts-header">
-                <h2>View Products</h2>
-                <label htmlFor="">Total Count</label>
-                <input type="text" />
-            </div>
-            <div className="viewproducts-table">
-                <table>
-                    <th>Diabetes Care</th>
-                    <th>Nutritional Supplements</th>
-                    <th>Ayurvedic Products</th>
-                    <th>Eye Care Products</th>
-                    <th>Elderly Care</th>
-                    <th>Health Care Devices</th>
-                    <th>Cough & Cold</th>
-                    <th>Heart Care</th>
-                    <th>Blood Pressure</th>
-                    <th>Personal Care</th>
-                    <th>Kidney Care</th>
-                    <th>Newly Launched Generic Medicines</th>
-                    <th>Categories</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </table>
-            </div>
-        </div>
-    </section>
+    const [data, setData] = useState([]);
+    const [totalCount, setTotalCount] = useState(0);
 
-  )
+    const getData = async () => {
+        try {
+            const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const resData = await response.json();
+            setData(resData);
+            setTotalCount(resData.length);
+            console.log(resData);
+        } catch (error) {
+            console.error('Failed to fetch data:', error);
+        }
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    return (
+        <section className="viewproducts-main">
+            <div className="viewproducts-container">
+                <div className="viewproducts-header">
+                    <h2>View Products</h2>
+                    <label htmlFor="totalCount">Total Count</label>
+                    <input type="text" value={totalCount} readOnly />
+                </div>
+                <div className="viewproducts-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Heading</th>
+                                <th>Subheading</th>
+                                <th>MRP</th>
+                                <th>SP</th>
+                                <th>Disclaimer</th>
+                                <th>Formulation</th>
+                                <th>Manufacturer</th>
+                                <th>Brand</th>
+                                <th>Storage</th>
+                                <th>Dosage</th>
+                                <th>Disease</th>
+                                <th>Generic</th>
+                                <th>Rating Count</th>
+                                <th>Rating Review</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.map((res, id) => (
+                                <tr key={id}>
+                                    <td><img src={res.Image} alt="" width="100%" height="100%" /></td>
+                                    <td>{res.Heading}</td>
+                                    <td>{res.Subheading}</td>
+                                    <td>{res.MRP}</td>
+                                    <td>{res.SP}</td>
+                                    <td>{res.Disclaimer}</td>
+                                    <td>{res.Formulation}</td>
+                                    <td>{res.Manufacturer}</td>
+                                    <td>{res.Brand ? "Brand" : "Generic"}</td>
+                                    <td>{res.Storage}</td>
+                                    <td>{res.Dosage}</td>
+                                    <td>{res.Disease}</td>
+                                    <td>{res.Generic ? "Yes" : "No"}</td>
+                                    <td>{res.Rating?.Count}</td>
+                                    <td>{res.Rating?.Review}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    );
 }
 
-export default ViewProducts
+export default ViewProducts;
