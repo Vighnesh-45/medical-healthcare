@@ -15,15 +15,22 @@
       align-items: self-start;
       justify-content: space-around;
       & .product-info-left {
-        height: 30rem;
+        height: 25rem;
         display: flex;
+        background-color: #c2eda8;
+        flex-direction: column;
+        border-radius: 0.4rem;
         align-items: center;
-        justify-content: center;
-        background-color: rgb(68, 173, 163);
         & .info-left-container {
-          background-image: url("./../assets/dabur.png");
+          display: flex;
+          background-color: #c2eda8;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-image: url("./../assets/aspirin.png");
+          background-repeat: no-repeat;
           height: 25rem;
-          width: 45%;
+          width: 55%;
           aspect-ratio: 1;
         }
       }
@@ -32,7 +39,6 @@
         flex-direction: column;
         justify-content: space-evenly;
         width: 50%;
-
         & .info-right-header {
           line-height: 1.5;
 
@@ -90,7 +96,8 @@
                 border: 0.1rem solid black;
                 border-radius: 0.5rem;
                 height: 3rem;
-                width: 6rem;
+                padding: 1rem;
+                font-size: 1rem;
                 cursor: pointer;
               }
             }
@@ -101,10 +108,15 @@
               border: 0.1rem solid black;
               border-radius: 0.5rem;
               height: 3rem;
-              width: 5rem;
+              padding: 1rem;
+              font-size: 1rem;
               cursor: pointer;
             }
           }
+        }
+        & hr{
+          margin-top: 1rem;
+          margin-bottom: 1rem;
         }
       }
     }
@@ -148,14 +160,14 @@
       align-items: center;
       justify-content: center;
       margin: 2rem;
-      & button {
-        background: transparent;
-        border: 1px solid rgb(84, 243, 84);
-        font-size: 1rem;
-        color: rgb(32, 161, 32);
-        height: 3rem;
-        width: 18%;
-        cursor: pointer;
+      & a {
+        & button {
+          background: transparent;
+          border: 1px solid #5bb82f;
+          font-size: 1rem;
+          cursor: pointer;
+          padding: 1rem;
+        }
       }
     }
   }

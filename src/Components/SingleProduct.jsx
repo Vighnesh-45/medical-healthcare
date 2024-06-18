@@ -28,7 +28,6 @@ const SingleProduct = () => {
                 <div className="product-info">
                     <div className="product-info-left">
                         <div className="info-left-container">
-
                         </div>
                     </div>
                     <div className="product-info-right">
@@ -72,6 +71,7 @@ const SingleProduct = () => {
                                 <Link to='/ProductComparison'><button>+ Compare</button></Link>
                             </div>
                         </div>
+                        <hr />
                     </div>
                 </div>
                 <div className="product-header">
@@ -104,7 +104,7 @@ const SingleProduct = () => {
                     </div>
                 </div>
                 <div className="show-button">
-                    <button>Show More</button>
+                    <Link to="/Shop"><button>Show More</button></Link>
                 </div>
             </div>
             <Footer/>

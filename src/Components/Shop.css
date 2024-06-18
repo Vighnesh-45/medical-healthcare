@@ -132,7 +132,6 @@
         background-color: #e0f6d1;
         cursor: pointer;
         border-radius: 0.4rem;
-        /* display: none; */
       }
       & .next {
         width: 5%;
