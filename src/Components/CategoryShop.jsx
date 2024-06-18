@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Shop.css";
+import logo from "./../assets/logo.png";
 import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -46,11 +47,14 @@ const CategoryShop = () => {
     // Handle page change
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
     return (
         <section className="shop-main">
-            {/* <Navbar /> */}
+            <Navbar />
             <div className="shop-container">
                 <div className="shop-header">
+                <img src={logo} alt="" />
                     <h2>Shop
                         <p>Home<MdKeyboardArrowRight />Shop</p>
                     </h2>
@@ -88,11 +92,23 @@ const CategoryShop = () => {
                     })}
                 </div>
                 <div className="shop-footer">
-                    {[...Array(Math.ceil(filteredData.length / itemsPerPage)).keys()].map(number => (
-                        <button key={number} onClick={() => paginate(number + 1)}>
-                            {number + 1}
+                    {[1, 2].map(number => (
+                        <button
+                            key={number}
+                            onClick={() => paginate(number)}
+                            className={currentPage === number ? 'active' : ''}
+                        >
+                            {number}
                         </button>
                     ))}
+                    {currentPage < totalPages && (
+                        <button
+                            onClick={() => paginate(currentPage + 1)}
+                            className='next'
+                        >
+                            Next
+                        </button>
+                    )}
                 </div>
                 <Advertise />
             </div>

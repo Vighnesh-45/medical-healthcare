@@ -38,7 +38,7 @@ const Trending = () => {
         return randomElements;
     }
 
-    const randomArray = selectRandomElements(data, 5);
+    const randomArray = selectRandomElements(data, 4);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;

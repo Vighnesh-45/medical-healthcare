@@ -10,7 +10,7 @@ import { MdOutlineAccessTime } from "react-icons/md";
 const Contact = () => {
     return (
         <section className='contact-main'>
-            {/* <Navbar /> */}
+            <Navbar />
             <div className="contact-container">
                 <div className="contact-header">
                     <h2>Contact</h2>

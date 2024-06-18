@@ -1,3 +1,4 @@
+/* Navbar.css */
 .navbar-main {
   & .navbar-container {
     display: flex;
@@ -8,10 +9,10 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      & h2{
+      & h2 {
         font-size: 2rem;
       }
-      & img{
+      & img {
         height: 6rem;
         width: 7rem;
         margin-left: 1rem;
@@ -36,14 +37,19 @@
             border: none;
           }
         }
-        & a{
+        & a {
           text-decoration: none;
           color: black;
         }
-        & a:hover{
+        & a:hover {
           background-color: cadetblue;
           color: white;
         }
+      }
+      & .hamburger-icon {
+        display: none;
+        cursor: pointer;
+        font-size: 2rem;
       }
     }
     & .nav-right {
@@ -63,18 +69,20 @@
 @media only screen and (max-width: 767px) {
   .navbar-main {
     & .navbar-container {
-      display: flex;
       flex-direction: column;
       & nav {
+        width: 100%;
         & .navbar-list {
           flex-direction: column;
+          display: none;
+          &.active {
+            display: flex;
+          }
         }
-      }
-      & .nav-right {
-        & img {
+        & .hamburger-icon {
+          display: block;
         }
       }
     }
   }
 }
-

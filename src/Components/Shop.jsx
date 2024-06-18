@@ -55,7 +55,7 @@ const Shop = () => {
 
     return (
         <section className="shop-main">
-            {/* <Navbar /> */}
+            <Navbar />
             <div className="shop-container">
                 <div className="shop-header">
                     <img src={logo} alt="" />
@@ -75,7 +75,7 @@ const Shop = () => {
                         <div className="nav-btn">
                             <p>Show</p>
                             <input type="number" />
-                            <p>Short by</p>
+                            <p>Sort by</p>
                             <select name="medicine" id="med">
                                 <option value="default">Default</option>
                                 <option value="saab">Saab</option>
@@ -97,15 +97,22 @@ const Shop = () => {
                     ))}
                 </div>
                 <div className="shop-footer">
-                    {[...Array(totalPages).keys()].map(page => (
+                    {totalPages >= 1 && (
                         <button
-                            key={page + 1}
-                            onClick={() => handlePageChange(page + 1)}
-                            className={currentPage === page + 1 ? 'active' : ''}
+                            onClick={() => handlePageChange(1)}
+                            className={currentPage === 1 ? 'active' : ''}
                         >
-                            {page + 1}
+                            1
                         </button>
-                    ))}
+                    )}
+                    {totalPages >= 2 && (
+                        <button
+                            onClick={() => handlePageChange(2)}
+                            className={currentPage === 2 ? 'active' : ''}
+                        >
+                            2
+                        </button>
+                    )}
                     <button
                         className='next'
                         onClick={() => handlePageChange(currentPage + 1)}
