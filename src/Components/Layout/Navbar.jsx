@@ -32,8 +32,8 @@ const Navbar = () => {
       <section className="navbar-main">
         <div className="navbar-container">
           <div className="logo">
-            <img src={logo} alt="logo" />
-            <h2>Furniro</h2>
+          <Link to="/"><img src={logo} alt="logo" /></Link>
+            <Link to="/"><h2>Furniro</h2></Link>
           </div>
           <nav>
             <ul className={`navbar-list ${isMobileMenuOpen ? 'active' : ''}`}>

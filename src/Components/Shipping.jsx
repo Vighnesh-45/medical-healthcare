@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
-import "./Shipping.css"
-import aspirin from "./../assets/aspirin.png"
+import React, { useState, useEffect } from 'react';
+import "./Shipping.css";
+import aspirin from "./../assets/aspirin.png";
 
-const Shipping = ({ currentStep }) => {
+const Shipping = ({ currentStep, selectedIds }) => {
     const [count, setCount] = useState(1);
+    const [orderDetails, setOrderDetails] = useState([0]);
+
+    useEffect(() => {
+        if (!selectedIds || selectedIds.length === 0) {
+            return; // Exit early if selectedIds is not defined or empty
+        }
+
+        const fetchOrderDetails = async () => {
+            try {
+                const response = await fetch(`https://codify-api-541e.onrender.com/medical/medicine/all?id=${selectedIds.join(',')}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Fetched order details:', data); // Log the fetched data for debugging
+                    setOrderDetails(data); // Assuming data structure matches what you expect
+                } else {
+                    console.error('Failed to fetch order details:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching order details:', error);
+            }
+        };
+
+        fetchOrderDetails();
+    }, [selectedIds]);
 
     const increment = () => setCount(count + 1);
-    const decrement = () => count !== 1 ? setCount(count - 1) : null
+    const decrement = () => count !== 1 ? setCount(count - 1) : null;
+
     return (
         <section className="shipping-main">
             <div className="shipping-container">
@@ -58,37 +83,38 @@ const Shipping = ({ currentStep }) => {
                     </div>
                     <div className="shipping-summary">
                         <h3>Order Summary</h3>
-                        <div className="summary-card">
-                            <div className="card-one">
-                                <img src={aspirin} alt="" />
-                            </div>
-                        </div>
-                        <div className="summary-content">
-                            <div className="summmary-content-left">
-                                <h4>Pudin Hara</h4>
-                                {/* <h4>250.00</h4> */}
-                                <p>Subtotal</p>
-                                <p>Tax</p>
-                                <p>Shipping</p>
-                                <h4>Total</h4>
-                            </div>
-                            <div className="summmary-content-right">
-                                <div className="counter">
-                                    <button className="button decrement" onClick={decrement}>-</button>
-                                    <span className="count">{count}</span>
-                                    <button className="button increment" onClick={increment}>+</button>
+                        {orderDetails.map((item, index) => (
+                            <div key={index} className="summary-card">
+                                <div className="card-one">
+                                    <img src={aspirin} alt="" />
                                 </div>
-                                <h4>250.00</h4>
-                                <p>8.00</p>
-                                <p>Free</p>
-                                <h4>258.00</h4>
+                                <div className="summary-content">
+                                    <div className="summmary-content-left">
+                                        <h4>{item.Heading}</h4>
+                                        <p>Subtotal</p>
+                                        <p>Tax</p>
+                                        <p>Shipping</p>
+                                        <h4>Total</h4>
+                                    </div>
+                                    <div className="summmary-content-right">
+                                        <div className="counter">
+                                            <button className="button decrement" onClick={decrement}>-</button>
+                                            <span className="count">{count}</span>
+                                            <button className="button increment" onClick={increment}>+</button>
+                                        </div>
+                                        <h4>{item.SP}</h4>
+                                        <p>{item.MRP}</p>
+                                        <p>{item.shippingCost}</p>
+                                        <h4>{item.total}</h4>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Shipping
+export default Shipping;
