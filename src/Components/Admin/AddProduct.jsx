@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Admin.css";
+import './Admin.css';
 
 const AddProduct = () => {
     const [image, setImage] = useState('');
@@ -7,6 +7,7 @@ const AddProduct = () => {
     const [subHeading, setSubHeading] = useState('');
     const [mrp, setMrp] = useState('');
     const [sp, setSp] = useState('');
+    const [category, setCategory] = useState('');
     const [disclaimer, setDisclaimer] = useState('');
     const [formulation, setFormulation] = useState('');
     const [manufacturer, setManufacturer] = useState('');
@@ -60,6 +61,7 @@ const AddProduct = () => {
             Dosage: dosage,
             Disease: disease,
             Generic: generic,
+            Categories: category,
             Rating: {
                 Count: ratingCount,
                 Review: ratingReview
@@ -91,6 +93,7 @@ const AddProduct = () => {
                 setGeneric(false);
                 setRatingCount('');
                 setRatingReview('');
+                setCategory('')
                 alert('Product created successfully!');
                 getData();
             } else {
@@ -125,6 +128,20 @@ const AddProduct = () => {
             console.error('Error:', error);
         }
     };
+    const delData = async (id) => {
+        try {
+            const res = await fetch(`https://codify-api-541e.onrender.com/medical/medicine/del/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            const data = await res.json();
+        } catch (error) {
+            console.error("Delete error:", error);
+        }
+    }
 
     return (
         <section className="addproduct-main">
@@ -147,6 +164,8 @@ const AddProduct = () => {
                     <input type="text" placeholder='Brand' value={brand} onChange={(e) => setBrand(e.target.value)} />
                     <input type="text" placeholder='Storage' value={storage} onChange={(e) => setStorage(e.target.value)} />
                     <input type="text" placeholder='Dosage' value={dosage} onChange={(e) => setDosage(e.target.value)} />
+                    <input type="text" placeholder='Category' value={category} onChange={(e) => setCategory(e.target.value)} />
+
                     <label htmlFor="">Disease</label>
                     <input type="text" placeholder='Disease' onChange={(e) => setDisease(e.target.value)} value={disease} />
                     <label htmlFor="">Generic</label>
@@ -166,50 +185,55 @@ const AddProduct = () => {
             </div>
             <div className="product-table-container">
                 <h2>Product List</h2>
-                <table className="product-table">
-                    <thead>
-                        <tr>
-                            <th>Image</th>
-                            <th>Heading</th>
-                            <th>Subheading</th>
-                            <th>MRP</th>
-                            <th>SP</th>
-                            <th>Disclaimer</th>
-                            <th>Formulation</th>
-                            <th>Manufacturer</th>
-                            <th>Brand</th>
-                            <th>Storage</th>
-                            <th>Dosage</th>
-                            <th>Disease</th>
-                            <th>Generic</th>
-                            <th>Rating Count</th>
-                            <th>Rating Review</th>
+                <table className="border">
+                    <tr className="border">
+                        <th>Sr No.</th>
+                        <th>Category</th>
+                        <th>Image</th>
+                        <th>Heading</th>
+                        <th>Subheading</th>
+                        <th>MRP</th>
+                        <th>SP</th>
+                        <th>Disclaimer</th>
+                        <th>Formulation</th>
+                        <th>Manufacturer</th>
+                        <th>Brand</th>
+                        <th>Storage</th>
+                        <th>Dosage</th>
+                        <th>Disease</th>
+                        <th>Generic</th>
+                        <th>Rating Count</th>
+                        <th>Rating Review</th>
+                        <th>Delete</th>
+                    </tr>
+
+
+                    {data.map((res, id) => (
+                        <tr key={id}>
+                            <td>{id + 1}</td>
+                            <td>{res.Categories}</td>
+                            <td><img src={res.Image} alt="" width="100%" height="100%" /></td>
+                            <td>{res.Heading}</td>
+                            <td>{res.Subheading}</td>
+                            <td>{res.MRP}</td>
+                            <td>{res.SP}</td>
+                            <td>{res.Disclaimer}</td>
+                            <td>{res.Formulation}</td>
+                            <td>{res.Manufacturer}</td>
+                            <td>{res.Brand ? "Brand" : "Generic"}</td>
+                            <td>{res.Storage}</td>
+                            <td>{res.Dosage}</td>
+                            <td>{res.Disease}</td>
+                            <td>{res.Generic ? "Yes" : "No"}</td>
+                            <td>{res.Rating?.Count}</td>
+                            <td>{res.Rating?.Review}</td>
+                            <td><button onClick={() => delData(res._id)}>Delete</button></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((res, id) => (
-                            <tr key={id}>
-                                <td><img src={res.Image} alt="" width="100%" height="100%" /></td>
-                                <td>{res.Heading}</td>
-                                <td>{res.Subheading}</td>
-                                <td>{res.MRP}</td>
-                                <td>{res.SP}</td>
-                                <td>{res.Disclaimer}</td>
-                                <td>{res.Formulation}</td>
-                                <td>{res.Manufacturer}</td>
-                                <td>{res.Brand ? "Brand" : "Generic"}</td>
-                                <td>{res.Storage}</td>
-                                <td>{res.Dosage}</td>
-                                <td>{res.Disease}</td>
-                                <td>{res.Generic ? "Yes" : "No"}</td>
-                                <td>{res.Rating?.Count}</td>
-                                <td>{res.Rating?.Review}</td>
-                            </tr>
-                        ))}
-                    </tbody>
+                    ))}
+
                 </table>
             </div>
-        </section>
+        </section >
     );
 };
 

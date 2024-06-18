@@ -6,6 +6,7 @@
       justify-content: center;
       align-items: center;
       margin-top: 2rem;
+
       & button {
         cursor: pointer;
         font-size: 1.2rem;
@@ -16,12 +17,14 @@
     }
   }
 }
+
 .addproduct-main {
   & .addproduct-container {
     & .addproduct-header {
       & h2 {
         font-size: 2rem;
       }
+
       & .addproduct-input {
         display: flex;
         flex-wrap: nowrap;
@@ -33,25 +36,30 @@
           width: 2rem;
           height: 1.5rem;
         }
+
         & label {
           width: 5rem;
         }
       }
     }
-    & .addproduct-input-field{
+
+    & .addproduct-input-field {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
       width: 100%;
       margin-left: 1rem;
+
       & input {
         width: 20rem;
         height: 2rem;
       }
-      & textarea{ 
+
+      & textarea {
         width: 15rem;
         height: 4rem;
       }
+
       & button {
         cursor: pointer;
         font-size: 1.2rem;
@@ -61,13 +69,15 @@
         width: 5rem;
       }
     }
-    & .disease-btn{
+
+    & .disease-btn {
       display: flex;
       flex-direction: column;
       margin-top: 2rem;
       justify-content: center;
       align-items: center;
-      & button{
+
+      & button {
         cursor: pointer;
         width: 5rem;
         font-size: 1.2rem;
@@ -76,8 +86,11 @@
         border-bottom: 0.1rem solid black;
       }
     }
+
+
   }
 }
+
 .addcategories-main {
   & .addcategories-container {
     & .addcategories-input {
@@ -86,11 +99,13 @@
       justify-content: center;
       align-items: center;
       margin-top: 2rem;
+
       & input {
         width: 20rem;
         height: 2rem;
         text-align: center;
       }
+
       & button {
         cursor: pointer;
         font-size: 1.2rem;
@@ -99,16 +114,19 @@
         border-bottom: 0.1rem solid black;
       }
     }
+
     .addcategories-table {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       margin-top: 2rem;
+
       & h2 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
       }
+
       & td,
       th {
         border: 1px solid #dddddd;
@@ -118,35 +136,51 @@
     }
   }
 }
-.viewproducts-main{
-  & .viewproducts-container{
-    & .viewproducts-header{
+
+.viewproducts-main {
+  & .viewproducts-container {
+    & .viewproducts-header {
       & h2 {
         font-size: 1.5rem;
         text-align: center;
       }
     }
-    & .viewproducts-table{
+
+    & .viewproducts-table {
       margin-top: 2rem;
-      & table{
+
+      & table {
         font-size: 1rem;
       }
     }
   }
 }
-.viewusers-main{
-  & .viewusers-container{
-    & .viewusers-header{
+
+.viewusers-main {
+  & .viewusers-container {
+    & .viewusers-header {
       & h2 {
         font-size: 1.5rem;
         text-align: center;
       }
     }
-    & .viewusers-table{
+
+    & .viewusers-table {
       margin-top: 2rem;
-      & table{
+
+      & table {
         font-size: 1rem;
       }
     }
+  }
+}
+
+.border {
+  border: 1px solid #000;
+  border-collapse: collapse;
+  & tr,
+  th,
+  td {
+    border: 0.1rem solid black;
   }
 }
