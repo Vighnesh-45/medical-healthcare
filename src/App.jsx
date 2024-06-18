@@ -20,31 +20,37 @@ import CategoryShop from './Components/CategoryShop';
 import AddCategories from './Components/Admin/AddCategories';
 import ViewProducts from './Components/Admin/ViewProducts';
 import ViewUsers from './Components/Admin/ViewUsers';
+import { useState } from 'react';
 
 const App = () => {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart((prevCart) => [...prevCart, product]);
+  };
   return (
     <>
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/About' element={<About/>}/>
-        <Route path='/contact' element={<Contact />}/>
-        <Route path='/advertise' element={<Advertise />}/>
-        <Route path='/shop' element={<Shop />}/>
-        <Route path='/SingleProduct' element={<SingleProduct />}/>
-        <Route path='/Cart' element={<Cart />}/>
-        <Route path='/Checkout' element={<Checkout />}/>
-        <Route path='/Shipping' element={<Shipping />}/>
-        <Route path='/ProductComparison' element={<ProductComparison />}/>
-        <Route path='/ShoppingCart' element={<ShoppingCart />}/>
-        <Route path='/Profile' element={<Profile />}/>
-        <Route path='/Admin' element={<Admin />}/>
-        <Route path='/AddProduct' element={<AddProduct />}/>
-        <Route path='/Signup' element={<Signup />}/>
-        <Route path='/Login' element={<Login />}/>
-        <Route path='/CategoryShop' element={<CategoryShop />}/>
-        <Route path='/AddCategory' element={<AddCategories />}/>
-        <Route path='/ViewProducts' element={<ViewProducts />}/>
-        <Route path='/ViewUsers' element={<ViewUsers />}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/About' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/advertise' element={<Advertise />} />
+        <Route path="/shop`" element={<Shop cart={cart} addToCart={addToCart} />} />
+        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path='/SingleProduct' element={<SingleProduct />} />
+        <Route path='/Checkout' element={<Checkout />} />
+        <Route path='/Shipping' element={<Shipping />} />
+        <Route path='/ProductComparison' element={<ProductComparison />} />
+        <Route path='/ShoppingCart' element={<ShoppingCart />} />
+        <Route path='/Profile' element={<Profile />} />
+        <Route path='/Admin' element={<Admin />} />
+        <Route path='/AddProduct' element={<AddProduct />} />
+        <Route path='/Signup' element={<Signup />} />
+        <Route path='/Login' element={<Login />} />
+        <Route path='/CategoryShop' element={<CategoryShop />} />
+        <Route path='/AddCategory' element={<AddCategories />} />
+        <Route path='/ViewProducts' element={<ViewProducts />} />
+        <Route path='/ViewUsers' element={<ViewUsers />} />
 
       </Routes>
     </>

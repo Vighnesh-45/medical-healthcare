@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Shop.css";
 import logo from "./../assets/logo.png";
 import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
-import { Link } from 'react-router-dom';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
 import Advertise from './Layout/Advertise';
 
-const Shop = () => {
+const Shop = ({ cart, addToCart }) => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const navigate = useNavigate();
 
     const getData = async () => {
         const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all", {
@@ -35,10 +36,9 @@ const Shop = () => {
         getData();
     }, []);
 
-    const handleAddToCart = (id) => {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push(id);
-        localStorage.setItem('cart', JSON.stringify(cart));
+    const handleAddToCart = (product) => {
+        addToCart(product);
+        navigate('/cart');
     };
 
     const handlePageChange = (page) => {
@@ -77,8 +77,8 @@ const Shop = () => {
                             <input type="number" />
                             <p>Sort by</p>
                             <select name="medicine" id="med">
-                                <option value="low">Price: Low to High</option>
-                                <option value="high">Price: High to Low</option>
+                                <option value="default">Default</option>
+                                <option value="saab">Saab</option>
                             </select>
                         </div>
                     </div>
@@ -90,9 +90,7 @@ const Shop = () => {
                             <h2>{res.Heading}</h2>
                             <h4>{res.Subheading}</h4>
                             <h3>Rs. {res.SP}</h3>
-                            <Link to="/Cart">
-                                <button onClick={() => handleAddToCart(res._id)}>Add to Cart</button>
-                            </Link>
+                            <button onClick={() => handleAddToCart(res)}>Add to Cart</button>
                         </div>
                     ))}
                 </div>
@@ -126,6 +124,6 @@ const Shop = () => {
             <Footer />
         </section>
     );
-}
+};
 
 export default Shop;

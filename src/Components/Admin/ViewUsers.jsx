@@ -45,7 +45,6 @@ const ViewUsers = () => {
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact No</th>
-                                {/* <th>Address</th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -55,7 +54,6 @@ const ViewUsers = () => {
                                     <td>{res.Name}</td>
                                     <td>{res.Email}</td>
                                     <td>{res.Contact}</td>
-                                    {/* <td>{res.Address}</td> */}
                                 </tr>
                             ))}
                         </tbody>
