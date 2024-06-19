@@ -64,9 +64,8 @@ const CategoryShop = ({ addToCart }) => {
     };
 
     // Handle add to cart and redirect to cart page
-    const redirectToCart = (product) => {
-        addToCart(product);
-        navigate('/cart');
+    const redirectToSingleProduct = (product) => {
+        navigate('/SingleProduct', { state: { productId: product.id } });
     };
 
     return (
@@ -102,12 +101,12 @@ const CategoryShop = ({ addToCart }) => {
                 </div>
                 <div className="shop-cards">
                     {currentItems.map((res, id) => (
-                        <div className="card-one" key={id}>
+                        <div className="card-one" key={id} onClick={() => redirectToSingleProduct(res)}>
                             <img src={res.Image} alt="" />
                             <h2>{res.Heading}</h2>
                             <h4>{res.Subheading}</h4>
                             <h3>Rs. {res.SP}</h3>
-                            <button onClick={(e) => { e.stopPropagation(); redirectToCart(res); }}>Add to Cart</button>
+                            <button onClick={(e) => { e.stopPropagation(); addToCart(res); }}>Add to Cart</button>
                         </div>
                     ))}
                 </div>
