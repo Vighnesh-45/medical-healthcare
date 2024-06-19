@@ -21,6 +21,7 @@ import AddCategories from './Components/Admin/AddCategories';
 import ViewProducts from './Components/Admin/ViewProducts';
 import ViewUsers from './Components/Admin/ViewUsers';
 import { useState } from 'react';
+import AdminLogin from './Components/Admin/AdminLogin';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -53,7 +54,7 @@ const App = () => {
         <Route path='/AddCategory' element={<AddCategories />} />
         <Route path='/ViewProducts' element={<ViewProducts />} />
         <Route path='/ViewUsers' element={<ViewUsers />} />
-
+        <Route path='/AdminLogin' element={<AdminLogin />} />
       </Routes>
     </>
   )
