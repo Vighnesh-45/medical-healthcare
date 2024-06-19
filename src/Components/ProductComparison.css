@@ -66,7 +66,11 @@
       margin-top: 1rem;
       display: flex;
       flex-direction: column;
-
+      & .warranty-header {
+        & h2 {
+          text-align: center;
+        }
+      }
       & .warranty-table {
         align-self: center;
         & table {
@@ -83,11 +87,15 @@
             border: none;
             height: 3rem;
             width: 6rem;
-            background-color: aquamarine;
+            background-color: #5bb82f;
+            color: white;
             cursor: pointer;
           }
         }
       }
+    }
+    & h2{
+      text-align: center;
     }
     & .productcomparison-related {
       display: flex;
@@ -168,7 +176,6 @@
           width: 70%;
         }
       }
-      
     }
   }
 }

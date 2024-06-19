@@ -47,13 +47,15 @@ const ProductComparison = ({ currentStep }) => {
             setsingledata(resdata);
         }
     }
+
+    
     useEffect(() => {
         getData();
         getSingleData();
     }, [])
     return (
         <section className="productcomparison-main">
-            {/* <Navbar /> */}
+            <Navbar />
             <div className="productcomparison-container">
                 <div className="productcomparison-header">
                     <h2>Product Comparison</h2>
@@ -132,7 +134,7 @@ const ProductComparison = ({ currentStep }) => {
                             <tr>
                                 <th></th>
                                 <td><button onClick={nextpage}>Add to Cart</button></td>
-                                {/* <td><button onClick={nextpage}>Add to Cart</button></td> */}
+                                <td><button onClick={nextpage}>Add to Cart</button></td>
                             </tr>
                         </table>
                     </div>

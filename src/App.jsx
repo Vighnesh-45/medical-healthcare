@@ -24,6 +24,8 @@ import { useState } from 'react';
 
 const App = () => {
   const [cart, setCart] = useState([]);
+  const tax="18%";
+  const shippingcost =40
 
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
@@ -36,10 +38,10 @@ const App = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/advertise' element={<Advertise />} />
         <Route path="/shop" element={<Shop cart={cart} addToCart={addToCart} />} />
-        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path="/cart" element={<Cart cart={cart} addToCart={addToCart}/>} />
         <Route path='/SingleProduct' element={<SingleProduct />} />
         <Route path='/Checkout' element={<Checkout />} />
-        <Route path='/Shipping' element={<Shipping />} />
+        <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingcost={shippingcost}/>} />
         <Route path='/ProductComparison' element={<ProductComparison />} />
         <Route path='/ShoppingCart' element={<ShoppingCart />} />
         <Route path='/Profile' element={<Profile />} />

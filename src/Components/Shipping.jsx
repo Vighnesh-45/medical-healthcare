@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom"
 import "./Shipping.css";
 import aspirin from "./../assets/aspirin.png";
+import Navbar from './Layout/Navbar';
+import Footer from './Layout/Footer';
 
-const Shipping = ({ currentStep, selectedIds }) => {
+const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
     const [count, setCount] = useState(1);
     const [orderDetails, setOrderDetails] = useState([0]);
 
     useEffect(() => {
+        console.log(cart)
         if (!selectedIds || selectedIds.length === 0) {
             return; // Exit early if selectedIds is not defined or empty
         }
@@ -34,6 +38,7 @@ const Shipping = ({ currentStep, selectedIds }) => {
 
     return (
         <section className="shipping-main">
+            <Navbar />
             <div className="shipping-container">
                 <div className="shipping-cards">
                     <div className="shipping-details">
@@ -79,14 +84,18 @@ const Shipping = ({ currentStep, selectedIds }) => {
                                     </select>
                                 </div>
                             </div>
+                            <div className="payment-btn">
+                                <Link to="/Shop"><button>Cancel Order</button></Link>
+                                <Link to="/"><button>Payment</button></Link>
+                            </div>
                         </div>
                     </div>
                     <div className="shipping-summary">
                         <h3>Order Summary</h3>
-                        {orderDetails.map((item, index) => (
+                        {cart.map((item, index) => (
                             <div key={index} className="summary-card">
                                 <div className="card-one">
-                                    <img src={aspirin} alt="" />
+                                    <img src={item.Image} alt="" />
                                 </div>
                                 <div className="summary-content">
                                     <div className="summmary-content-left">
@@ -102,10 +111,10 @@ const Shipping = ({ currentStep, selectedIds }) => {
                                             <span className="count">{count}</span>
                                             <button className="button increment" onClick={increment}>+</button>
                                         </div>
-                                        <h4>{item.SP}</h4>
-                                        <p>{item.MRP}</p>
-                                        <p>{item.shippingCost}</p>
-                                        <h4>{item.total}</h4>
+                                        <h4>{item.SP*count}</h4>
+                                        <p>{tax}</p>
+                                        <p>{shippingcost}</p>
+                                        <h4>{item.SP*count + shippingcost}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -113,6 +122,7 @@ const Shipping = ({ currentStep, selectedIds }) => {
                     </div>
                 </div>
             </div>
+            {/* <Footer /> */}
         </section>
     );
 };

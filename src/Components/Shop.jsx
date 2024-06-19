@@ -78,7 +78,8 @@ const Shop = ({ cart, addToCart }) => {
                             <p>Sort by</p>
                             <select name="medicine" id="med">
                                 <option value="default">Default</option>
-                                <option value="saab">Saab</option>
+                                <option value="low">Price: Low to High</option>
+                                <option value="high">Price: High to Low</option>
                             </select>
                         </div>
                     </div>
