@@ -1,54 +1,85 @@
-import  { useState } from "react";
-import "./Admin.css"
-import AddCategories from './AddCategories'
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./Admin.css";
+import AddCategories from './AddCategories';
 import AddProduct from "./AddProduct";
-import ViewProducts from './ViewProducts'
-import ViewUsers from './ViewUsers'
+import ViewProducts from './ViewProducts';
+import ViewUsers from './ViewUsers';
+
 const Admin = () => {
   const [selectedButton, setSelectedButton] = useState("button1");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const condition = location.state || {};
 
-  const showDiv = (buttonName) => {
-    setSelectedButton(buttonName);
+  const validate = () => {
+    if (condition !== "Pass") {
+      navigate(`/adminlogin`);
+    }
   };
+
+  useEffect(() => {
+    validate();
+  }, [condition]);
+
+  const renderComponent = () => {
+    switch (selectedButton) {
+      case "button1":
+        return <AddCategories />;
+      case "button2":
+        return <AddProduct />;
+      case "button3":
+        return <ViewProducts />;
+      case "button4":
+        return <ViewUsers />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <section className="admin-main">
       <div className="admin-container">
         <div className="admin-buttons">
-          <button onClick={() => showDiv("button1")} style={{
-            backgroundColor:
-              selectedButton === "button1" ? "#003bd4" : "inherit",
-          }}>Add Category</button>
-          <button onClick={() => showDiv("button2")} style={{
-            backgroundColor:
-              selectedButton === "button2" ? "#003bd4" : "inherit",
-          }}>Add Product</button>
-          <button onClick={() => showDiv("button3")} style={{
-            backgroundColor:
-              selectedButton === "button3" ? "#003bd4" : "inherit",
-          }}>View Product</button>
-          <button onClick={() => showDiv("button4")} style={{
-            backgroundColor:
-              selectedButton === "button4" ? "#003bd4" : "inherit",
-          }}>View Users</button>
-         
+          <button
+            onClick={() => setSelectedButton("button1")}
+            style={{
+              backgroundColor: selectedButton === "button1" ? "#003bd4" : "inherit",
+            }}
+          >
+            Add Category
+          </button>
+          <button
+            onClick={() => setSelectedButton("button2")}
+            style={{
+              backgroundColor: selectedButton === "button2" ? "#003bd4" : "inherit",
+            }}
+          >
+            Add Product
+          </button>
+          <button
+            onClick={() => setSelectedButton("button3")}
+            style={{
+              backgroundColor: selectedButton === "button3" ? "#003bd4" : "inherit",
+            }}
+          >
+            View Product
+          </button>
+          <button
+            onClick={() => setSelectedButton("button4")}
+            style={{
+              backgroundColor: selectedButton === "button4" ? "#003bd4" : "inherit",
+            }}
+          >
+            View Users
+          </button>
         </div>
-          <div className="admin-container">
-          {selectedButton === "button1" && (
-              <AddCategories/>
-            )}
-            {selectedButton === "button2" && (
-              <AddProduct/>
-            )}
-            {selectedButton === "button3" && (
-              <ViewProducts/>
-            )}
-            {selectedButton === "button4" && (
-              <ViewUsers/>
-            )}
-          </div>
+        <div className="admin-content">
+          {renderComponent()}
+        </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;

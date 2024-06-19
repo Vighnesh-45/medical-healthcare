@@ -15,7 +15,6 @@ import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
 import Signup from './Components/Auth/Signup';
 import Login from './Components/Auth/Login';
-
 import CategoryShop from './Components/CategoryShop';
 import AddCategories from './Components/Admin/AddCategories';
 import ViewProducts from './Components/Admin/ViewProducts';
