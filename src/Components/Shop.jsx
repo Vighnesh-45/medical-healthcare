@@ -41,6 +41,10 @@ const Shop = ({ cart, addToCart }) => {
         navigate('/cart');
     };
 
+    const handleProductClick = (productId) => {
+        navigate(`/product/${productId}`);
+    };
+
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
@@ -87,7 +91,7 @@ const Shop = ({ cart, addToCart }) => {
                 <div className="shop-cards">
                     {getPaginatedData().map((res, id) => (
                         <div className="card-one" key={id}>
-                            <img src={res.Image} alt="" />
+                            <img src={res.Image} alt="" onClick={() => handleProductClick(res._id)} />
                             <h2>{res.Heading}</h2>
                             <h4>{res.Subheading}</h4>
                             <h3>Rs. {res.SP}</h3>
@@ -96,22 +100,15 @@ const Shop = ({ cart, addToCart }) => {
                     ))}
                 </div>
                 <div className="shop-footer">
-                    {totalPages >= 1 && (
+                    {Array.from({ length: totalPages }, (_, index) => (
                         <button
-                            onClick={() => handlePageChange(1)}
-                            className={currentPage === 1 ? 'active' : ''}
+                            key={index + 1}
+                            onClick={() => handlePageChange(index + 1)}
+                            className={currentPage === index + 1 ? 'active' : ''}
                         >
-                            1
+                            {index + 1}
                         </button>
-                    )}
-                    {totalPages >= 2 && (
-                        <button
-                            onClick={() => handlePageChange(2)}
-                            className={currentPage === 2 ? 'active' : ''}
-                        >
-                            2
-                        </button>
-                    )}
+                    ))}
                     <button
                         className='next'
                         onClick={() => handlePageChange(currentPage + 1)}

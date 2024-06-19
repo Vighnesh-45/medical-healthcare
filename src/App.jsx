@@ -39,6 +39,7 @@ const App = () => {
         <Route path='/advertise' element={<Advertise />} />
         <Route path="/shop" element={<Shop cart={cart} addToCart={addToCart} />} />
         <Route path="/cart" element={<Cart cart={cart} addToCart={addToCart}/>} />
+        {/* <Route path="/shop" element={<Shop />} /> */}\
         <Route path='/SingleProduct' element={<SingleProduct />} />
         <Route path='/Checkout' element={<Checkout />} />
         <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingcost={shippingcost}/>} />

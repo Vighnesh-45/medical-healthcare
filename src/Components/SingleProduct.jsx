@@ -1,21 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import "./SingleProduct.css"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import Navbar from './Layout/Navbar'
 import Footer from './Layout/Footer'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
-import aspirin from "./../assets/aspirin.png"
-
 
 const SingleProduct = () => {
     const [count, setCount] = useState(1);
+    const [product, setProduct] = useState(null);
+    const { id } = useParams();
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const response = await fetch(`https://codify-api-541e.onrender.com/medical/medicine/${id}`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json"
+                }
+            });
+            const resData = await response.json();
+            if (!resData) {
+                console.log("error");
+            } else {
+                setProduct(resData);
+            }
+        };
+
+        fetchProduct();
+    }, [id]);
 
     const increment = () => setCount(count + 1);
-    const decrement = () =>count !==1?setCount(count - 1):null
+    const decrement = () => count !== 1 ? setCount(count - 1) : null;
+
+    if (!product) return <div>Loading...</div>;
+
     return (
         <section className="singleproduct-main">
-            <Navbar/>
+            <Navbar />
             <div className="singleproduct-container">
                 <div className="singleproduct-header">
                     <p>Home</p>
@@ -23,17 +46,18 @@ const SingleProduct = () => {
                     <p>Shop</p>
                     <MdKeyboardArrowRight />
                     <hr />
-                    <p>Tablet Name</p>
+                    <p>{product.Heading}</p>
                 </div>
                 <div className="product-info">
                     <div className="product-info-left">
                         <div className="info-left-container">
+                            <img src={product.Image} alt={product.Heading} />
                         </div>
                     </div>
                     <div className="product-info-right">
                         <div className="info-right-header">
-                            <h2>Pudin Hara</h2>
-                            <h3>Rs. 250</h3>
+                            <h2>{product.Heading}</h2>
+                            <h3>Rs. {product.SP}</h3>
                         </div>
                         <div className="product-review">
                             <MdOutlineStarPurple500 />
@@ -60,7 +84,7 @@ const SingleProduct = () => {
                         </div>
                         <div className="product-btn">
                             <div className="counter-container">
-                                <button className="counter-button" onClick={decrement} >-</button>
+                                <button className="counter-button" onClick={decrement}>-</button>
                                 <span className="counter-display">{count}</span>
                                 <button className="counter-button" onClick={increment}>+</button>
                             </div>
@@ -78,38 +102,15 @@ const SingleProduct = () => {
                     <h2>Related Products</h2>
                 </div>
                 <div className="singleproduct-cards">
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
+                    {/* Display related products */}
                 </div>
                 <div className="show-button">
                     <Link to="/Shop"><button>Show More</button></Link>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </section>
     )
 }
 
-export default SingleProduct
+export default SingleProduct;
