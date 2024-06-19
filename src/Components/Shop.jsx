@@ -116,10 +116,11 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                 <div className="shop-footer">
                     {totalPages > 0 && (
                         <button
-                            onClick={() => handlePageChange(1)}
-                            className={currentPage === 1 ? 'active' : ''}
+                            key={index + 1}
+                            onClick={() => handlePageChange(index + 1)}
+                            className={currentPage === index + 1 ? 'active' : ''}
                         >
-                            1
+                            {index + 1}
                         </button>
                     )}
                     {totalPages > 1 && (

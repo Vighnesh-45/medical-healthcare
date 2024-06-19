@@ -30,7 +30,7 @@ const SingleProduct = ({ single }) => {
                     <p>Shop</p>
                     <MdKeyboardArrowRight />
                     <hr />
-                    <p>Tablet Name</p>
+                    <p>{product.Heading}</p>
                 </div>
                 <div className="product-info">
                     <div className="product-info-left">
@@ -80,7 +80,7 @@ const SingleProduct = ({ single }) => {
                         </div>
                         <div className="product-btn">
                             <div className="counter-container">
-                                <button className="counter-button" onClick={decrement} >-</button>
+                                <button className="counter-button" onClick={decrement}>-</button>
                                 <span className="counter-display">{count}</span>
                                 <button className="counter-button" onClick={increment}>+</button>
                             </div>
@@ -98,30 +98,7 @@ const SingleProduct = ({ single }) => {
                     <h2>Related Products</h2>
                 </div>
                 <div className="singleproduct-cards">
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
-                    <div className="card-one">
-                        <img src={aspirin} alt="" />
-                        <h2>Aspirin</h2>
-                        <h4>Stylish cafe Chair</h4>
-                        <h3>Rs. 50</h3>
-                    </div>
+                    {/* Display related products */}
                 </div>
                 <div className="show-button">
                     <Link to="/Shop"><button>Show More</button></Link>
