@@ -1,7 +1,9 @@
 import  { useState } from "react";
 import "./Admin.css"
-
-
+import AddCategories from './AddCategories'
+import AddProduct from "./AddProduct";
+import ViewProducts from './ViewProducts'
+import ViewUsers from './ViewUsers'
 const Admin = () => {
   const [selectedButton, setSelectedButton] = useState("button1");
 
@@ -28,12 +30,22 @@ const Admin = () => {
             backgroundColor:
               selectedButton === "button4" ? "#003bd4" : "inherit",
           }}>View Users</button>
-          <button onClick={() => showDiv("button5")} style={{
-            backgroundColor:
-              selectedButton === "button5" ? "#003bd4" : "inherit",
-          }}>View Orders</button>
+         
         </div>
-          <div className="admin-container"></div>
+          <div className="admin-container">
+          {selectedButton === "button1" && (
+              <AddCategories/>
+            )}
+            {selectedButton === "button2" && (
+              <AddProduct/>
+            )}
+            {selectedButton === "button3" && (
+              <ViewProducts/>
+            )}
+            {selectedButton === "button4" && (
+              <ViewUsers/>
+            )}
+          </div>
       </div>
     </section>
   )
