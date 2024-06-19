@@ -8,7 +8,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
 import Advertise from './Layout/Advertise';
 
-const Shop = ({ cart, addToCart }) => {
+const Shop = ({ cart, addToCart, addToSingle }) => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -41,6 +41,10 @@ const Shop = ({ cart, addToCart }) => {
         navigate('/cart');
     };
 
+    const handleSingleProduct = (product) => {
+        addToSingle(product);
+        navigate('/SingleProduct');
+    }
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
@@ -86,7 +90,7 @@ const Shop = ({ cart, addToCart }) => {
                 </div>
                 <div className="shop-cards">
                     {getPaginatedData().map((res, id) => (
-                        <div className="card-one" key={id}>
+                        <div onClick={() => handleSingleProduct(res)} className="card-one" key={id}>
                             <img src={res.Image} alt="" />
                             <h2>{res.Heading}</h2>
                             <h4>{res.Subheading}</h4>

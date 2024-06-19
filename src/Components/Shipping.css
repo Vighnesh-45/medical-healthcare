@@ -245,9 +245,7 @@
   border: none;
   outline: none;
 }
-a:hover {
-  background-color: #5bb82f;
-}
+
 
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .shipping-main {

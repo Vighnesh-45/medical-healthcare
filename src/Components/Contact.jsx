@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import "./Contact.css"
 import Navbar from './Layout/Navbar'
 import Footer from './Layout/Footer'
@@ -8,6 +8,34 @@ import { MdOutlineAccessTime } from "react-icons/md";
 
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        localStorage.setItem('contactFormData', JSON.stringify(formData));
+        console.log('Data stored in local storage:', JSON.parse(localStorage.getItem('contactFormData')));
+        alert('Data stored in local storage');
+        // Optionally, you can clear the form
+        setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+        });
+    };
     return (
         <section className='contact-main'>
             <Navbar />
@@ -21,7 +49,7 @@ const Contact = () => {
                         <p>For More Information About Our Product & Services. Please Feel Free To Drop Us</p>
                         <p>An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</p>
                     </div>
-                    <div className="conatct-content-main">  
+                    <div className="conatct-content-main">
                         <div className="contact-content-left">
                             <div className="contact-address">
                                 <h2><FaLocationDot />Address</h2>
@@ -47,14 +75,38 @@ const Contact = () => {
                         <div className="contact-content-right">
                             <form action="">
                                 <label htmlFor="name"> Your Name </label>
-                                <input type="text" placeholder='John' />
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="John"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                />
                                 <label htmlFor="email">Email </label>
-                                <input type="email" placeholder='john@email.com' />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="john@email.com"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
                                 <label htmlFor="subject">Subject </label>
-                                <input type="text" placeholder='This is an optional' />
+                                <input
+                                    type="text"
+                                    name="subject"
+                                    placeholder="This is an optional"
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                />
                                 <label htmlFor="message">Message </label>
-                                <textarea name="message" id="" cols={60} rows={5} ></textarea>
-                                <button>Submit</button>
+                                <textarea
+                                    name="message"
+                                    cols={60}
+                                    rows={5}
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                ></textarea>
+                                <button type="submit">Submit</button>
                             </form>
                         </div>
                     </div>

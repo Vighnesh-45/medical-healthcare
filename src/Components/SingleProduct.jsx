@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
-import "./SingleProduct.css"
-import {Link} from "react-router-dom"
-import Navbar from './Layout/Navbar'
-import Footer from './Layout/Footer'
+import "./SingleProduct.css";
+import { Link } from "react-router-dom";
+import Navbar from './Layout/Navbar';
+import Footer from './Layout/Footer';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
-import aspirin from "./../assets/aspirin.png"
+import aspirin from "./../assets/aspirin.png";
 
-
-const SingleProduct = () => {
+const SingleProduct = ({ single }) => {
+    const [selectedIds, setSelectedIds] = useState([]);
     const [count, setCount] = useState(1);
 
+    const handleSingleProduct = () => {
+        // Assuming cart items have unique IDs and you want to pass those to the Shipping page
+        const ids = single.map(item => item.id);
+        setSelectedIds(ids);
+    };
+
     const increment = () => setCount(count + 1);
-    const decrement = () =>count !==1?setCount(count - 1):null
+    const decrement = () => count !== 1 ? setCount(count - 1) : null;
+
     return (
         <section className="singleproduct-main">
-            <Navbar/>
+            <Navbar />
             <div className="singleproduct-container">
                 <div className="singleproduct-header">
                     <p>Home</p>
@@ -27,25 +34,38 @@ const SingleProduct = () => {
                 </div>
                 <div className="product-info">
                     <div className="product-info-left">
-                        <div className="info-left-container">
-                        </div>
+                        {single && single.length > 0 ? (
+                            single.map((item, index) => (
+                                <div key={index} className="info-left-container">
+                                    <img src={item.Image} alt="" />
+                                </div>
+                            ))
+                        ) : (
+                            <p>No product details available</p>
+                        )}
                     </div>
                     <div className="product-info-right">
-                        <div className="info-right-header">
-                            <h2>Pudin Hara</h2>
-                            <h3>Rs. 250</h3>
-                        </div>
+                        {single && single.length > 0 ? (
+                            single.map((item, index) => (
+                                <div key={index} className="info-right-header">
+                                    <h2>{item.Heading}</h2>
+                                    <h3>Rs. {item.SP}</h3>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No product details available</p>
+                        )}
                         <div className="product-review">
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <hr />
-                            <p>5 Customer Review</p>
+                            <p></p>
                         </div>
                         <div className="product-description">
                             <p>Disclaimer</p>
-                            <p>The contents here is for informational purposes only and not
+                            <p>The contents here are for informational purposes only and not
                                 intended to be a substitute for professional medical advice,
                                 diagnosis, or treatment. Please seek the advice of a physician or
                                 other qualified health provider with any questions you may have
@@ -107,9 +127,9 @@ const SingleProduct = () => {
                     <Link to="/Shop"><button>Show More</button></Link>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </section>
-    )
-}
+    );
+};
 
-export default SingleProduct
+export default SingleProduct;
