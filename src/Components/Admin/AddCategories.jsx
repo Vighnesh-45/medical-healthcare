@@ -37,28 +37,7 @@ const AddCategories = () => {
             console.error("Delete error:", error);
         }
     }
-    // const addData = async (e) =>{
-    //     e.preventDefault();
-
-    //     const Image = image
-    //     const Heading = heading
-    //     try {
-    //         const res = await fetch("http://localhost:8000/medical/categories/add", {
-    //             method: "POST",
-    //             body: JSON.stringify({ Image, Heading })
-    //         });
-
-    //         const resData = await res.json();
-
-    //         if (resData.status === 201) {
-    //             setImage('');
-    //             setHeading('');
-    //             alert('Category created successfully!');
-    //         }
-    //     } catch (error) {
-    //         console.log('Error:', error);
-    //     }
-    // }
+  
     const addData = async (e) => {
         e.preventDefault();
 
@@ -66,7 +45,7 @@ const AddCategories = () => {
         const headingData = heading;
 
         try {
-            const res = await fetch("http://localhost:8000/medical/categories/add", {
+            const res = await fetch("https://codify-api-541e.onrender.com/medical/categories/add", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
