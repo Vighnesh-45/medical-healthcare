@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from "./Components/Pages/Home"
-import About from "./Components/About"
+import Home from "./Components/Pages/Home";
+import About from "./Components/About";
 import Contact from './Components/Contact';
 import Advertise from './Components/Layout/Advertise';
 import Shop from './Components/Shop';
@@ -24,12 +24,18 @@ import AdminLogin from './Components/Admin/AdminLogin';
 
 const App = () => {
   const [cart, setCart] = useState([]);
-  const tax="18%";
-  const shippingcost =40
+  const [singleProduct, setSingleProduct] = useState([]);
+  const tax = "18%";
+  const shippingcost = 50;
 
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
   };
+
+  const addToSingleProduct = (product) => {
+    setSingleProduct([product]); // Assuming you want to store a single product
+  };
+
   return (
     <>
       <Routes>
@@ -37,12 +43,11 @@ const App = () => {
         <Route path='/About' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/advertise' element={<Advertise />} />
-        <Route path="/shop" element={<Shop cart={cart} addToCart={addToCart} />} />
-        <Route path="/cart" element={<Cart cart={cart} addToCart={addToCart}/>} />
-        {/* <Route path="/shop" element={<Shop />} /> */}\
-        <Route path='/SingleProduct' element={<SingleProduct />} />
+        <Route path="/shop" element={<Shop cart={cart} addToCart={addToCart} addToSingle={addToSingleProduct} />} />
+        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path='/SingleProduct' element={<SingleProduct single={singleProduct} />} />
         <Route path='/Checkout' element={<Checkout />} />
-        <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingcost={shippingcost}/>} />
+        <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingcost={shippingcost} />} />
         <Route path='/ProductComparison' element={<ProductComparison />} />
         <Route path='/ShoppingCart' element={<ShoppingCart />} />
         <Route path='/Profile' element={<Profile />} />
@@ -50,15 +55,14 @@ const App = () => {
         <Route path='/AddProduct' element={<AddProduct />} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/Login' element={<Login />} />
-        <Route path='/CategoryShop' element={<CategoryShop />} />
+        <Route path='/CategoryShop' element={<CategoryShop cart={cart} addToCart={addToCart} addToSingle={addToSingleProduct}/>} />
         <Route path='/AddCategory' element={<AddCategories />} />
         <Route path='/ViewProducts' element={<ViewProducts />} />
         <Route path='/ViewUsers' element={<ViewUsers />} />
         <Route path='/AdminLogin' element={<AdminLogin />} />
       </Routes>
     </>
-  )
+  );
 }
 
-
-export default App
+export default App;

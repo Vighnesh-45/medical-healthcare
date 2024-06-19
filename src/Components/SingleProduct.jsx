@@ -1,40 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import "./SingleProduct.css"
-import { Link } from "react-router-dom"
-import Navbar from './Layout/Navbar'
-import Footer from './Layout/Footer'
+import React, { useState } from 'react';
+import "./SingleProduct.css";
+import { Link } from "react-router-dom";
+import Navbar from './Layout/Navbar';
+import Footer from './Layout/Footer';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
+import aspirin from "./../assets/aspirin.png";
 
-const SingleProduct = () => {
+const SingleProduct = ({ single }) => {
+    const [selectedIds, setSelectedIds] = useState([]);
     const [count, setCount] = useState(1);
-    const [product, setProduct] = useState(null);
-    const { id } = useParams();
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            const response = await fetch(`https://codify-api-541e.onrender.com/medical/medicine/${id}`, {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json"
-                }
-            });
-            const resData = await response.json();
-            if (!resData) {
-                console.log("error");
-            } else {
-                setProduct(resData);
-            }
-        };
-
-        fetchProduct();
-    }, [id]);
+    const handleSingleProduct = () => {
+        // Assuming cart items have unique IDs and you want to pass those to the Shipping page
+        const ids = single.map(item => item.id);
+        setSelectedIds(ids);
+    };
 
     const increment = () => setCount(count + 1);
     const decrement = () => count !== 1 ? setCount(count - 1) : null;
-
-    if (!product) return <div>Loading...</div>;
 
     return (
         <section className="singleproduct-main">
@@ -50,26 +34,38 @@ const SingleProduct = () => {
                 </div>
                 <div className="product-info">
                     <div className="product-info-left">
-                        <div className="info-left-container">
-                            <img src={product.Image} alt={product.Heading} />
-                        </div>
+                        {single && single.length > 0 ? (
+                            single.map((item, index) => (
+                                <div key={index} className="info-left-container">
+                                    <img src={item.Image} alt="" />
+                                </div>
+                            ))
+                        ) : (
+                            <p>No product details available</p>
+                        )}
                     </div>
                     <div className="product-info-right">
-                        <div className="info-right-header">
-                            <h2>{product.Heading}</h2>
-                            <h3>Rs. {product.SP}</h3>
-                        </div>
+                        {single && single.length > 0 ? (
+                            single.map((item, index) => (
+                                <div key={index} className="info-right-header">
+                                    <h2>{item.Heading}</h2>
+                                    <h3>Rs. {item.SP}</h3>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No product details available</p>
+                        )}
                         <div className="product-review">
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <hr />
-                            <p>5 Customer Review</p>
+                            <p></p>
                         </div>
                         <div className="product-description">
                             <p>Disclaimer</p>
-                            <p>The contents here is for informational purposes only and not
+                            <p>The contents here are for informational purposes only and not
                                 intended to be a substitute for professional medical advice,
                                 diagnosis, or treatment. Please seek the advice of a physician or
                                 other qualified health provider with any questions you may have
@@ -110,7 +106,7 @@ const SingleProduct = () => {
             </div>
             <Footer />
         </section>
-    )
-}
+    );
+};
 
 export default SingleProduct;

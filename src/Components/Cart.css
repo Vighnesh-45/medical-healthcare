@@ -81,18 +81,16 @@
           align-items: center;
           justify-content: center;
           margin-top: 2rem;
-          & a {
-            & button {
-              background: transparent;
-              font-size: 1.2rem;
-              cursor: pointer;
-              text-decoration: none;
-              list-style: none;
-              color: black;
-              height: 3rem;
-              width: 8rem;
-              border-radius: 0.5rem;
-            }
+          & button {
+            background: transparent;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+            list-style: none;
+            color: black;
+            height: 3rem;
+            width: 8rem;
+            border-radius: 0.5rem;
           }
         }
       }

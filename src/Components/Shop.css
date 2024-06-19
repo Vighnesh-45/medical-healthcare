@@ -76,6 +76,7 @@
       gap: 2rem;
       margin-top: 2rem;
       .card-one {
+        cursor: pointer;
         height: 100%;
         width: 20%;
         display: flex;

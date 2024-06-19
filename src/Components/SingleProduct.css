@@ -27,11 +27,14 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background-image: url("./../assets/aspirin.png");
+          /* background-image: url("./../assets/aspirin.png"); */
           background-repeat: no-repeat;
           height: 25rem;
           width: 55%;
           aspect-ratio: 1;
+          & img{
+            height: 15rem;
+          }
         }
       }
       & .product-info-right {

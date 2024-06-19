@@ -6,13 +6,15 @@ import Footer from './Layout/Footer';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
 import Advertise from './Layout/Advertise';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const CategoryShop = () => {
+const CategoryShop = ({ addToCart }) => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { category } = location.state || {};
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [sortOption, setSortOption] = useState('default');
     const itemsPerPage = 12;
 
     const getData = async () => {
@@ -36,26 +38,43 @@ const CategoryShop = () => {
         getData();
     }, []);
 
-    // Filter data by category
+    // Filter and sort data
     const filteredData = data.filter(item => item.Categories.includes(category));
+    const sortedData = [...filteredData];
+
+    if (sortOption === 'low') {
+        sortedData.sort((a, b) => a.SP - b.SP);
+    } else if (sortOption === 'high') {
+        sortedData.sort((a, b) => b.SP - a.SP);
+    }
 
     // Calculate the index range of the current page
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
     // Handle page change
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+    // Handle sort change
+    const handleSortChange = (event) => {
+        setSortOption(event.target.value);
+    };
+
+    // Handle add to cart and redirect to cart page
+    const redirectToSingleProduct = (product) => {
+        navigate('/SingleProduct', { state: { productId: product.id } });
+    };
+
     return (
         <section className="shop-main">
             <Navbar />
             <div className="shop-container">
                 <div className="shop-header">
-                <img src={logo} alt="" />
-                    <h2>Shop
+                    <img src={logo} alt="" />
+                    <h2>Category Shop
                         <p>Home<MdKeyboardArrowRight />Shop</p>
                     </h2>
                 </div>
@@ -72,35 +91,50 @@ const CategoryShop = () => {
                             <p>Show</p>
                             <input type="number" />
                             <p>Sort by</p>
-                            <select name="medicine" id="med">
+                            <select name="medicine" id="med" value={sortOption} onChange={handleSortChange}>
                                 <option value="default">Default</option>
-                                <option value="saab">Saab</option>
+                                <option value="low">Price: Low to High</option>
+                                <option value="high">Price: High to Low</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div className="shop-cards">
-                    {currentItems.map((res, id) => {
-                        return (
-                            <div className="card-one" key={id}>
-                                <img src={res.Image} alt="" />
-                                <h2>{res.Heading}</h2>
-                                <h4>{res.Subheading}</h4>
-                                <h3>Rs. {res.SP}</h3>
-                            </div>
-                        );
-                    })}
+                    {currentItems.map((res, id) => (
+                        <div className="card-one" key={id} onClick={() => redirectToSingleProduct(res)}>
+                            <img src={res.Image} alt="" />
+                            <h2>{res.Heading}</h2>
+                            <h4>{res.Subheading}</h4>
+                            <h3>Rs. {res.SP}</h3>
+                            <button onClick={(e) => { e.stopPropagation(); addToCart(res); }}>Add to Cart</button>
+                        </div>
+                    ))}
                 </div>
                 <div className="shop-footer">
-                    {[1, 2].map(number => (
+                    {totalPages > 0 && (
                         <button
-                            key={number}
-                            onClick={() => paginate(number)}
-                            className={currentPage === number ? 'active' : ''}
+                            onClick={() => paginate(1)}
+                            className={currentPage === 1 ? 'active' : ''}
                         >
-                            {number}
+                            1
                         </button>
-                    ))}
+                    )}
+                    {totalPages > 1 && (
+                        <button
+                            onClick={() => paginate(2)}
+                            className={currentPage === 2 ? 'active' : ''}
+                        >
+                            2
+                        </button>
+                    )}
+                    {totalPages > 2 && (
+                        <button
+                            onClick={() => paginate(3)}
+                            className={currentPage === 3 ? 'active' : ''}
+                        >
+                            3
+                        </button>
+                    )}
                     {currentPage < totalPages && (
                         <button
                             onClick={() => paginate(currentPage + 1)}
