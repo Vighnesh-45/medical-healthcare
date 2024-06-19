@@ -1,14 +1,15 @@
 import React from 'react';
-import { useState } from 'react';  // Import useState if not already imported
+import { useState } from 'react';
 import logo from "./../assets/logo.png";
 import "./Cart.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import Advertise from './Layout/Advertise';
 
 const Cart = ({ cart }) => {
+    const navigate = useNavigate();
     const [selectedIds, setSelectedIds] = useState([]);
 
     const calculateSubtotal = () => {
@@ -16,11 +17,14 @@ const Cart = ({ cart }) => {
     };
 
     const handleCheckout = () => {
-        // Assuming cart items have unique IDs and you want to pass those to Shipping page
+        // Assuming cart items have unique IDs and you want to pass those to the Shipping page
         const ids = cart.map(item => item.id); // Adjust 'id' to your actual unique identifier
 
-        // Set selectedIds state to pass it to Shipping page
+        // Set selectedIds state to pass it to the Shipping page
         setSelectedIds(ids);
+
+        // Navigate to the Shipping page with selected IDs
+        navigate('/Shipping', { state: { selectedIds: ids } });
     };
 
     return (
@@ -63,8 +67,7 @@ const Cart = ({ cart }) => {
                             <p>Rs. {calculateSubtotal()}</p>
                         </div>
                         <div className="checkout-btn">
-                            {/* Use onClick to handle checkout action */}
-                            <Link to="/Shipping"><button onClick={handleCheckout}>Checkout</button></Link>
+                            <button onClick={handleCheckout}>Checkout</button>
                         </div>
                     </div>
                 </div>

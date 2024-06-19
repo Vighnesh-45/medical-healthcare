@@ -12,6 +12,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [sortOption, setSortOption] = useState('default');
     const navigate = useNavigate();
 
     const getData = async () => {
@@ -45,16 +46,29 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
         addToSingle(product);
         navigate('/SingleProduct');
     }
+
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
         }
     };
 
+    const handleSortChange = (event) => {
+        setSortOption(event.target.value);
+    };
+
     const getPaginatedData = () => {
+        let sortedData = [...data];
+
+        if (sortOption === 'low') {
+            sortedData.sort((a, b) => a.SP - b.SP);
+        } else if (sortOption === 'high') {
+            sortedData.sort((a, b) => b.SP - a.SP);
+        }
+
         const startIndex = (currentPage - 1) * 12;
         const endIndex = startIndex + 12;
-        return data.slice(startIndex, endIndex);
+        return sortedData.slice(startIndex, endIndex);
     };
 
     return (
@@ -80,7 +94,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                             <p>Show</p>
                             <input type="number" />
                             <p>Sort by</p>
-                            <select name="medicine" id="med">
+                            <select name="medicine" id="med" value={sortOption} onChange={handleSortChange}>
                                 <option value="default">Default</option>
                                 <option value="low">Price: Low to High</option>
                                 <option value="high">Price: High to Low</option>
@@ -95,12 +109,12 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                             <h2>{res.Heading}</h2>
                             <h4>{res.Subheading}</h4>
                             <h3>Rs. {res.SP}</h3>
-                            <button onClick={() => handleAddToCart(res)}>Add to Cart</button>
+                            <button onClick={(e) => {e.stopPropagation(); handleAddToCart(res)}}>Add to Cart</button>
                         </div>
                     ))}
                 </div>
                 <div className="shop-footer">
-                    {totalPages >= 1 && (
+                    {totalPages > 0 && (
                         <button
                             onClick={() => handlePageChange(1)}
                             className={currentPage === 1 ? 'active' : ''}
@@ -108,12 +122,20 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                             1
                         </button>
                     )}
-                    {totalPages >= 2 && (
+                    {totalPages > 1 && (
                         <button
                             onClick={() => handlePageChange(2)}
                             className={currentPage === 2 ? 'active' : ''}
                         >
                             2
+                        </button>
+                    )}
+                    {totalPages > 2 && (
+                        <button
+                            onClick={() => handlePageChange(3)}
+                            className={currentPage === 3 ? 'active' : ''}
+                        >
+                            3
                         </button>
                     )}
                     <button
