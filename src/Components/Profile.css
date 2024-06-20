@@ -1,18 +1,23 @@
 .profile-main {
   & .profile-container {
     & .profile-header {
-      background-image: url("./../assets/home-header.png");
-      height: 10rem;
+      background-image: url("./../assets/shop-header.png");
+      height: 12rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       & h2 {
         font-size: 3rem;
-        color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100%;
-        width: 100%;
-        line-height: 2;
+        line-height: 1.5;
+      }
+      & img {
+        height: 5rem;
+        width: 5rem;
       }
       & p {
         font-size: 2rem;
@@ -65,6 +70,7 @@
         & .user-name {
           display: flex;
           flex-direction: column;
+          margin-bottom: 1rem;
           & input {
             width: 60%;
             height: 1.5rem;
@@ -73,6 +79,7 @@
         & .mobile-number {
           display: flex;
           gap: 1rem;
+          margin-bottom: 1rem;
           & .number-one {
             display: flex;
             flex-direction: column;
@@ -88,6 +95,7 @@
         & .user-address {
           display: flex;
           gap: 1rem;
+          margin-bottom: 1rem;
           & .address-one {
             display: flex;
             flex-direction: column;
@@ -103,6 +111,7 @@
         & .user-landmark {
           display: flex;
           flex-direction: column;
+          margin-bottom: 1rem;
           & input {
             width: 60%;
             height: 1.5rem;
@@ -111,6 +120,7 @@
         & .pin-city {
           display: flex;
           gap: 1rem;
+          margin-bottom: 1rem;
           & .pin {
             display: flex;
             flex-direction: column;
@@ -127,6 +137,7 @@
         & .state-tag {
           display: flex;
           gap: 1rem;
+          margin-bottom: 1rem;
           & .state {
             display: flex;
             flex-direction: column;
@@ -137,9 +148,14 @@
             gap: 1rem;
             & button {
               padding: 0.5rem;
+              font-size: 0.8rem;
               gap: 1rem;
               border-radius: 0.5rem;
               cursor: pointer;
+              background: transparent;
+              border: 0.1rem solid black;
+              color: black;
+              margin: 0;
             }
           }
           & input {
@@ -149,31 +165,54 @@
         & .default-address {
           display: flex;
           gap: 1rem;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
+        & button {
+          background-color: #5bb82f;
+          border: none;
+          font-size: 1.2rem;
+          margin-top: 1rem;
+          color: white;
+          padding: 0.5rem;
+          border-radius: 0.4rem;
+          cursor: pointer;
         }
       }
     }
   }
 }
 
-@media only screen and (min-width: 120px) and (max-width: 767px){
-  .profile-main{
-    & .profile-container{
-      & .profile-card{
+@media only screen and (min-width: 120px) and (max-width: 767px) {
+  .profile-main {
+    & .profile-container {
+      & .profile-card {
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        & .profile-address{
-          & .mobile-number{
+        & .profile-address {
+          & .mobile-number {
             display: flex;
             flex-direction: column;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
           }
-          & .user-address{
+          & .user-address {
             display: flex;
             flex-direction: column;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
           }
-          & .state-tag{
+          & .pin-city {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+          }
+          & .state-tag {
             display: flex;
             flex-direction: column;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-top: 1px solid transparent;
           }
         }
       }
