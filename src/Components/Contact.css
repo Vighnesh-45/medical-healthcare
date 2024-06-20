@@ -36,7 +36,7 @@
           color: grey;
         }
       }
-      & .conatct-content-main {
+      & .contact-content-main {
         display: flex;
         justify-content: space-around;
         align-items: flex-start;

@@ -32,7 +32,7 @@
           height: 25rem;
           width: 55%;
           aspect-ratio: 1;
-          & img{
+          & img {
             height: 15rem;
           }
         }
@@ -93,16 +93,14 @@
             }
           }
           & .cart-btn {
-            & a {
-              & button {
-                background: transparent;
-                border: 0.1rem solid black;
-                border-radius: 0.5rem;
-                height: 3rem;
-                padding: 1rem;
-                font-size: 1rem;
-                cursor: pointer;
-              }
+            & button {
+              background: transparent;
+              border: 0.1rem solid black;
+              border-radius: 0.5rem;
+              height: 3rem;
+              padding: 1rem;
+              font-size: 1rem;
+              cursor: pointer;
             }
           }
           & .compare-btn {
@@ -117,7 +115,7 @@
             }
           }
         }
-        & hr{
+        & hr {
           margin-top: 1rem;
           margin-bottom: 1rem;
         }
