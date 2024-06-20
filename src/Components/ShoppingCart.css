@@ -16,19 +16,17 @@
       justify-content: space-around;
       margin-top: 1rem;
       & h2 {
-        font-size: 2rem;
+        font-size: 1.5rem;
         border-bottom: 0.1rem solid black;
-        width: 55%;
+        width: 50%;
       }
     }
     & .cart-summary {
       display: flex;
-      justify-content: space-around;
 
       & .summary-img {
-        height: 7rem;
-        width: 10rem;
-        background-color: thistle;
+        height: 8rem;
+        width: 5rem;
         border-radius: 0.3rem;
         margin-top: 1rem;
         & img {
@@ -56,10 +54,10 @@
     & .cart-subtotal {
       display: flex;
       gap: 2rem;
-      justify-content: space-around;
-      align-items: flex-end;
-      height: 10rem;
+      justify-content: center;
+      height: 7rem;
       margin-bottom: 2rem;
+      align-items: flex-end;
       & h4 {
         font-size: 1.3rem;
       }
@@ -76,8 +74,9 @@
             background: transparent;
             border: 0.1rem solid black;
             border-radius: 0.5rem;
-            font-size: 1rem;
-            width: 8rem;
+            padding: 0.6rem;
+            font-size: 0.7rem;
+            width: 5rem;
             cursor: pointer;
         }
     }
@@ -89,6 +88,9 @@
     & .shoppingcart-container{
       width: 100%;
       height: 38rem;
+      & .cart-buttons{
+        
+      }
     }
   }
 }

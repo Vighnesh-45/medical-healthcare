@@ -10,6 +10,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { FiMenu } from "react-icons/fi"; // Import hamburger icon
 import logo from "./../../assets/logo.png";
+import dabur from "./../../assets/dabur.png"; // Assuming you have an image called dabur.png
 
 const Navbar = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -32,7 +33,7 @@ const Navbar = () => {
       <section className="navbar-main">
         <div className="navbar-container">
           <div className="logo">
-          <Link to="/"><img src={logo} alt="logo" /></Link>
+            <Link to="/"><img src={logo} alt="logo" /></Link>
             <Link to="/"><h2>Furniro</h2></Link>
           </div>
           <nav>
