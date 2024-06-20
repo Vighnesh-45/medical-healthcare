@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import "./SingleProduct.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
-const SingleProduct = ({ single }) => {
-    const [selectedIds, setSelectedIds] = useState([]);
+const SingleProduct = ({ single, addToCart, addToSingle }) => {
     const [count, setCount] = useState(1);
-
-    const handleSingleProduct = () => {
-        const ids = single.map(item => item.id);
-        setSelectedIds(ids);
-    };
+    const [data, setData] = useState([]);
+    const navigate = useNavigate();
 
     const increment = () => setCount(count + 1);
     const decrement = () => count !== 1 ? setCount(count - 1) : null;
+
+    const handleAddToCart = (product) => {
+        // Adding quantity to the product
+        const productWithQuantity = { ...product, quantity: count };
+        addToCart(productWithQuantity);
+        navigate('/cart');
+    };
 
     return (
         <section className="singleproduct-main">
@@ -33,7 +36,7 @@ const SingleProduct = ({ single }) => {
                 <div className="product-info">
                     <div className="product-info-left">
                         {single && single.length > 0 ? (
-                            single.map((item, index) => (
+                            single.map((item) => (
                                 <div key={item.id} className="info-left-container">
                                     <img src={item.Image} alt={item.Heading} />
                                 </div>
@@ -44,7 +47,7 @@ const SingleProduct = ({ single }) => {
                     </div>
                     <div className="product-info-right">
                         {single && single.length > 0 ? (
-                            single.map((item, index) => (
+                            single.map((item) => (
                                 <div key={item.id} className="info-right-header">
                                     <h2>{item.Heading}</h2>
                                     <h3>Rs. {item.SP}</h3>
@@ -83,7 +86,9 @@ const SingleProduct = ({ single }) => {
                                 <button className="counter-button" onClick={increment}>+</button>
                             </div>
                             <div className="cart-btn">
-                                <Link to='/Cart'><button>Add to Cart</button></Link>
+                                {single && single.length > 0 && (
+                                    <button onClick={(e) => { e.stopPropagation(); handleAddToCart(single[0]); }}>Add to Cart</button>
+                                )}
                             </div>
                             <div className="compare-btn">
                                 <Link to='/ProductComparison'><button>+ Compare</button></Link>

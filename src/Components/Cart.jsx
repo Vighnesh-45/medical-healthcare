@@ -17,7 +17,6 @@ const Cart = ({ cart }) => {
     };
 
     const handleCheckout = () => {
-        // Assuming cart items have unique IDs and you want to pass those to the Shipping page
         const ids = cart.map(item => item.id); // Adjust 'id' to your actual unique identifier
 
         // Set selectedIds state to pass it to the Shipping page
