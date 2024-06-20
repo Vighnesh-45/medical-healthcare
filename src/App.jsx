@@ -26,7 +26,7 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [singleProduct, setSingleProduct] = useState([]);
   const tax = "18%";
-  const shippingcost = 50;
+  const shippingCost = 50;
 
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
@@ -45,9 +45,9 @@ const App = () => {
         <Route path='/advertise' element={<Advertise />} />
         <Route path="/shop" element={<Shop cart={cart} addToCart={addToCart} addToSingle={addToSingleProduct} />} />
         <Route path="/cart" element={<Cart cart={cart} />} />
-        <Route path='/SingleProduct' element={<SingleProduct single={singleProduct} />} />
+        <Route path='/SingleProduct' element={<SingleProduct single={singleProduct} addToCart={addToCart} addToSingle={addToSingleProduct}/>} />
         <Route path='/Checkout' element={<Checkout />} />
-        <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingcost={shippingcost} />} />
+        <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingCost={shippingCost} />} />
         <Route path='/ProductComparison' element={<ProductComparison />} />
         <Route path='/ShoppingCart' element={<ShoppingCart />} />
         <Route path='/Profile' element={<Profile />} />
@@ -55,7 +55,7 @@ const App = () => {
         <Route path='/AddProduct' element={<AddProduct />} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/Login' element={<Login />} />
-        <Route path='/CategoryShop' element={<CategoryShop cart={cart} addToCart={addToCart} addToSingle={addToSingleProduct}/>} />
+        <Route path='/CategoryShop' element={<CategoryShop cart={cart} addToCart={addToCart} addToSingle={addToSingleProduct} />} />
         <Route path='/AddCategory' element={<AddCategories />} />
         <Route path='/ViewProducts' element={<ViewProducts />} />
         <Route path='/ViewUsers' element={<ViewUsers />} />
