@@ -109,43 +109,30 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                             <h2>{res.Heading}</h2>
                             <h4>{res.Subheading}</h4>
                             <h3>Rs. {res.SP}</h3>
-                            <button onClick={(e) => {e.stopPropagation(); handleAddToCart(res)}}>Add to Cart</button>
+                            <button onClick={(e) => { e.stopPropagation(); handleAddToCart(res); }}>Add to Cart</button>
                         </div>
                     ))}
                 </div>
                 <div className="shop-footer">
-                    {totalPages > 0 && (
+                    {[1, 2, 3].map((page) => (
                         <button
-                            key={index + 1}
-                            onClick={() => handlePageChange(index + 1)}
-                            className={currentPage === index + 1 ? 'active' : ''}
+                            key={page}
+                            onClick={() => handlePageChange(page)}
+                            className={currentPage === page ? 'active' : ''}
+                            disabled={page > totalPages}
                         >
-                            {index + 1}
+                            {page}
+                        </button>
+                    ))}
+                    {currentPage < totalPages && (
+                        <button
+                            className='next'
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage >= totalPages}
+                        >
+                            Next
                         </button>
                     )}
-                    {totalPages > 1 && (
-                        <button
-                            onClick={() => handlePageChange(2)}
-                            className={currentPage === 2 ? 'active' : ''}
-                        >
-                            2
-                        </button>
-                    )}
-                    {totalPages > 2 && (
-                        <button
-                            onClick={() => handlePageChange(3)}
-                            className={currentPage === 3 ? 'active' : ''}
-                        >
-                            3
-                        </button>
-                    )}
-                    <button
-                        className='next'
-                        onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage >= totalPages}
-                    >
-                        Next
-                    </button>
                 </div>
                 <Advertise />
             </div>
