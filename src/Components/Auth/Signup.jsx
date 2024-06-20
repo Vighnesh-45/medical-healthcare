@@ -1,4 +1,5 @@
 import './Combine.css'
+import { Link } from "react-router-dom"
 import { useState } from 'react';
 
 const Signup = () => {
@@ -45,11 +46,22 @@ const Signup = () => {
     return (
         <section className="signup-main">
             <div className="signup-container">
-                <input type="text" placeholder='name' name='Name' onChange={handelSignUpData} value={signUpData.Name} />
-                <input type="email" placeholder='email' name='Email'  onChange={handelSignUpData} value={signUpData.Email} />
-                <input type="password" placeholder='password' name='Pass' onChange={handelSignUpData} value={signUpData.Pass} />
-                <input type="tel" placeholder='contact' name='Contact' onChange={handelSignUpData} value={signUpData.Contact} />
-                <button onClick={storeSignUpData}>submit</button>
+                <div className="signup-form">
+                    <h2>Create your New Account</h2>
+                    <label htmlFor="">Name</label>
+                    <input type="text" placeholder='Enter your Full Name' name='Name' onChange={handelSignUpData} value={signUpData.Name} />
+                    <label htmlFor="">Email</label>
+                    <input type="email" placeholder='Enter your Email' name='Email' onChange={handelSignUpData} value={signUpData.Email} />
+                    <label htmlFor="">Password</label>
+                    <input type="password" placeholder='Enter your Password' name='Pass' onChange={handelSignUpData} value={signUpData.Pass} />
+                    <label htmlFor="">Contact</label>
+                    <input type="tel" placeholder='Enter your Contact Number' name='Contact' onChange={handelSignUpData} value={signUpData.Contact} />
+                </div>
+                <button onClick={storeSignUpData}>Create Account</button>
+                <div className="already-login">
+                    <p>Already have a account?</p>
+                    <Link to="/Login"><button>Log in</button></Link>
+                </div>
             </div>
         </section>
     )

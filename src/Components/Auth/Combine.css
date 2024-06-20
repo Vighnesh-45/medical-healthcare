@@ -1,0 +1,43 @@
+/* SignUp CSS */
+.signup-main {
+  & .signup-container {
+    & .signup-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      & input {
+        width: 40%;
+        height: 3rem;
+        background-color: #c2eda8;
+        border-radius: 0.5rem;
+        border: none;
+      }
+    }
+    & button {
+      background-color: #5bb82f;
+      color: white;
+      border: none;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .already-login {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      height: 4rem;
+      & button {
+        border: none;
+        background: transparent;
+        color: #5bb82f;
+        padding: 0;
+        height: 2rem;
+        width: 3rem;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@ const Login = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ Email:email, Pass:pass }),
+                body: JSON.stringify({ Email: email, Pass: pass }),
             });
 
             if (!response.ok) {
@@ -38,11 +38,13 @@ const Login = () => {
     return (
         <section className="login-main">
             <div className="login-container">
-                <input type="text" placeholder="Email" value={email}
-                    onChange={(e) => setEmail(e.target.value)} />
-                <input type="password" name="Pass" value={pass}
-                    onChange={(e) => setPass(e.target.value)} />
-                <button onClick={handleSubmit}>submit</button>
+                <div className="login-form">
+                    <input type="text" placeholder="Email" value={email}
+                        onChange={(e) => setEmail(e.target.value)} />
+                    <input type="password" name="Pass" value={pass}
+                        onChange={(e) => setPass(e.target.value)} />
+                </div>
+                <button onClick={handleSubmit}>Create Account</button>
             </div>
         </section>
     )
