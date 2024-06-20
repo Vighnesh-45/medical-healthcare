@@ -5,14 +5,12 @@ import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
-import aspirin from "./../assets/aspirin.png";
 
 const SingleProduct = ({ single }) => {
     const [selectedIds, setSelectedIds] = useState([]);
     const [count, setCount] = useState(1);
 
     const handleSingleProduct = () => {
-        // Assuming cart items have unique IDs and you want to pass those to the Shipping page
         const ids = single.map(item => item.id);
         setSelectedIds(ids);
     };
@@ -30,14 +28,14 @@ const SingleProduct = ({ single }) => {
                     <p>Shop</p>
                     <MdKeyboardArrowRight />
                     <hr />
-                    <p>{product.Heading}</p>
+                    {single && single.length > 0 && <p>{single[0].Heading}</p>}
                 </div>
                 <div className="product-info">
                     <div className="product-info-left">
                         {single && single.length > 0 ? (
                             single.map((item, index) => (
-                                <div key={index} className="info-left-container">
-                                    <img src={item.Image} alt="" />
+                                <div key={item.id} className="info-left-container">
+                                    <img src={item.Image} alt={item.Heading} />
                                 </div>
                             ))
                         ) : (
@@ -47,7 +45,7 @@ const SingleProduct = ({ single }) => {
                     <div className="product-info-right">
                         {single && single.length > 0 ? (
                             single.map((item, index) => (
-                                <div key={index} className="info-right-header">
+                                <div key={item.id} className="info-right-header">
                                     <h2>{item.Heading}</h2>
                                     <h3>Rs. {item.SP}</h3>
                                 </div>
@@ -61,7 +59,7 @@ const SingleProduct = ({ single }) => {
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <hr />
-                            <p></p>
+                            <p>4 out of 5 stars</p> {/* Placeholder for review rating */}
                         </div>
                         <div className="product-description">
                             <p>Disclaimer</p>

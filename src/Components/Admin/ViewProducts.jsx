@@ -1,9 +1,23 @@
 import { useEffect, useState } from "react";
 import "./Admin.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ViewProducts = () => {
     const [data, setData] = useState([]);
     const [totalCount, setTotalCount] = useState(0);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const condition = location.state || {};
+
+    const validate = () => {
+        if (condition !== "Pass") {
+            navigate(`/adminlogin`);
+        }
+    };
+
+    useEffect(() => {
+        validate();
+    }, [condition]);
 
     const getData = async () => {
         try {

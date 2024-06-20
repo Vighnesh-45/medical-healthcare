@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import "./Admin.css"
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const AddCategories = () => {
     const [image, setImage] = useState('')
     const [heading, setHeading] = useState('')
     const [data, setData] = useState([])
+    const location = useLocation();
+    const navigate = useNavigate();
+    const condition = location.state || {};
+
+    const validate = () => {
+        if (condition !== "Pass") {
+            navigate(`/adminlogin`);
+        }
+    };
+
+    useEffect(() => {
+        validate();
+    }, [condition]);
 
     const getData = async () => {
         const response = await fetch("https://codify-api-541e.onrender.com/medical/categories/all", {
@@ -37,7 +51,7 @@ const AddCategories = () => {
             console.error("Delete error:", error);
         }
     }
-  
+
     const addData = async (e) => {
         e.preventDefault();
 
