@@ -1,32 +1,54 @@
-import React, { useState } from "react";
-import "./Navbar.css";
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "../../Components/ShoppingCart.css";
+import { RiCloseLine, RiCloseCircleFill } from "react-icons/ri";
+import { FiMenu } from "react-icons/fi";
+import logo from "./../../assets/logo.png";
 import person from "./../../assets/person.png";
-import search from "./../../assets/search.png";
 import heart from "./../../assets/heart.png";
 import cart from "./../../assets/cart.png";
-import { RiCloseLine } from "react-icons/ri";
-import { RiCloseCircleFill } from "react-icons/ri";
-import { FiMenu } from "react-icons/fi"; // Import hamburger icon
-import logo from "./../../assets/logo.png";
-import dabur from "./../../assets/dabur.png"; // Assuming you have an image called dabur.png
+import "./Navbar.css";
+import "../../Components/ShoppingCart.css";
 
 const Navbar = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State to control mobile menu
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [data, setData] = useState([]);
+  
+  // Fetch data from API
+  const getData = async () => {
+    try {
+      const response = await fetch("https://codify-api-541e.onrender.com/medical/categories/all");
+      const resdata = await response.json();
+      setData(resdata);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  // Function to handle redirection to profile page
+  const redirectToProfile = () => {
+    // Replace '/profile' with the actual URL of your profile page
+    window.location.href = '/profile';
+  };
 
   const onButtonClick = () => {
     setShowPopup(!showPopup);
-  }
+  };
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-  }
+  };
 
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false); // Close menu on link click
-  }
+  };
+
+  const shippingcost = 50;
+  const tax = 0.15;
 
   return (
     <>
@@ -48,12 +70,13 @@ const Navbar = () => {
             </div>
           </nav>
           <div className="nav-right">
-            <img src={person} alt="person" />
-            <img src={heart} alt="heart" />
+            <img src={person} alt="person" onClick={redirectToProfile}/>
+            <img src={heart} alt="heart"/>
             <img src={cart} alt="cart" onClick={onButtonClick} />
           </div>
         </div>
       </section>
+      {/* Shopping Cart Popup */}
       {showPopup && (
         <section className="shoppingcart-main">
           <div className="shoppingcart-container">
@@ -62,28 +85,36 @@ const Navbar = () => {
               <RiCloseLine style={{ fontSize: '2.5rem' }} onClick={onButtonClick} />
             </div>
             <div className="cart-summary">
-              <div className="summary-img">
-                <img src={dabur} alt="product" />
-              </div>
+              {data.map((res, id) => (
+                <div key={id} className="summary-img">
+                  <img src={res.Image} alt="product" />
+                </div>
+              ))}
               <div className="summary-content">
-                <div className="content-heading">
-                  <h4>Pudin Hara</h4>
-                </div>
-                <div className="content-details">
-                  <p>1</p>
-                  <p>X</p>
-                  <p>Rs. 250.00</p>
-                </div>
+                {data.map((res, id) => (
+                  <div key={id} className="content-heading">
+                    <h4>{res.Heading}</h4>
+                  </div>
+                ))}
+                {data.map((res, id) => (
+                  <div key={id} className="content-details">
+                    <p>1</p>
+                    <p>X</p>
+                    <p>{res.SP}</p>
+                  </div>
+                ))}
               </div>
               <div className="summary-close">
                 <RiCloseCircleFill style={{ fontSize: '1.5rem' }} />
               </div>
             </div>
+            {/* Display subtotal */}
             <div className="cart-subtotal">
               <p>Subtotal</p>
-              <h4>Rs. 520.00</h4>
+              <h4>{data.length > 0 ? `${data[0].SP + shippingcost + (data[0].SP * tax)}` : ''}</h4>
             </div>
             <hr />
+            {/* Cart buttons */}
             <div className="cart-buttons">
               <Link to="/Cart"><button>Cart</button></Link>
               <Link to="/Checkout"><button>Checkout</button></Link>
@@ -94,6 +125,6 @@ const Navbar = () => {
       )}
     </>
   );
-}
+};
 
 export default Navbar;

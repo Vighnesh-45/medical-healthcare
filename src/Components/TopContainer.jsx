@@ -20,7 +20,9 @@ const TopContainer = () => {
             <h2>Discover Our New Collection</h2>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt, aliquam.</p>
             <div className="buy-now">
-                <Link to="/Shop"><button>Buy Now</button></Link>
+              {/* <Link to="/Shop"><button>Buy Now</button></Link> */}
+              <input type="text" placeholder="Search for medicines..."
+              />
             </div>
           </div>
         </div>
