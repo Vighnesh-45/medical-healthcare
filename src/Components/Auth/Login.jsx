@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {Link} from "react-router-dom"
 import './Combine.css'
 const Login = () => {
     const navigate = useNavigate();
@@ -39,12 +40,19 @@ const Login = () => {
         <section className="login-main">
             <div className="login-container">
                 <div className="login-form">
-                    <input type="text" placeholder="Email" value={email}
+                    <h2>Sign In</h2>
+                    <label htmlFor="">Email</label>
+                    <input type="text" placeholder="Enter your Email" value={email}
                         onChange={(e) => setEmail(e.target.value)} />
-                    <input type="password" name="Pass" value={pass}
+                        <label htmlFor="">Password</label>
+                    <input type="password" placeholder="Enter your Password" name="Pass" value={pass}
                         onChange={(e) => setPass(e.target.value)} />
                 </div>
                 <button onClick={handleSubmit}>Create Account</button>
+                <div className="new-account">
+                    <p>Don't have a account</p>
+                    <Link to="/Signup"><button>Sign up</button></Link>
+                </div>
             </div>
         </section>
     )
