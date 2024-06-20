@@ -10,10 +10,10 @@ import { MdOutlineAccessTime } from "react-icons/md";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
+        Name: '',
+        Email: '',
+        Subject: '',
+        Message: '',
     });
 
     const [errors, setErrors] = useState({});
@@ -31,31 +31,57 @@ const Contact = () => {
         return re.test(String(email).toLowerCase());
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = {};
 
-        if (!formData.name) newErrors.name = "Name is required.";
-        if (!formData.email) {
-            newErrors.email = "Email is required.";
-        } else if (!validateEmail(formData.email)) {
-            newErrors.email = "Invalid email format.";
+        if (!formData.Name) newErrors.Name = "Name is required.";
+        if (!formData.Email) {
+            newErrors.Email = "Email is required.";
+        } else if (!validateEmail(formData.Email)) {
+            newErrors.Email = "Invalid email format.";
         }
-        if (!formData.message) newErrors.message = "Message is required.";
+        if (!formData.Subject) {
+            newErrors.Subject = "Subject is required.";
+        } else if (isNaN(formData.Subject)) {
+            newErrors.Subject = "Subject must be a number.";
+        }
+        if (!formData.Message) newErrors.Message = "Message is required.";
 
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            localStorage.setItem('contactFormData', JSON.stringify(formData));
-            console.log('Data stored in local storage:', JSON.parse(localStorage.getItem('contactFormData')));
-            alert('Data stored in local storage');
-            // Optionally, you can clear the form
-            setFormData({
-                name: '',
-                email: '',
-                subject: '',
-                message: '',
-            });
+            const dataToSend = {
+                ...formData,
+                Subject: Number(formData.Subject), // Cast Subject to a number
+            };
+
+            try {
+                const response = await fetch('https://codify-api-541e.onrender.com/medical/response/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Data sent successfully');
+                    setFormData({
+                        Name: '',
+                        Email: '',
+                        Subject: '',
+                        Message: '',
+                    });
+                } else {
+                    alert('Failed to send data: ' + (result.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while sending data');
+            }
         }
     };
 
@@ -64,7 +90,7 @@ const Contact = () => {
             <Navbar />
             <div className="contact-container">
                 <div className="contact-header">
-                <img src={logo} alt="" />
+                    <img src={logo} alt="" />
                     <h2>Contact
                         <p>Home<MdKeyboardArrowRight />Contact</p>
                     </h2>
@@ -75,13 +101,11 @@ const Contact = () => {
                         <p>For More Information About Our Product & Services. Please Feel Free To Drop Us</p>
                         <p>An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</p>
                     </div>
-                    <div className="conatct-content-main">
+                    <div className="contact-content-main">
                         <div className="contact-content-left">
                             <div className="contact-address">
                                 <h2><FaLocationDot />Address</h2>
-                                <p>236 5th SE Avenue, New
-                                    York NY10000, United
-                                    States</p>
+                                <p>236 5th SE Avenue, New York NY10000, United States</p>
                             </div>
                             <div className="contact-phone">
                                 <h2><FaPhoneAlt />Phone</h2>
@@ -89,55 +113,52 @@ const Contact = () => {
                                 <p>Hotline: +(84) 456-6789</p>
                             </div>
                             <div className="contact-time">
-                                <h2><MdOutlineAccessTime />
-                                    Working Time</h2>
-                                <p>Monday-Friday: 9:00 -
-                                    22:00
-                                </p>
-                                <p>Saturday-Sunday: 9:00 -
-                                    21:00</p>
+                                <h2><MdOutlineAccessTime />Working Time</h2>
+                                <p>Monday-Friday: 9:00 - 22:00</p>
+                                <p>Saturday-Sunday: 9:00 - 21:00</p>
                             </div>
                         </div>
                         <div className="contact-content-right">
                             <form onSubmit={handleSubmit}>
-                                <label htmlFor="name">Your Name</label>
+                                <label htmlFor="Name">Your Name</label>
                                 <input
                                     type="text"
-                                    name="name"
+                                    name="Name"
                                     placeholder="John"
-                                    value={formData.name}
+                                    value={formData.Name}
                                     onChange={handleChange}
                                 />
-                                {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
+                                {errors.Name && <p style={{ color: 'red' }}>{errors.Name}</p>}
 
-                                <label htmlFor="email">Email</label>
+                                <label htmlFor="Email">Email</label>
                                 <input
                                     type="email"
-                                    name="email"
+                                    name="Email"
                                     placeholder="john@email.com"
-                                    value={formData.email}
+                                    value={formData.Email}
                                     onChange={handleChange}
                                 />
-                                {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+                                {errors.Email && <p style={{ color: 'red' }}>{errors.Email}</p>}
 
-                                <label htmlFor="subject">Subject</label>
+                                <label htmlFor="Subject">Subject</label>
                                 <input
                                     type="text"
-                                    name="subject"
-                                    placeholder="This is an optional"
-                                    value={formData.subject}
+                                    name="Subject"
+                                    placeholder="123"
+                                    value={formData.Subject}
                                     onChange={handleChange}
                                 />
+                                {errors.Subject && <p style={{ color: 'red' }}>{errors.Subject}</p>}
 
-                                <label htmlFor="message">Message</label>
+                                <label htmlFor="Message">Message</label>
                                 <textarea
-                                    name="message"
+                                    name="Message"
                                     cols={60}
                                     rows={5}
-                                    value={formData.message}
+                                    value={formData.Message}
                                     onChange={handleChange}
                                 ></textarea>
-                                {errors.message && <p style={{ color: 'red' }}>{errors.message}</p>}
+                                {errors.Message && <p style={{ color: 'red' }}>{errors.Message}</p>}
 
                                 <button type="submit">Submit</button>
                             </form>
