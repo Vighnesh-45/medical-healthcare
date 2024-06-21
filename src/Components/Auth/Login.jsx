@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import './Combine.css'
 const Login = () => {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Login = () => {
         e.preventDefault();
         console.log("button press")
         try {
-            const response = await fetch('https://codify-api-541e.onrender.com/medical/user/login', {
+            const response = await fetch('https://api-k7vh.onrender.com/medical/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const Login = () => {
                     <label htmlFor="">Email</label>
                     <input type="text" placeholder="Enter your Email" value={email}
                         onChange={(e) => setEmail(e.target.value)} />
-                        <label htmlFor="">Password</label>
+                    <label htmlFor="">Password</label>
                     <input type="password" placeholder="Enter your Password" name="Pass" value={pass}
                         onChange={(e) => setPass(e.target.value)} />
                 </div>

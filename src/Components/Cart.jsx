@@ -28,7 +28,7 @@ const Cart = ({ cart }) => {
 
     return (
         <section className="cart-main">
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="cart-container">
                 <div className="cart-header">
                     <img src={logo} alt="" />

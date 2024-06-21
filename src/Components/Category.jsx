@@ -8,7 +8,7 @@ import diabetes from "./../assets/diabetes.png"
 const Category = () => {
     const [data, setdata] = useState([])
     const getData = async () => {
-        const response = await fetch("https://codify-api-541e.onrender.com/medical/categories/all", {
+        const response = await fetch("https://api-k7vh.onrender.com/medical/categories/all", {
             method: "GET",
             header: {
                 "Content-type": "application/json"
@@ -26,7 +26,7 @@ const Category = () => {
     useEffect(() => {
         getData();
     }, [])
-    
+
     return (
         <section className="category-main">
             <div className="category-container">
@@ -39,7 +39,7 @@ const Category = () => {
                         console.log(res)
                         return (
                             <>
-                                <Link to='/CategoryShop'state={{category:res.Heading}}>
+                                <Link to='/CategoryShop' state={{ category: res.Heading }}>
                                     <div className="card-one">
                                         <img src={res.Image} alt="" />
                                         <h2>{res.Heading}</h2>

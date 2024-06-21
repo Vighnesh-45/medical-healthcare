@@ -1,43 +1,54 @@
 .productcomparison-main {
   & .productcomparison-container {
     & .productcomparison-header {
-      background-image: url("./../assets/home-header.png");
-      height: 15rem;
+      background-image: url("./../assets/shop-header.png");
+      height: 12rem;
       display: flex;
       flex-direction: column;
-      color: thistle;
-      align-items: center;
       justify-content: center;
-      gap: 1rem;
-      & p {
+      align-items: center;
+      & h2 {
+        font-size: 3rem;
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.5;
+      }
+      & img {
+        height: 5rem;
+        width: 5rem;
+      }
+      & p {
+        font-size: 2rem;
       }
     }
     & .productcomparison-cards {
       display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-evenly;
       gap: 2rem;
       margin-top: 2rem;
       & .card-one {
-        height: 20rem;
-        width: 15%;
+        cursor: pointer;
+        height: 100%;
+        width: 20%;
         display: flex;
-        background-color: rgb(70, 224, 70);
+        background-color: #c2eda8;
         flex-direction: column;
-        justify-content: space-around;
-        flex-wrap: wrap;
+        justify-content: space-between;
+        border-radius: 0.4rem;
         align-items: center;
         & img {
-          height: 13rem;
-          width: 100%;
+          height: 15rem;
+          width: 80%;
+          margin: 1rem;
         }
-        & h2 {
-          font-size: 2rem;
-        }
-        & h3 {
-          font-size: 1.5rem;
-        }
-        & h4 {
-          font-size: 1rem;
+        & p {
+          font-size: 1.2rem;
+          line-height: 1.5;
+          font-weight: 500;
         }
       }
       & .add-product {
@@ -51,14 +62,6 @@
           width: 80%;
           height: 2rem;
           border-radius: 0.3rem;
-        }
-        & select:hover {
-          background-color: rgb(50, 205, 50);
-          color: white;
-        }
-        & option:hover {
-          background-color: white;
-          color: black;
         }
       }
     }
@@ -79,7 +82,7 @@
           td,
           th {
             width: 100%;
-            padding: 1.5rem;
+            padding: 1rem;
             text-align: center;
           }
           & button {
@@ -94,7 +97,7 @@
         }
       }
     }
-    & h2{
+    & h2 {
       text-align: center;
     }
     & .productcomparison-related {
@@ -102,27 +105,26 @@
       justify-content: center;
       gap: 2rem;
       margin-top: 2rem;
+      margin-bottom: 1rem;
       & .card-one {
-        height: 20rem;
-        width: 15%;
+        cursor: pointer;
+        height: 100%;
+        width: 20%;
         display: flex;
-        background-color: rgb(50, 205, 50);
+        background-color: #c2eda8;
         flex-direction: column;
-        justify-content: space-around;
-        flex-wrap: wrap;
+        justify-content: space-between;
+        border-radius: 0.4rem;
         align-items: center;
         & img {
-          height: 13rem;
-          width: 100%;
+          height: 15rem;
+          width: 80%;
+          margin: 1rem;
         }
-        & h2 {
-          font-size: 2rem;
-        }
-        & h3 {
-          font-size: 1.5rem;
-        }
-        & h4 {
-          font-size: 1rem;
+        & p {
+          font-size: 1.2rem;
+          line-height: 1.5;
+          font-weight: 500;
         }
       }
     }
@@ -132,6 +134,12 @@
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .productcomparison-main {
     & .productcomparison-container {
+      & .productcomparison-header {
+        height: auto;
+        & h2 {
+          font-size: 1.5rem !important;
+        }
+      }
       & .productcomparison-cards {
         display: flex;
         flex-direction: column;
@@ -156,11 +164,13 @@
       }
       & .product-warranty {
         & .warranty-table {
-          width: auto;
+          width: 100%;
           & table {
-            & td {
+            & th,
+            td {
+              font-size: 0.7rem;
               & button {
-                width: 3rem;
+                width: 4rem;
                 font-size: 0.6rem;
               }
             }

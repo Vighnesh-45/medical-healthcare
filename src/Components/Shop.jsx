@@ -16,7 +16,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
     const navigate = useNavigate();
 
     const getData = async () => {
-        const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all", {
+        const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all", {
             method: "GET",
             headers: {
                 "Content-type": "application/json"
@@ -73,7 +73,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
 
     return (
         <section className="shop-main">
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="shop-container">
                 <div className="shop-header">
                     <img src={logo} alt="" />

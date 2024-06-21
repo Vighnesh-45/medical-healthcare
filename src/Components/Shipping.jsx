@@ -17,7 +17,7 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
 
         const fetchOrderDetails = async () => {
             try {
-                const response = await fetch(`https://codify-api-541e.onrender.com/medical/medicine/all?id=${selectedIds.join(',')}`);
+                const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all?id=${selectedIds.join(',')}`);
                 if (response.ok) {
                     const data = await response.json();
                     console.log('Fetched order details:', data); // Log the fetched data for debugging
@@ -38,7 +38,7 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
 
     return (
         <section className="shipping-main">
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="shipping-container">
                 <div className="shipping-cards">
                     <div className="shipping-details">
@@ -111,10 +111,10 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
                                             <span className="count">{count}</span>
                                             <button className="button increment" onClick={increment}>+</button>
                                         </div>
-                                        <h4>{item.SP*count}</h4>
+                                        <h4>{item.SP * count}</h4>
                                         <p>{tax}</p>
                                         <p>{shippingcost}</p>
-                                        <h4>{item.SP*count + shippingcost}</h4>
+                                        <h4>{item.SP * count + shippingcost}</h4>
                                     </div>
                                 </div>
                             </div>

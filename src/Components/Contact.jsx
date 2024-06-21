@@ -4,8 +4,7 @@ import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import logo from "./../assets/logo.png";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { FaLocationDot } from "react-icons/fa6";
-import { FaPhoneAlt } from "react-icons/fa";
+// import { FaLocationDot, FaPhoneAlt } from "react-icons/fa";
 import { MdOutlineAccessTime } from "react-icons/md";
 
 const Contact = () => {
@@ -35,34 +34,29 @@ const Contact = () => {
         e.preventDefault();
         const newErrors = {};
 
-        if (!formData.Name) newErrors.Name = "Name is required.";
-        if (!formData.Email) {
+        if (!formData.Name.trim()) newErrors.Name = "Name is required.";
+        if (!formData.Email.trim()) {
             newErrors.Email = "Email is required.";
         } else if (!validateEmail(formData.Email)) {
             newErrors.Email = "Invalid email format.";
         }
-        if (!formData.Subject) {
+
+        if (!formData.Subject.trim()) {
             newErrors.Subject = "Subject is required.";
-        } else if (isNaN(formData.Subject)) {
-            newErrors.Subject = "Subject must be a number.";
         }
-        if (!formData.Message) newErrors.Message = "Message is required.";
+
+        if (!formData.Message.trim()) newErrors.Message = "Message is required.";
 
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            const dataToSend = {
-                ...formData,
-                Subject: Number(formData.Subject), // Cast Subject to a number
-            };
-
             try {
-                const response = await fetch('https://codify-api-541e.onrender.com/medical/response/add', {
+                const response = await fetch('https://api-k7vh.onrender.com/medical/response/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(dataToSend),
+                    body: JSON.stringify(formData),
                 });
 
                 const result = await response.json();
@@ -85,12 +79,13 @@ const Contact = () => {
         }
     };
 
+
     return (
         <section className='contact-main'>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="contact-container">
                 <div className="contact-header">
-                    <img src={logo} alt="" />
+                    <img src={logo} alt="Logo" />
                     <h2>Contact
                         <p>Home<MdKeyboardArrowRight />Contact</p>
                     </h2>
@@ -104,11 +99,11 @@ const Contact = () => {
                     <div className="contact-content-main">
                         <div className="contact-content-left">
                             <div className="contact-address">
-                                <h2><FaLocationDot />Address</h2>
+                                {/* <h2><FaLocationDot />Address</h2> */}
                                 <p>236 5th SE Avenue, New York NY10000, United States</p>
                             </div>
                             <div className="contact-phone">
-                                <h2><FaPhoneAlt />Phone</h2>
+                                {/* <h2><FaPhoneAlt />Phone</h2> */}
                                 <p>Mobile: +(84) 546-6789</p>
                                 <p>Hotline: +(84) 456-6789</p>
                             </div>
@@ -144,7 +139,7 @@ const Contact = () => {
                                 <input
                                     type="text"
                                     name="Subject"
-                                    placeholder="123"
+                                    placeholder="Subject"
                                     value={formData.Subject}
                                     onChange={handleChange}
                                 />
@@ -169,6 +164,6 @@ const Contact = () => {
             <Footer />
         </section>
     );
-}
+};
 
 export default Contact;

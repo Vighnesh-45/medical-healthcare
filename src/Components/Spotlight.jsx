@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./Spotlight.css"
 import rightarrow from "./../assets/right-arrow.png"
 import aspirin from "./../assets/aspirin.png"
@@ -17,7 +17,7 @@ const Spotlight = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all");
+                const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all");
                 if (!response.ok) {
                     throw new Error(`Error fetching data: ${response.statusText}`);
                 }
@@ -56,7 +56,7 @@ const Spotlight = () => {
                 <div className="spotlight-header">
                     <h2>In The Spotlight</h2>
                     <div className="spotlight-right-header">
-                    <Link to='/Shop'><button>View All<img src={rightarrow} /></button></Link>
+                        <Link to='/Shop'><button>View All<img src={rightarrow} /></button></Link>
                     </div>
                 </div>
                 <div className="spotlight-cards">

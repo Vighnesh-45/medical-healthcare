@@ -6,10 +6,11 @@ import Spotlight from '../Spotlight'
 import Trending from '../Trending'
 import Footer from '../Layout/Footer'
 
-const Home = () => {
+const Home = ({addToCart}) => {
+  console.log(addToCart)
   return (
     <>
-      <Navbar />
+      {/* <Navbar addToCart={addToCart}/> */}
       <TopContainer />
       <Category />
       <Spotlight />

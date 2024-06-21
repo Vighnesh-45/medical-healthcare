@@ -21,6 +21,8 @@ import ViewProducts from './Components/Admin/ViewProducts';
 import ViewUsers from './Components/Admin/ViewUsers';
 import { useState } from 'react';
 import AdminLogin from './Components/Admin/AdminLogin';
+import Navbar from './Components/Layout/Navbar'
+
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -38,8 +40,9 @@ const App = () => {
 
   return (
     <>
+    <Navbar cart={cart}/>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home addToCart={addToCart} />} />
         <Route path='/About' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/advertise' element={<Advertise />} />

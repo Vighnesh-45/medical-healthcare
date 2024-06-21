@@ -27,7 +27,6 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          /* background-image: url("./../assets/aspirin.png"); */
           background-repeat: no-repeat;
           height: 25rem;
           width: 55%;
@@ -59,15 +58,16 @@
         }
         & .product-description {
           margin-top: 1rem;
-          width: 70%;
+          width: 75%;
           margin-bottom: 1rem;
           & p {
             text-align: justify;
+            line-height: 1.5;
           }
         }
         & .product-btn {
           display: flex;
-          gap: 2rem;
+          gap: 1rem;
           & .counter-container {
             display: flex;
             align-items: center;
@@ -180,6 +180,12 @@
       & .product-info {
         display: flex;
         flex-direction: column;
+        & .product-info-left {
+          width: 100%;
+          & .product-description {
+            width: 100%;
+          }
+        }
         & .product-info-right {
           width: 100%;
           & .product-btn {
@@ -198,10 +204,28 @@
           width: 70%;
         }
       }
-      & .show-button {
-        & button {
-          height: 3rem;
-          width: 90%;
+      & .product-btn {
+        display: flex;
+        width: 100% !important;
+        & .cart-btn {
+          & button {
+            font-size: 0.8rem !important;
+            height: 3rem;
+            width: 7rem;
+          }
+        }
+        & .compare-btn {
+          & button {
+            font-size: 0.8rem !important;
+            height: 3rem;
+            width: 7rem;
+          }
+        }
+        & .show-button {
+          & button {
+            height: 3rem;
+            width: 100%;
+          }
         }
       }
     }

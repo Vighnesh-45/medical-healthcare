@@ -5,19 +5,19 @@ import { FiMenu } from "react-icons/fi";
 import logo from "./../../assets/logo.png";
 import person from "./../../assets/person.png";
 import heart from "./../../assets/heart.png";
-import cart from "./../../assets/cart.png";
+import cartimg from "./../../assets/cart.png";
 import "./Navbar.css";
 import "../../Components/ShoppingCart.css";
 
-const Navbar = () => {
+const Navbar = ({ cart }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [data, setData] = useState([]);
-  
+
   // Fetch data from API
   const getData = async () => {
     try {
-      const response = await fetch("https://codify-api-541e.onrender.com/medical/categories/all");
+      const response = await fetch("https://api-k7vh.onrender.com/medical/categories/all");
       const resdata = await response.json();
       setData(resdata);
     } catch (error) {
@@ -26,8 +26,9 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    console.log(cart)
     getData();
-  }, []);
+  }, [cart]);
 
   // Function to handle redirection to profile page
   const redirectToProfile = () => {
@@ -70,9 +71,9 @@ const Navbar = () => {
             </div>
           </nav>
           <div className="nav-right">
-            <img src={person} alt="person" onClick={redirectToProfile}/>
-            <img src={heart} alt="heart"/>
-            <img src={cart} alt="cart" onClick={onButtonClick} />
+            <img src={person} alt="person" onClick={redirectToProfile} />
+            <img src={heart} alt="heart" />
+            <img src={cartimg} alt="cart" onClick={onButtonClick} />
           </div>
         </div>
       </section>
@@ -84,34 +85,24 @@ const Navbar = () => {
               <h2>Shopping Cart</h2>
               <RiCloseLine style={{ fontSize: '2.5rem' }} onClick={onButtonClick} />
             </div>
-            <div className="cart-summary">
-              {data.map((res, id) => (
+            <div className="cart-glance">
+              {cart.map((res, id) => (
                 <div key={id} className="summary-img">
                   <img src={res.Image} alt="product" />
-                </div>
-              ))}
-              <div className="summary-content">
-                {data.map((res, id) => (
-                  <div key={id} className="content-heading">
-                    <h4>{res.Heading}</h4>
-                  </div>
-                ))}
-                {data.map((res, id) => (
-                  <div key={id} className="content-details">
-                    <p>1</p>
+                  <h4>{res.Heading}</h4>
+                  <p>1</p>
                     <p>X</p>
                     <p>{res.SP}</p>
-                  </div>
-                ))}
-              </div>
+                    <RiCloseCircleFill style={{ fontSize: '1.5rem' }} />
+                </div>
+              ))}
               <div className="summary-close">
-                <RiCloseCircleFill style={{ fontSize: '1.5rem' }} />
               </div>
-            </div>
-            {/* Display subtotal */}
-            <div className="cart-subtotal">
-              <p>Subtotal</p>
-              <h4>{data.length > 0 ? `${data[0].SP + shippingcost + (data[0].SP * tax)}` : ''}</h4>
+              {/* Display subtotal */}
+              <div className="cart-subtotal">
+                <p>Subtotal</p>
+                <h4>{cart.length > 0 ? `${cart[0].SP + shippingcost + (cart[0].SP * tax)}` : ''}</h4>
+              </div>
             </div>
             <hr />
             {/* Cart buttons */}

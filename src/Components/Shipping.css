@@ -259,6 +259,11 @@
           & .progress-steps {
             width: 100%;
           }
+          & .card-left{
+            & input{
+              width: 90% !important;
+            }
+          }
         }
         & .shipping-summary {
           width: 100% !important;

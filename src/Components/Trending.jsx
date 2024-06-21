@@ -11,7 +11,7 @@ const Trending = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all");
+                const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all");
                 if (!response.ok) {
                     throw new Error(`Error fetching data: ${response.statusText}`);
                 }
@@ -49,7 +49,7 @@ const Trending = () => {
                 <div className="trending-header">
                     <h2>Top Trending Products</h2>
                     <div className="trending-right-header">
-                    <Link to='/Shop'><button>View All<img src={rightarrow} /></button></Link>
+                        <Link to='/Shop'><button>View All<img src={rightarrow} /></button></Link>
                     </div>
                 </div>
                 <div className="trending-cards">

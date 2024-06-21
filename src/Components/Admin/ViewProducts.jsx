@@ -21,7 +21,7 @@ const ViewProducts = () => {
 
     const getData = async () => {
         try {
-            const response = await fetch("https://codify-api-541e.onrender.com/medical/medicine/all", {
+            const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

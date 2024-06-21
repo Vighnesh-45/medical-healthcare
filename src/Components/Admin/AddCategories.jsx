@@ -21,7 +21,7 @@ const AddCategories = () => {
     }, [condition]);
 
     const getData = async () => {
-        const response = await fetch("https://codify-api-541e.onrender.com/medical/categories/all", {
+        const response = await fetch("https://api-k7vh.onrender.com/medical/categories/all", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const AddCategories = () => {
 
     const delData = async (id) => {
         try {
-            const res = await fetch(`https://codify-api-541e.onrender.com/medical/categories/del/${id}`, {
+            const res = await fetch(`https://api-k7vh.onrender.com/medical/categories/del/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -59,7 +59,7 @@ const AddCategories = () => {
         const headingData = heading;
 
         try {
-            const res = await fetch("https://codify-api-541e.onrender.com/medical/categories/add", {
+            const res = await fetch("https://api-k7vh.onrender.com/medical/categories/add", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

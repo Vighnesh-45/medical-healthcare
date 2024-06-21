@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./SingleProduct.css";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from './Layout/Navbar';
@@ -8,22 +8,54 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 
 const SingleProduct = ({ single, addToCart, addToSingle }) => {
     const [count, setCount] = useState(1);
-    const [data, setData] = useState([]);
+    const [relatedProducts, setRelatedProducts] = useState([]);
     const navigate = useNavigate();
 
     const increment = () => setCount(count + 1);
     const decrement = () => count !== 1 ? setCount(count - 1) : null;
 
     const handleAddToCart = (product) => {
-        // Adding quantity to the product
         const productWithQuantity = { ...product, quantity: count };
         addToCart(productWithQuantity);
         navigate('/cart');
     };
 
+    useEffect(() => {
+        if (single && single.length > 0) {
+            fetchRelatedProducts(single[0].id);
+        }
+    }, [single]);
+
+    const fetchRelatedProducts = async (productId) => {
+        try {
+            console.log(`Fetching related products for product ID: ${productId}`);
+            const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all${productId}`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json"
+                }
+            });
+            console.log(`Response status: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const resData = await response.json();
+            console.log("Response data:", resData);
+
+            if (!resData || resData.length === 0) {
+                console.log("No related products data received");
+                setRelatedProducts([]);
+            } else {
+                setRelatedProducts(resData);
+            }
+        } catch (error) {
+            console.error("Error fetching related products:", error);
+        }
+    };
+
     return (
         <section className="singleproduct-main">
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="singleproduct-container">
                 <div className="singleproduct-header">
                     <p>Home</p>
@@ -62,7 +94,7 @@ const SingleProduct = ({ single, addToCart, addToSingle }) => {
                             <MdOutlineStarPurple500 />
                             <MdOutlineStarPurple500 />
                             <hr />
-                            <p>4 out of 5 stars</p> {/* Placeholder for review rating */}
+                            <p>4 out of 5 stars</p>
                         </div>
                         <div className="product-description">
                             <p>Disclaimer</p>
@@ -101,7 +133,18 @@ const SingleProduct = ({ single, addToCart, addToSingle }) => {
                     <h2>Related Products</h2>
                 </div>
                 <div className="singleproduct-cards">
-                    {/* Display related products */}
+                    {relatedProducts.length > 0 ? (
+                        relatedProducts.map((res, id) => (
+                            <div className="card-one" key={id}>
+                                <img src={res.Image} alt={res.Heading} />
+                                <h2>{res.Heading}</h2>
+                                <h4>{res.Subheading}</h4>
+                                <h3>Rs. {res.SP}</h3>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No related products available</p>
+                    )}
                 </div>
                 <div className="show-button">
                     <Link to="/Shop"><button>Show More</button></Link>

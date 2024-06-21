@@ -25,7 +25,7 @@ const Signup = () => {
         const { Name, Email, Pass, Contact } = signUpData;
 
         try {
-            const response = await fetch("https://codify-api-541e.onrender.com/medical/user/register", {
+            const response = await fetch("https://api-k7vh.onrender.com/medical/user/register", {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json"
