@@ -13,6 +13,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [sortOption, setSortOption] = useState('default');
+    const [itemsPerPage, setItemsPerPage] = useState(12);
     const navigate = useNavigate();
 
     const getData = async () => {
@@ -29,13 +30,13 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
         } else {
             console.log(resData);
             setData(resData);
-            setTotalPages(Math.ceil(resData.length / 12));
+            setTotalPages(Math.ceil(resData.length / itemsPerPage));
         }
     };
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [itemsPerPage]);
 
     const handleAddToCart = (product) => {
         addToCart(product);
@@ -57,6 +58,15 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
         setSortOption(event.target.value);
     };
 
+    const handleItemsPerPageChange = (event) => {
+        const value = parseInt(event.target.value, 10);
+        if (!isNaN(value) && value > 0) {
+            setItemsPerPage(value);
+            setCurrentPage(1);  // Reset to the first page when items per page changes
+            setTotalPages(Math.ceil(data.length / value));
+        }
+    };
+
     const getPaginatedData = () => {
         let sortedData = [...data];
 
@@ -66,14 +76,14 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
             sortedData.sort((a, b) => b.SP - a.SP);
         }
 
-        const startIndex = (currentPage - 1) * 12;
-        const endIndex = startIndex + 12;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
         return sortedData.slice(startIndex, endIndex);
     };
 
     return (
         <section className="shop-main">
-            {/* <Navbar /> */}
+            {/* <Navbar cart={cart} /> */}
             <div className="shop-container">
                 <div className="shop-header">
                     <img src={logo} alt="" />
@@ -86,13 +96,13 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                         <VscSettings />
                         <p>Filter</p>
                         <hr />
-                        <p>Showing {((currentPage - 1) * 12) + 1}–{Math.min(currentPage * 12, data.length)} of {data.length} results</p>
+                        <p>Showing {((currentPage - 1) * itemsPerPage) + 1}–{Math.min(currentPage * itemsPerPage, data.length)} of {data.length} results</p>
                     </div>
 
                     <div className="shop-nav-right">
                         <div className="nav-btn">
                             <p>Show</p>
-                            <input type="number" />
+                            <input type="number" value={itemsPerPage} onChange={handleItemsPerPageChange} />
                             <p>Sort by</p>
                             <select name="medicine" id="med" value={sortOption} onChange={handleSortChange}>
                                 <option value="default">Default</option>

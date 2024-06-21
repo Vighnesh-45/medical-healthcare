@@ -9,7 +9,7 @@ import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 import Shipping from './Components/Shipping';
 import ProductComparison from './Components/ProductComparison';
-import ShoppingCart from './Components/ShoppingCart';
+// import ShoppingCart from './Components/ShoppingCart';
 import Profile from './Components/Profile';
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
@@ -40,7 +40,7 @@ const App = () => {
 
   return (
     <>
-    <Navbar cart={cart}/>
+    <Navbar cart={cart} setCart={setCart}/>
       <Routes>
         <Route path='/' element={<Home addToCart={addToCart} />} />
         <Route path='/About' element={<About />} />
@@ -52,7 +52,7 @@ const App = () => {
         <Route path='/Checkout' element={<Checkout />} />
         <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingCost={shippingCost} />} />
         <Route path='/ProductComparison' element={<ProductComparison />} />
-        <Route path='/ShoppingCart' element={<ShoppingCart />} />
+        {/* <Route path='/ShoppingCart' element={<ShoppingCart />} /> */}
         <Route path='/Profile' element={<Profile />} />
         <Route path='/Admin' element={<Admin />} />
         <Route path='/AddProduct' element={<AddProduct />} />

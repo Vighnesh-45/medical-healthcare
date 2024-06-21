@@ -9,7 +9,7 @@ import cartimg from "./../../assets/cart.png";
 import "./Navbar.css";
 import "../../Components/ShoppingCart.css";
 
-const Navbar = ({ cart }) => {
+const Navbar = ({ cart, setCart }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [data, setData] = useState([]);
@@ -28,7 +28,7 @@ const Navbar = ({ cart }) => {
   useEffect(() => {
     console.log(cart)
     getData();
-  }, [cart]);
+  }, [cart, setCart]);
 
   // Function to handle redirection to profile page
   const redirectToProfile = () => {
@@ -48,8 +48,18 @@ const Navbar = ({ cart }) => {
     setIsMobileMenuOpen(false); // Close menu on link click
   };
 
-  const shippingcost = 50;
+  // Function to handle removing item from cart
+  const handleRemoveFromCart = (index) => {
+    const newCart = cart.filter((item, i) => i !== index);
+    setCart(newCart);
+  };
+
+  const shippingcost = 40;
   const tax = 0.15;
+
+  const calculateSubtotal = () => {
+    return cart.reduce((total, item) => total + item.SP, 0);
+  };
 
   return (
     <>
@@ -91,17 +101,15 @@ const Navbar = ({ cart }) => {
                   <img src={res.Image} alt="product" />
                   <h4>{res.Heading}</h4>
                   <p>1</p>
-                    <p>X</p>
-                    <p>{res.SP}</p>
-                    <RiCloseCircleFill style={{ fontSize: '1.5rem' }} />
+                  <p>X</p>
+                  <p>{res.SP}</p>
+                  <RiCloseCircleFill style={{ fontSize: '1.5rem' }} onClick={({setCart}) => handleRemoveFromCart(id)} />
                 </div>
               ))}
-              <div className="summary-close">
-              </div>
               {/* Display subtotal */}
               <div className="cart-subtotal">
                 <p>Subtotal</p>
-                <h4>{cart.length > 0 ? `${cart[0].SP + shippingcost + (cart[0].SP * tax)}` : ''}</h4>
+                <h4>{cart.length > 0 ? `Rs. ${calculateSubtotal() + shippingcost + (calculateSubtotal() * tax)}` : ''}</h4>
               </div>
             </div>
             <hr />
