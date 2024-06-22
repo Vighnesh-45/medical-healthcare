@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { RiCloseLine, RiCloseCircleFill } from "react-icons/ri";
-import { FiMenu } from "react-icons/fi";
 import logo from "./../../assets/logo.png";
 import person from "./../../assets/person.png";
 import heart from "./../../assets/heart.png";
 import cartimg from "./../../assets/cart.png";
 import "./Navbar.css";
+import { FaBars, FaTimes } from "react-icons/fa";
 import "../../Components/ShoppingCart.css";
 
 const Navbar = ({ cart, setCart }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [click, setClick] = useState(false);
 
   // Fetch data from API
   const getData = async () => {
@@ -76,8 +77,12 @@ const Navbar = ({ cart, setCart }) => {
               <li><Link to='/About' onClick={handleLinkClick}>About</Link></li>
               <li><Link to='/Contact' onClick={handleLinkClick}>Contact</Link></li>
             </ul>
-            <div className="hamburger-icon" onClick={handleMenuToggle}>
-              <FiMenu />
+            <div className="hamburger" onClick={handleMenuToggle}>
+              {isMobileMenuOpen ? (
+                <FaTimes size={20} style={{ color: "black" }} />
+              ) : (
+                <FaBars size={20} style={{ color: "black" }} />
+              )}
             </div>
           </nav>
           <div className="nav-right">
@@ -93,7 +98,10 @@ const Navbar = ({ cart, setCart }) => {
           <div className="shoppingcart-container">
             <div className="shoppingcart-header">
               <h2>Shopping Cart</h2>
-              <RiCloseLine style={{ fontSize: '2.5rem' }} onClick={onButtonClick} />
+              <RiCloseLine style={{ fontSize: '2.5rem' }} onClick={() => {
+                onButtonClick(); // Close shopping cart popup
+                handleMenuToggle(); // Close mobile menu
+              }} />
             </div>
             <div className="cart-glance">
               {cart.map((res, id) => (
@@ -103,7 +111,7 @@ const Navbar = ({ cart, setCart }) => {
                   <p>1</p>
                   <p>X</p>
                   <p>{res.SP}</p>
-                  <RiCloseCircleFill style={{ fontSize: '1.5rem' }} onClick={({setCart}) => handleRemoveFromCart(id)} />
+                  <RiCloseCircleFill style={{ fontSize: '1.5rem' }} onClick={() => handleRemoveFromCart(id)} />
                 </div>
               ))}
               {/* Display subtotal */}

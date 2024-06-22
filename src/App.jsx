@@ -28,7 +28,7 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [singleProduct, setSingleProduct] = useState([]);
   const tax = "18%";
-  const shippingCost = 50;
+  const shippingCost = 40;
 
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);

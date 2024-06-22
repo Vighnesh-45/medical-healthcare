@@ -29,7 +29,7 @@ const SingleProduct = ({ single, addToCart, addToSingle }) => {
     const fetchRelatedProducts = async (productId) => {
         try {
             console.log(`Fetching related products for product ID: ${productId}`);
-            const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all${productId}`, {
+            const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all/${productId}`, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json"
@@ -55,7 +55,6 @@ const SingleProduct = ({ single, addToCart, addToSingle }) => {
 
     return (
         <section className="singleproduct-main">
-            {/* <Navbar /> */}
             <div className="singleproduct-container">
                 <div className="singleproduct-header">
                     <p>Home</p>
@@ -134,8 +133,8 @@ const SingleProduct = ({ single, addToCart, addToSingle }) => {
                 </div>
                 <div className="singleproduct-cards">
                     {relatedProducts.length > 0 ? (
-                        relatedProducts.map((res, id) => (
-                            <div className="card-one" key={id}>
+                        relatedProducts.map((res) => (
+                            <div className="card-one" key={res.id}>
                                 <img src={res.Image} alt={res.Heading} />
                                 <h2>{res.Heading}</h2>
                                 <h4>{res.Subheading}</h4>
