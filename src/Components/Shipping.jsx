@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import "./Shipping.css";
-import aspirin from "./../assets/aspirin.png";
 import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 
 const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
-    const [count, setCount] = useState(1);
+    const [counts, setCounts] = useState({});
     const [orderDetails, setOrderDetails] = useState([0]);
 
     useEffect(() => {
-        console.log(cart)
+        console.log(cart);
         if (!selectedIds || selectedIds.length === 0) {
             return; // Exit early if selectedIds is not defined or empty
         }
@@ -33,13 +32,24 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
         fetchOrderDetails();
     }, [selectedIds]);
 
-    const increment = () => setCount(count + 1);
-    const decrement = () => count !== 1 ? setCount(count - 1) : null;
+    const increment = (index) => {
+        setCounts((prevCounts) => ({
+            ...prevCounts,
+            [index]: (prevCounts[index] || 1) + 1
+        }));
+    };
+
+    const decrement = (index) => {
+        setCounts((prevCounts) => ({
+            ...prevCounts,
+            [index]: prevCounts[index] > 1 ? prevCounts[index] - 1 : 1
+        }));
+    };
 
     const shippingCost = 40;
+
     return (
         <section className="shipping-main">
-            
             <div className="shipping-container">
                 <div className="shipping-cards">
                     <div className="shipping-details">
@@ -108,14 +118,14 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
                                     </div>
                                     <div className="summmary-content-right">
                                         <div className="counter">
-                                            <button className="button decrement" onClick={decrement}>-</button>
-                                            <span className="count">{count}</span>
-                                            <button className="button increment" onClick={increment}>+</button>
+                                            <button className="button decrement" onClick={() => decrement(index)}>-</button>
+                                            <span className="count">{counts[index] || 1}</span>
+                                            <button className="button increment" onClick={() => increment(index)}>+</button>
                                         </div>
-                                        <h4>{item.SP * count}</h4>
+                                        <h4>{item.SP * (counts[index] || 1)}</h4>
                                         <p>{tax}</p>
                                         <p>{shippingCost}</p>
-                                        <h4>{item.SP * count + shippingCost}</h4>
+                                        <h4>{item.SP * (counts[index] || 1) + shippingCost}</h4>
                                     </div>
                                 </div>
                             </div>
