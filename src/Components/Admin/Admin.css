@@ -1,175 +1,45 @@
-.admin-main {
-  & .admin-container {
-    & .admin-btn {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2rem;
-
-      & button {
-        cursor: pointer;
-        font-size: 1.2rem;
-        background: transparent;
-        border: none;
-        border-bottom: 0.1rem solid black;
-      }
-    }
+/* Adminlogin.js */
+.adminPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  border: 0.01rem black solid;
+  border-radius: 1rem;
+  margin: 0 20rem;
+  & h2 {
+    padding: 1rem 0;
   }
-}
 
-.addproduct-main {
-  & .addproduct-container {
-    & .addproduct-header {
-      & h2 {
-        font-size: 2rem;
-      }
+  & .adminPanel_container {
 
-      & .addproduct-input {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 1.2rem;
-        margin: 3rem;
-        width: 65%;
+    width: 30rem;
+    height: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
 
-        & input {
-          width: 2rem;
-          height: 1.5rem;
-        }
-
-        & label {
-          width: 5rem;
-        }
-      }
-    }
-
-    & .addproduct-input-field {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      width: 100%;
-      margin-left: 1rem;
-
-      & input {
-        width: 20rem;
-        height: 2rem;
-      }
-
-      & textarea {
-        width: 15rem;
-        height: 4rem;
-      }
-
-      & button {
-        cursor: pointer;
-        font-size: 1.2rem;
-        background: transparent;
-        border: none;
-        border-bottom: 0.1rem solid black;
-        width: 5rem;
-      }
-    }
-
-    & .disease-btn {
+    & form {
       display: flex;
       flex-direction: column;
-      margin-top: 2rem;
-      justify-content: center;
-      align-items: center;
-
-      & button {
-        cursor: pointer;
-        width: 5rem;
-        font-size: 1.2rem;
-        background: transparent;
-        border: none;
-        border-bottom: 0.1rem solid black;
-      }
-    }
-
-
-  }
-}
-
-.addcategories-main {
-  & .addcategories-container {
-    & .addcategories-input {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2rem;
 
       & input {
-        width: 20rem;
-        height: 2rem;
-        text-align: center;
+        width: 100%;
+        padding: 1rem;
+        margin: 1rem;
       }
 
       & button {
-        cursor: pointer;
-        font-size: 1.2rem;
-        background: transparent;
+        width: 100%;
+        padding: 1rem;
+        margin: 1rem;
+        background-color: #4CAF50;
         border: none;
-        border-bottom: 0.1rem solid black;
-      }
-    }
-
-    .addcategories-table {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2rem;
-
-      & h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-      }
-
-      & td,
-      th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-    }
-  }
-}
-
-.viewproducts-main {
-  & .viewproducts-container {
-    & .viewproducts-header {
-      & h2 {
-        font-size: 1.5rem;
-        text-align: center;
-      }
-    }
-
-    & .viewproducts-table {
-      margin-top: 2rem;
-
-      & table {
-        font-size: 1rem;
-      }
-    }
-  }
-}
-
-.viewusers-main {
-  & .viewusers-container {
-    & .viewusers-header {
-      & h2 {
-        font-size: 1.5rem;
-        text-align: center;
-      }
-    }
-
-    & .viewusers-table {
-      margin-top: 2rem;
-
-      & table {
-        font-size: 1rem;
+        border-radius: 0.5rem;
+        color: white;
+        font-size: 1.2rem;
       }
     }
   }
@@ -178,6 +48,7 @@
 .border {
   border: 1px solid #000;
   border-collapse: collapse;
+
   & tr,
   th,
   td {
