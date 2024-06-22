@@ -4,7 +4,6 @@ import logo from "./../assets/logo.png";
 import "./Cart.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link, useNavigate } from 'react-router-dom';
-import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import Advertise from './Layout/Advertise';
 
@@ -28,7 +27,6 @@ const Cart = ({ cart }) => {
 
     return (
         <section className="cart-main">
-            {/* <Navbar /> */}
             <div className="cart-container">
                 <div className="cart-header">
                     <img src={logo} alt="" />
@@ -38,20 +36,22 @@ const Cart = ({ cart }) => {
                 </div>
                 <div className="cart-overview">
                     <div className="cart-left">
-                        <div className="cart-review">
-                            <h4>Product</h4>
-                            <h4>Price</h4>
-                            <h4>Quantity</h4>
-                            <h4>Subtotal</h4>
-                        </div>
-                        {cart.map((item, index) => (
-                            <div key={index} className="cart-item">
-                                <p>{item.Heading}</p>
-                                <p>Rs. {item.SP}</p>
-                                <p>1</p>
-                                <p>Rs. {item.SP}</p>
-                            </div>
-                        ))}
+                        <table className="cart-table">
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                                {cart.map((item, index) => (
+                                    <tr key={index} className="cart-item">
+                                        <td>{item.Heading}</td>
+                                        <td>Rs. {item.SP}</td>
+                                        <td>1</td>
+                                        <td>Rs. {item.SP}</td>
+                                    </tr>
+                                ))}
+                        </table>
                     </div>
                     <div className="cart-total">
                         <div className="total-header">
