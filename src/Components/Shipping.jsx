@@ -36,9 +36,10 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
     const increment = () => setCount(count + 1);
     const decrement = () => count !== 1 ? setCount(count - 1) : null;
 
+    const shippingCost = 40;
     return (
         <section className="shipping-main">
-            {/* <Navbar /> */}
+            
             <div className="shipping-container">
                 <div className="shipping-cards">
                     <div className="shipping-details">
@@ -113,8 +114,8 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
                                         </div>
                                         <h4>{item.SP * count}</h4>
                                         <p>{tax}</p>
-                                        <p>{shippingcost}</p>
-                                        <h4>{item.SP * count + shippingcost}</h4>
+                                        <p>{shippingCost}</p>
+                                        <h4>{item.SP * count + shippingCost}</h4>
                                     </div>
                                 </div>
                             </div>

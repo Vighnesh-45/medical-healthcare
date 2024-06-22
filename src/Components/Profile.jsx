@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "./Profile.css";
-import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import Advertise from './Layout/Advertise'; 
 import logo from "./../assets/logo.png";
@@ -63,7 +62,6 @@ const Profile = () => {
 
     return (
         <section className="profile-main">
-            <Navbar />
             <div className="profile-container">
                 <div className="profile-header">
                     <img src={logo} alt="" />
