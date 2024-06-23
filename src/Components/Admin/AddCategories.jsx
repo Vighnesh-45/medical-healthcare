@@ -90,7 +90,7 @@ const AddCategories = () => {
                 </div>
                 <div className="addcategories-table">
                     <h2>View Categories</h2>
-                    <table>
+                    <table className='border1'>
                         <tr>
                             <th>Sr. No</th>
                             <th>Image</th>

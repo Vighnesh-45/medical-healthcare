@@ -52,47 +52,48 @@ const ViewProducts = () => {
                     <input type="text" value={totalCount} readOnly />
                 </div>
                 <div className="viewproducts-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Heading</th>
-                                <th>Subheading</th>
-                                <th>MRP</th>
-                                <th>SP</th>
-                                <th>Disclaimer</th>
-                                <th>Formulation</th>
-                                <th>Manufacturer</th>
-                                <th>Brand</th>
-                                <th>Storage</th>
-                                <th>Dosage</th>
-                                <th>Disease</th>
-                                <th>Generic</th>
-                                <th>Rating Count</th>
-                                <th>Rating Review</th>
+                    <table className="border">
+
+                        <tr>
+                            <th>Sr No.</th>
+                            <th>Image</th>
+                            <th>Heading</th>
+                            <th>Subheading</th>
+                            <th>MRP</th>
+                            <th>SP</th>
+                            <th>Disclaimer</th>
+                            <th>Formulation</th>
+                            <th>Manufacturer</th>
+                            <th>Brand</th>
+                            <th>Storage</th>
+                            <th>Dosage</th>
+                            <th>Disease</th>
+                            <th>Generic</th>
+                            <th>Rating Count</th>
+                            <th>Rating Review</th>
+                        </tr>
+
+                        {data.map((res, id) => (
+                            <tr key={id}>
+                                <td>{id+1}</td>
+                                <td><img src={res.Image} alt="" width="100%" height="100%" /></td>
+                                <td>{res.Heading}</td>
+                                <td>{res.Subheading}</td>
+                                <td>{res.MRP}</td>
+                                <td>{res.SP}</td>
+                                <td>{res.Disclaimer}</td>
+                                <td>{res.Formulation}</td>
+                                <td>{res.Manufacturer}</td>
+                                <td>{res.Brand ? "Brand" : "Generic"}</td>
+                                <td>{res.Storage}</td>
+                                <td>{res.Dosage}</td>
+                                <td>{res.Disease}</td>
+                                <td>{res.Generic ? "Yes" : "No"}</td>
+                                <td>{res.Rating?.Count}</td>
+                                <td>{res.Rating?.Review}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {data.map((res, id) => (
-                                <tr key={id}>
-                                    <td><img src={res.Image} alt="" width="100%" height="100%" /></td>
-                                    <td>{res.Heading}</td>
-                                    <td>{res.Subheading}</td>
-                                    <td>{res.MRP}</td>
-                                    <td>{res.SP}</td>
-                                    <td>{res.Disclaimer}</td>
-                                    <td>{res.Formulation}</td>
-                                    <td>{res.Manufacturer}</td>
-                                    <td>{res.Brand ? "Brand" : "Generic"}</td>
-                                    <td>{res.Storage}</td>
-                                    <td>{res.Dosage}</td>
-                                    <td>{res.Disease}</td>
-                                    <td>{res.Generic ? "Yes" : "No"}</td>
-                                    <td>{res.Rating?.Count}</td>
-                                    <td>{res.Rating?.Review}</td>
-                                </tr>
-                            ))}
-                        </tbody>
+                        ))}
+
                     </table>
                 </div>
             </div>

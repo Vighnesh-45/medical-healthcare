@@ -162,11 +162,8 @@ const AddProduct = () => {
             <div className="addproduct-container">
                 <div className="addproduct-header">
                     <h2>Add Product</h2>
-                    <div className="addproduct-input">
-                        {/* Add your checkbox categories here */}
-                    </div>
                 </div>
-                <div className="addproduct-input-field">
+                <div className="addproduct-input">
                     <input type="text" placeholder='Image' value={image} onChange={(e) => setImage(e.target.value)} />
                     <input type="text" placeholder='Heading' value={heading} onChange={(e) => setHeading(e.target.value)} />
                     <input type="text" placeholder='Subheading' value={subHeading} onChange={(e) => setSubHeading(e.target.value)} />
@@ -200,7 +197,7 @@ const AddProduct = () => {
             <div className="product-table-container">
                 <h2>Product List</h2>
                 <table className="border">
-                    <tr className="border">
+                    <tr>
                         <th>Sr No.</th>
                         <th>Category</th>
                         <th>Image</th>
@@ -226,7 +223,7 @@ const AddProduct = () => {
                         <tr key={id}>
                             <td>{id + 1}</td>
                             <td>{res.Categories}</td>
-                            <td><img src={res.Image} alt="" width="100%" height="100%" /></td>
+                            <td><img src={res.Image} alt="" width="100%" height="10%" /></td>
                             <td>{res.Heading}</td>
                             <td>{res.Subheading}</td>
                             <td>{res.MRP}</td>
