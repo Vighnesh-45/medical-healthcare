@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CiSearch } from "react-icons/ci";
-import "./TopContainer.css"
-
+import "./TopContainer.css";
 
 const TopContainer = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('https://api-k7vh.onrender.com/medical/medicine/all');
+      const data = await response.json();
+      const product = data.find(item => item.Heading && item.Heading.toLowerCase().includes(searchTerm.toLowerCase()));
+      if (product) {
+        navigate(`/SingleProduct/${product.id}`);
+      } else {
+        console.log('Product not found');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   return (
@@ -20,9 +32,15 @@ const TopContainer = () => {
             <h2>Discover Our New Collection</h2>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt, aliquam.</p>
             <div className="buy-now">
-              {/* <Link to="/Shop"><button>Buy Now</button></Link> */}
-              <input type="text" placeholder="Search for medicines..."
-              />
+              <form onSubmit={handleSearch}>
+                <input
+                  type="text"
+                  placeholder="Search for medicines..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button type="submit"><CiSearch /></button>
+              </form>
             </div>
           </div>
         </div>

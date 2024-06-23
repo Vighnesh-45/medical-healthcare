@@ -27,8 +27,8 @@ import Navbar from './Components/Layout/Navbar'
 const App = () => {
   const [cart, setCart] = useState([]);
   const [singleProduct, setSingleProduct] = useState([]);
-  const tax = "18%";
-  const shippingCost = 40;
+  const tax = "9%";
+  const shippingCost = 30;
 
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);

@@ -28,8 +28,8 @@
         & .buy-now {
           margin-top: 1rem;
           & button {
-            height: 2rem;
-            width: 8rem;
+            height: 1.5rem;
+            width: 4rem;
             border: none;
             background-color: #5bb82f;
             color: white;

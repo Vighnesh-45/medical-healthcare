@@ -2,18 +2,24 @@
   & .singleproduct-container {
     & .singleproduct-header {
       display: flex;
+      justify-content: flex-start;
       height: 4rem;
       background-color: #e0f6d1;
       align-items: center;
       gap: 1rem;
       & hr {
         height: 3rem;
+        margin-left: 1rem;
+      }
+      & p{
+        margin-left: 1rem;
       }
     }
     & .product-info {
       display: flex;
       align-items: self-start;
       justify-content: space-around;
+      margin-top: 1rem;
       & .product-info-left {
         height: 25rem;
         display: flex;
@@ -29,7 +35,7 @@
           align-items: center;
           background-repeat: no-repeat;
           height: 25rem;
-          width: 55%;
+          width: 50%;
           aspect-ratio: 1;
           & img {
             height: 15rem;
@@ -57,8 +63,8 @@
           margin-top: 1rem;
         }
         & .product-description {
-          margin-top: 1rem;
-          width: 75%;
+          /* margin-top: 1rem; */
+          width: 80%;
           margin-bottom: 1rem;
           & p {
             text-align: justify;
@@ -166,8 +172,14 @@
           background: transparent;
           border: 1px solid #5bb82f;
           font-size: 1rem;
+          color: #5bb82f;
           cursor: pointer;
           padding: 1rem;
+          border-radius: 0.5rem;
+        }
+        & button:hover{
+          background-color: #5bb82f;
+          color: white;
         }
       }
     }
@@ -188,6 +200,24 @@
         }
         & .product-info-right {
           width: 100%;
+          & .info-right-header{
+            margin-left: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          & .product-review{
+            margin-left: 3rem;
+          }
+          & .product-description {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            & p {
+              margin-left: 1rem;
+              width: 100%;
+            }
+          }
           & .product-btn {
             & button {
               font-size: 0.8rem;
@@ -226,6 +256,23 @@
             height: 3rem;
             width: 100%;
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .singleproduct-main{
+    & .singleproduct-container{
+      & .product-info {
+        display: flex;
+        gap: 2rem;
+        & .product-info-left{
+          height: 38rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
     }
