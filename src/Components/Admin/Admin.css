@@ -7,6 +7,7 @@
   border: 0.01rem black solid;
   border-radius: 1rem;
   margin: 0 20rem;
+
   & h2 {
     padding: 1rem 0;
   }
@@ -45,13 +46,253 @@
   }
 }
 
+/* Admin.js */
+.admin-main {
+  & .admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .admin-buttons {
+      display: flex;
+      gap: 2rem;
+      padding: 2rem;
+
+      & button {
+        font-size: 1rem;
+        color: black;
+        padding: 1rem;
+        border: none;
+        border-radius: 1rem;
+      }
+
+    }
+  }
+}
+
+/* AddCategory.js */
+.addcategories-main {
+  & .addcategories-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .addcategories-input {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+
+      & input {
+        font-size: 1rem;
+        padding: 1rem;
+        width: 100%;
+      }
+
+      & button {
+        font-size: 1rem;
+        padding: 1rem;
+        width: 100%;
+        border: none;
+        background-color: #4CAF50;
+        border-radius: 1rem;
+      }
+    }
+
+    & .addcategories-table {
+      text-align: center;
+
+      & h2 {
+        margin: 2rem;
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
+
+/* AddProduct.js */
+.addproduct-main {
+  & .addproduct-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    & .addproduct-header {
+      text-align: center;
+
+      & h2 {
+        font-size: 2.5rem;
+        margin: 1rem;
+      }
+    }
+
+    & .addproduct-input {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      gap: 2rem;
+
+      & input {
+        padding: 1rem;
+      }
+
+      & textarea {
+        padding: 1rem;
+      }
+
+      & button {
+        text-align: center;
+        /* margin: 1rem; */
+        padding: .5rem;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 1rem;
+        width: 8%;
+        color: white;
+        font-weight: 700;
+      }
+    }
+
+    & .disease-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+
+      & button {
+        text-align: center;
+        margin: 1rem;
+        padding: 1rem;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 1rem;
+        width: 20%;
+      }
+    }
+  }
+}
+
+/* ViewProducts.js */
+.viewproducts-main {
+  & .viewproducts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .viewproducts-header {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+
+      & h2 {
+        font-size: 2.5rem;
+        margin: 1rem;
+      }
+
+      & input {
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+
+      & label {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+/* ViewUsers.js */
+.viewusers-main {
+  & .viewusers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .viewusers-header {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+
+      & h2 {
+        font-size: 2.5rem;
+        margin: 1rem;
+      }
+
+      & input {
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+
+      & label {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+
 .border {
   border: 1px solid #000;
   border-collapse: collapse;
 
-  & tr,
-  th,
-  td {
+  & tr {
+    text-align: center;
+    width: 5rem;
+    font-size: 0.7rem;
     border: 0.1rem solid black;
+
+    & th {
+      width: 5rem;
+      border: 0.1rem solid black;
+    }
+
+    & td {
+      width: 5rem;
+      border: 0.1rem solid black;
+
+      & button {
+        font-size: .7rem;
+      }
+    }
+  }
+}
+
+
+.border1 {
+  border: 1px solid #000;
+  border-collapse: collapse;
+
+  & tr {
+    text-align: center;
+    width: auto;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 0.1rem solid black;
+
+    & th {
+      width: auto;
+      border: 0.1rem solid black;
+      padding: 1rem;
+    }
+
+    & td {
+      width: auto;
+      border: 0.1rem solid black;
+      padding: 1rem;
+
+      & button {
+        font-size:1rem;
+      }
+    }
   }
 }

@@ -52,25 +52,24 @@ const ViewUsers = () => {
                     <input type="text" value={totalCount} readOnly />
                 </div>
                 <div className="viewusers-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Sr no.</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Contact No</th>
+                    <table className='border1'>
+
+                        <tr>
+                            <th>Sr no.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact No</th>
+                        </tr>
+
+                        {data.map((res, id) => (
+                            <tr key={id}>
+                                <td>{id + 1}</td>
+                                <td>{res.Name}</td>
+                                <td>{res.Email}</td>
+                                <td>{res.Contact}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {data.map((res, id) => (
-                                <tr key={id}>
-                                    <td>{id + 1}</td>
-                                    <td>{res.Name}</td>
-                                    <td>{res.Email}</td>
-                                    <td>{res.Contact}</td>
-                                </tr>
-                            ))}
-                        </tbody>
+                        ))}
+
                     </table>
                 </div>
             </div>
