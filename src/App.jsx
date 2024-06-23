@@ -22,6 +22,7 @@ import ViewUsers from './Components/Admin/ViewUsers';
 import { useState } from 'react';
 import AdminLogin from './Components/Admin/AdminLogin';
 import Navbar from './Components/Layout/Navbar'
+import OneProduct from './Components/OneProduct';
 
 
 const App = () => {
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/shop" element={<Shop cart={cart} addToCart={addToCart} addToSingle={addToSingleProduct} />} />
         <Route path="/cart" element={<Cart cart={cart} />} />
         <Route path='/SingleProduct' element={<SingleProduct single={singleProduct} addToCart={addToCart} addToSingle={addToSingleProduct}/>} />
+        <Route path='/product/:heading' element={<OneProduct />} />
         <Route path='/Checkout' element={<Checkout />} />
         <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingCost={shippingCost} />} />
         <Route path='/ProductComparison' element={<ProductComparison />} />

@@ -4,7 +4,7 @@ import { MdKeyboardArrowRight, MdOutlineStarPurple500 } from "react-icons/md";
 import Footer from './Layout/Footer';
 import "./SingleProduct.css";
 
-const SingleProduct = ({ addToCart }) => {
+const OneProduct = ({ addToCart }) => {
     const [count, setCount] = useState(1);
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [single, setSingle] = useState(null);
@@ -139,4 +139,4 @@ const SingleProduct = ({ addToCart }) => {
     );
 };
 
-export default SingleProduct;
+export default OneProduct;

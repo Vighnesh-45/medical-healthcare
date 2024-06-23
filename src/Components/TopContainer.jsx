@@ -1,26 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CiSearch } from "react-icons/ci";
 import "./TopContainer.css";
 
 const TopContainer = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const navigate = useNavigate();
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('https://api-k7vh.onrender.com/medical/medicine/all');
-      const data = await response.json();
-      const product = data.find(item => item.Heading && item.Heading.toLowerCase().includes(searchTerm.toLowerCase()));
-      if (product) {
-        navigate(`/SingleProduct/${product.id}`);
-      } else {
-        console.log('Product not found');
+  useEffect(() => {
+    const fetchMedicineNames = async () => {
+      try {
+        const response = await fetch('https://api-k7vh.onrender.com/medical/medicine/all');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        const medicineNames = data.map(medicine => medicine.Heading);
+        setSuggestions(medicineNames);
+      } catch (error) {
+        console.error('Error fetching medicine names:', error);
       }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+    };
+    fetchMedicineNames();
+  }, []);
+
+  const handleSearchChange = (value) => {
+    setSearchTerm(value);
+    const filtered = suggestions.filter(suggestion =>
+      suggestion.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredSuggestions(filtered);
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchTerm(suggestion);
+    navigate(`/product/${encodeURIComponent(suggestion)}`);
+    setFilteredSuggestions([]);
+    setIsInputFocused(false);
   };
 
   return (
@@ -32,15 +50,23 @@ const TopContainer = () => {
             <h2>Discover Our New Collection</h2>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt, aliquam.</p>
             <div className="buy-now">
-              <form onSubmit={handleSearch}>
-                <input
-                  type="text"
-                  placeholder="Search for medicines..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <button type="submit"><CiSearch /></button>
-              </form>
+              <input
+                type="text"
+                placeholder="Search for a medicine..."
+                value={searchTerm}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                onFocus={() => setIsInputFocused(true)}
+                onBlur={() => setTimeout(() => setIsInputFocused(false), 100)}
+              />
+              {isInputFocused && filteredSuggestions.length > 0 && (
+                <ul>
+                  {filteredSuggestions.map((suggestion, index) => (
+                    <li key={index} onMouseDown={() => handleSuggestionClick(suggestion)}>
+                      {suggestion}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         </div>

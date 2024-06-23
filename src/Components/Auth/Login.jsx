@@ -26,17 +26,12 @@ const Login = () => {
 
             const data = await response.json();
             console.log(data)
-
-            // Store data in local storage
-            localStorage.setItem('userToken', data.token); // assuming the token is returned as data.token
-            localStorage.setItem('userRole', data.role); // assuming the role is returned as data.role
-
-            // Redirect based on user role using navigate
+            localStorage.setItem('userToken', data.token);
+            localStorage.setItem('userRole', data.role);
             navigate('/')
 
         } catch (error) {
             console.error('Login error:', error);
-            // Handle error, show error message to user
         }
     };
 
