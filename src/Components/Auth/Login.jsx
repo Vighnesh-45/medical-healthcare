@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom"
 import './Combine.css'
+
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -26,6 +27,10 @@ const Login = () => {
             const data = await response.json();
             console.log(data)
 
+            // Store data in local storage
+            localStorage.setItem('userToken', data.token); // assuming the token is returned as data.token
+            localStorage.setItem('userRole', data.role); // assuming the role is returned as data.role
+
             // Redirect based on user role using navigate
             navigate('/')
 
@@ -34,7 +39,6 @@ const Login = () => {
             // Handle error, show error message to user
         }
     };
-
 
     return (
         <section className="login-main">
