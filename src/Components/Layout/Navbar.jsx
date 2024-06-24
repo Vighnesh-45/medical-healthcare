@@ -11,7 +11,9 @@ import "../../Components/ShoppingCart.css";
 
 const Navbar = ({ cart, setCart }) => {
   const [showPopup, setShowPopup] = useState(false);
+  const [showWishPopup, setShowWishPopup] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuWishOpen, setIsMobileMenuWishOpen] = useState(false);
   const [data, setData] = useState([]);
   const [click, setClick] = useState(false);
 
@@ -33,7 +35,6 @@ const Navbar = ({ cart, setCart }) => {
 
   // Function to handle redirection to profile page
   const redirectToProfile = () => {
-    // Replace '/profile' with the actual URL of your profile page
     window.location.href = '/profile';
   };
 
@@ -41,8 +42,16 @@ const Navbar = ({ cart, setCart }) => {
     setShowPopup(!showPopup);
   };
 
+  const onButtonWishClick = () => {
+    setShowWishPopup(!showWishPopup);
+  }
+
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleMenuWishToggle = () => {
+    setIsMobileMenuWishOpen(!isMobileMenuWishOpen);
   };
 
   const handleLinkClick = () => {
@@ -87,18 +96,19 @@ const Navbar = ({ cart, setCart }) => {
           </nav>
           <div className="nav-right">
             <img src={person} alt="person" onClick={redirectToProfile} />
-            <img src={heart} alt="heart" />
+            <img src={heart} alt="heart" onClick={onButtonWishClick} />
             <img src={cartimg} alt="cart" onClick={onButtonClick} />
           </div>
         </div>
       </section>
+
       {/* Shopping Cart Popup */}
       {showPopup && (
         <section className="shoppingcart-main">
           <div className="shoppingcart-container">
             <div className="shoppingcart-header">
               <h2>Shopping Cart</h2>
-              <RiCloseLine style={{ fontSize: '2.5rem' }} onClick={() => {
+              <RiCloseLine style={{ fontSize: '2.5rem', curosr: 'pointer' }} onClick={() => {
                 onButtonClick(); // Close shopping cart popup
                 handleMenuToggle(); // Close mobile menu
               }} />
@@ -126,6 +136,31 @@ const Navbar = ({ cart, setCart }) => {
               <Link to="/Cart"><button>Cart</button></Link>
               <Link to="/Checkout"><button>Checkout</button></Link>
               <Link to="/ProductComparison"><button>Comparison</button></Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Wishlist Popup */}
+      {showWishPopup && (
+        <section className="wishlist-main">
+          <div className="wishlist-container">
+            <div className="wishlist-header">
+              <h2>Wishlist</h2>
+              <RiCloseLine style={{ fontSize: '2.5rem', cursor: 'pointer' }} onClick={() => {
+                onButtonWishClick();
+                handleMenuWishToggle();
+              }} />
+            </div>
+            <div className="wishlist-glance">
+            {cart.map((res, id) => (
+                <div key={id} className="wishlist-content">
+                  <img src={res.Image} alt="product" />
+                  <h4>{res.Heading}</h4>
+                  <p>{res.SP}</p>
+                  <RiCloseCircleFill style={{ fontSize: '1.5rem' }} onClick={() => handleRemoveFromCart(id)} />
+                </div>
+              ))}
             </div>
           </div>
         </section>

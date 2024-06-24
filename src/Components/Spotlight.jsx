@@ -69,16 +69,6 @@ const Spotlight = () => {
                         </div>
                     ))}
                 </div>
-                {/* <div className="hover-content">
-                    <button>Add to Cart</button>
-                    <p>Share</p>
-                    <IoShareSocialSharp />
-                    <p>Compare</p>
-                    <MdCompareArrows />
-                    <p>Like</p>
-                    <IoIosHeartEmpty />
-                </div> */}
-
             </div>
         </section>
     )
