@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom"
-import './Combine.css'
+import { Link } from "react-router-dom";
+import './Combine.css';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Login = () => {
             }
 
             const data = await response.json();
-            console.log(data)
+            console.log(data);
             localStorage.setItem('userToken', data.token);
             localStorage.setItem('userRole', data.role);
             navigate('/')
@@ -33,6 +33,10 @@ const Login = () => {
         } catch (error) {
             console.error('Login error:', error);
         }
+    };
+
+    const handleGoogleLogin = () => {
+        window.location.href = 'http://localhost:8000/medical/auth/google'; // Adjust the URL to match your backend route
     };
 
     return (
@@ -48,8 +52,9 @@ const Login = () => {
                         onChange={(e) => setPass(e.target.value)} />
                 </div>
                 <button onClick={handleSubmit}>Sign In</button>
+                <button onClick={handleGoogleLogin}>Sign In with Google</button>
                 <div className="new-account">
-                    <p>Don't have a account</p>
+                    <p>Don't have an account?</p>
                     <Link to="/Signup"><button>Sign up</button></Link>
                 </div>
             </div>
@@ -57,4 +62,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;
