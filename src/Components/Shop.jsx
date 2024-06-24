@@ -50,7 +50,6 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
         navigate(`/singleproduct/${product._id}`);
     };
 
-
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);

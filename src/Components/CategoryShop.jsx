@@ -64,8 +64,8 @@ const CategoryShop = ({ addToCart }) => {
     };
 
     // Handle add to cart and redirect to cart page
-    const redirectToSingleProduct = (product) => {
-        navigate('/SingleProduct', { state: { productId: product.id } });
+    const redirectToSingleProduct = (res) => {
+        navigate(`/SingleProduct/${res._id}`);
     };
     const handleAddToCart = (product) => {
         addToCart(product);
