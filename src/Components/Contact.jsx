@@ -3,8 +3,9 @@ import "./Contact.css";
 import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import logo from "./../assets/logo.png";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
-// import { FaLocationDot, FaPhoneAlt } from "react-icons/fa";
 import { MdOutlineAccessTime } from "react-icons/md";
 
 const Contact = () => {
@@ -99,11 +100,11 @@ const Contact = () => {
                     <div className="contact-content-main">
                         <div className="contact-content-left">
                             <div className="contact-address">
-                                {/* <h2><FaLocationDot />Address</h2> */}
+                                <h2><FaLocationDot />Address</h2>
                                 <p>236 5th SE Avenue, New York NY10000, United States</p>
                             </div>
                             <div className="contact-phone">
-                                {/* <h2><FaPhoneAlt />Phone</h2> */}
+                                <h2><FaPhoneAlt />Phone</h2>
                                 <p>Mobile: +(84) 546-6789</p>
                                 <p>Hotline: +(84) 456-6789</p>
                             </div>

@@ -82,8 +82,8 @@ const ProductComparison = ({ currentStep }) => {
                     <div className="add-product">
                         <h2>Add A Product</h2>
                         <select name="products" id="products">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
+                            <option value="def">Default</option>
+                            <option value="">Categories</option>
                         </select>
                     </div>
                     {data.slice(0, 2).map((res, id) => (
