@@ -42,6 +42,7 @@ const Cart = ({ cart }) => {
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Subtotal</th>
+                                    <th>Add Prescription</th>
                                 </tr>
                                 {cart.map((item, index) => (
                                     <tr key={index} className="cart-item">
@@ -49,6 +50,7 @@ const Cart = ({ cart }) => {
                                         <td>Rs. {item.SP}</td>
                                         <td>1</td>
                                         <td>Rs. {item.SP}</td>
+                                        <td><input type="file" accept='image/*' /></td>
                                     </tr>
                                 ))}
                         </table>

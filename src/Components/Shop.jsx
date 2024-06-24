@@ -17,20 +17,22 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
     const navigate = useNavigate();
 
     const getData = async () => {
-        const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all", {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json"
+        try {
+            const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all", {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json"
+                }
+            });
+            const resData = await response.json();
+            if (resData) {
+                setData(resData);
+                setTotalPages(Math.ceil(resData.length / itemsPerPage));
+            } else {
+                console.log("No data found");
             }
-        });
-        const resData = await response.json();
-
-        if (!resData) {
-            console.log("error");
-        } else {
-            console.log(resData);
-            setData(resData);
-            setTotalPages(Math.ceil(resData.length / itemsPerPage));
+        } catch (error) {
+            console.error("Error fetching data:", error);
         }
     };
 
@@ -45,8 +47,9 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
 
     const handleSingleProduct = (product) => {
         addToSingle(product);
-        navigate('/SingleProduct');
-    }
+        navigate(`/singleproduct/${product._id}`);
+    };
+
 
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
@@ -83,7 +86,6 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
 
     return (
         <section className="shop-main">
-            {/* <Navbar cart={cart} /> */}
             <div className="shop-container">
                 <div className="shop-header">
                     <img src={logo} alt="" />
@@ -124,14 +126,14 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                     ))}
                 </div>
                 <div className="shop-footer">
-                    {[1, 2, 3].map((page) => (
+                    {[...Array(totalPages)].map((_, index) => (
                         <button
-                            key={page}
-                            onClick={() => handlePageChange(page)}
-                            className={currentPage === page ? 'active' : ''}
-                            disabled={page > totalPages}
+                            key={index + 1}
+                            onClick={() => handlePageChange(index + 1)}
+                            className={currentPage === index + 1 ? 'active' : ''}
+                            disabled={index + 1 > totalPages}
                         >
-                            {page}
+                            {index + 1}
                         </button>
                     ))}
                     {currentPage < totalPages && (

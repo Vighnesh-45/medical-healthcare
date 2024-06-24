@@ -166,6 +166,35 @@
   }
 }
 
+/* Wishlist Responsive */
+@media only screen and (max-width: 767px) {
+  .wishlist-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    padding: 0.5rem 0rem 0 0;
+    background-color: white;
+    height: 30rem;
+  }
+  .wishlist-header {
+    display: flex;
+    justify-content: space-around;
+    & h2 {
+      font-size: 1.5rem !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .wishlist-container {
+    width: 50vw;
+    position: fixed;
+    right: 0;
+    background-color: white;
+    height: 60vw;
+  }
+}
 /* ShoppingCart.css */
 .shoppingcart-main {
   width: 30vw;

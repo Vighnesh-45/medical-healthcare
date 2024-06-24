@@ -1,57 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { MdKeyboardArrowRight, MdOutlineStarPurple500 } from "react-icons/md";
 import Footer from './Layout/Footer';
 import "./SingleProduct.css";
 
 const SingleProduct = ({ addToCart }) => {
     const [count, setCount] = useState(1);
-    const [relatedProducts, setRelatedProducts] = useState([]);
     const [single, setSingle] = useState(null);
-    const { heading } = useParams();
-
-    const increment = () => setCount(count + 1);
-    const decrement = () => count !== 1 ? setCount(count - 1) : null;
+    const [error, setError] = useState(null);
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                const product = data.find(item => item.Heading === heading);
-                setSingle(product);
-                if (product) {
-                    fetchRelatedProducts(product.id);
-                }
-            } catch (error) {
-                console.error('Error fetching product:', error);
-            }
-        };
-
-        const fetchRelatedProducts = async (productId) => {
-            try {
-                const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all/${productId}`);
+                const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/get/${id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const resData = await response.json();
-                setRelatedProducts(resData);
+                setSingle(resData);
             } catch (error) {
-                console.error("Error fetching related products:", error);
+                console.error("Error fetching product:", error);
+                setError(error.message);
             }
         };
 
         fetchProduct();
-    }, [heading]);
+    }, [id]);
+
+    const increment = () => setCount(count + 1);
+    const decrement = () => count > 1 ? setCount(count - 1) : null;
 
     const handleAddToCart = (product) => {
         const productWithQuantity = { ...product, quantity: count };
         addToCart(productWithQuantity);
         navigate('/cart');
     };
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <section className="singleproduct-main">
@@ -116,7 +110,7 @@ const SingleProduct = ({ addToCart }) => {
                 <div className="product-header">
                     <h2>Related Products</h2>
                 </div>
-                <div className="singleproduct-cards">
+                {/* <div className="singleproduct-cards">
                     {relatedProducts.length > 0 ? (
                         relatedProducts.map((res) => (
                             <div className="card-one" key={res.id}>
@@ -129,7 +123,7 @@ const SingleProduct = ({ addToCart }) => {
                     ) : (
                         <p>No related products available</p>
                     )}
-                </div>
+                </div> */}
                 <div className="show-button">
                     <Link to="/Shop"><button>Show More</button></Link>
                 </div>

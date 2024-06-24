@@ -49,6 +49,11 @@
               padding: 0.5rem;
               font-size: 1rem;
               text-align: center;
+              & button {
+                background-color: #e0f6d1;
+                border: none;
+                padding: 0.5rem;
+              }
             }
           }
           & .cart-item {

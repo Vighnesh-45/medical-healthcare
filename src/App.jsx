@@ -51,7 +51,7 @@ const App = () => {
         <Route path='/advertise' element={<Advertise />} />
         <Route path="/shop" element={<Shop cart={cart} addToCart={addToCart} addToSingle={addToSingleProduct} />} />
         <Route path="/cart" element={<Cart cart={cart} />} />
-        <Route path='/SingleProduct' element={<SingleProduct single={singleProduct} addToCart={addToCart} addToSingle={addToSingleProduct}/>} />
+        <Route path='/SingleProduct/:id' element={<SingleProduct singleProduct={singleProduct} addToCart={addToCart} addToSingle={addToSingleProduct}/>} />
         <Route path='/product/:heading' element={<OneProduct />} />
         <Route path='/Checkout' element={<Checkout />} />
         <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingCost={shippingCost} />} />
