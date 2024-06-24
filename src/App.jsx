@@ -23,6 +23,8 @@ import { useState } from 'react';
 import AdminLogin from './Components/Admin/AdminLogin';
 import Navbar from './Components/Layout/Navbar'
 import OneProduct from './Components/OneProduct';
+import DoctorLogin from './Components/Auth/DoctorLogin';
+import DoctorSignup from './Components/Auth/DoctorSignup';
 
 
 const App = () => {
@@ -60,6 +62,8 @@ const App = () => {
         <Route path='/AddProduct' element={<AddProduct />} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/Login' element={<Login />} />
+        <Route path='/DoctorLogin' element={<DoctorLogin />} />
+        <Route path='/DoctorSignup' element={<DoctorSignup />} />
         <Route path='/CategoryShop' element={<CategoryShop cart={cart} addToCart={addToCart} addToSingle={addToSingleProduct} />} />
         <Route path='/AddCategory' element={<AddCategories />} />
         <Route path='/ViewProducts' element={<ViewProducts />} />
