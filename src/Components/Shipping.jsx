@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./Shipping.css";
-import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 
-const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
+const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
     const [counts, setCounts] = useState({});
-    const [orderDetails, setOrderDetails] = useState([0]);
+    const [orderDetails, setOrderDetails] = useState([]);
+    const [savedAddress, setSavedAddress] = useState('');
+    const [addressLine, setAddressLine] = useState('');
+    const [streetName, setStreetName] = useState('');
+    const [postcode, setPostcode] = useState('');
+    const [shippingMode, setShippingMode] = useState('');
 
     useEffect(() => {
-        console.log(cart);
         if (!selectedIds || selectedIds.length === 0) {
-            return; // Exit early if selectedIds is not defined or empty
+            return;
         }
 
         const fetchOrderDetails = async () => {
@@ -19,8 +22,7 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
                 const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all?id=${selectedIds.join(',')}`);
                 if (response.ok) {
                     const data = await response.json();
-                    console.log('Fetched order details:', data); // Log the fetched data for debugging
-                    setOrderDetails(data); // Assuming data structure matches what you expect
+                    setOrderDetails(data);
                 } else {
                     console.error('Failed to fetch order details:', response.statusText);
                 }
@@ -46,7 +48,41 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
         }));
     };
 
-    const shippingCost = 40;
+    const handleSubmit = async () => {
+        const formData = {
+            savedAddress,
+            addressLine,
+            streetName,
+            postcode,
+            shippingMode,
+            cart,
+            counts,
+        };
+
+        try {
+            const response = await fetch('https://api-k7vh.onrender.com/medical/response/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Form submitted successfully:', data);
+                window.alert('Form submitted successfully');
+                // Navigate to payment page or show success message
+            } else {
+                const errorMessage = await response.text();
+                console.error('Failed to submit form:', errorMessage);
+                window.alert(`Failed to submit form: ${errorMessage}`);
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            window.alert(`Error submitting form: ${error.message}`);
+        }
+    };
 
     return (
         <section className="shipping-main">
@@ -70,34 +106,34 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
                         <div className="card-left">
                             <h2>Shipping Details</h2>
                             <div className="saved-address">
-                                <label htmlFor="">Use Saved Address</label>
-                                <select name="Address" id="add">
+                                <label>Use Saved Address</label>
+                                <select name="Address" value={savedAddress} onChange={(e) => setSavedAddress(e.target.value)}>
                                     <option value="add1">123, Avenue</option>
-                                    <option value="saab">456, electric avenue</option>
+                                    <option value="add2">456, Electric Avenue</option>
                                 </select>
                             </div>
                             <div className="shipping-address">
-                                <label htmlFor="">First line of Address</label>
-                                <input type="text" placeholder="Enter your address" />
-                                <label htmlFor="">Street Name</label>
-                                <input type="text" placeholder="123 Electric Avenue" />
+                                <label>First line of Address</label>
+                                <input type="text" placeholder="Enter your address" value={addressLine} onChange={(e) => setAddressLine(e.target.value)} />
+                                <label>Street Name</label>
+                                <input type="text" placeholder="123 Electric Avenue" value={streetName} onChange={(e) => setStreetName(e.target.value)} />
                             </div>
                             <div className="shipping-info">
                                 <div className="shipping-post">
-                                    <label htmlFor="">Postcode</label>
-                                    <input type="text" placeholder='ABC-123' />
+                                    <label>Postcode</label>
+                                    <input type="text" placeholder="ABC-123" value={postcode} onChange={(e) => setPostcode(e.target.value)} />
                                 </div>
                                 <div className="shipping-mode">
-                                    <label htmlFor="">Select Shipping</label>
-                                    <select name="Mode of Shipping" id="delivery">
-                                        <option value="add1">Cash on Delivery</option>
-                                        <option value="saab">Online Payment</option>
+                                    <label>Select Shipping</label>
+                                    <select name="Mode of Shipping" value={shippingMode} onChange={(e) => setShippingMode(e.target.value)}>
+                                        <option value="cod">Cash on Delivery</option>
+                                        <option value="online">Online Payment</option>
                                     </select>
                                 </div>
                             </div>
                             <div className="payment-btn">
                                 <Link to="/Shop"><button>Cancel Order</button></Link>
-                                <Link to="/"><button>Payment</button></Link>
+                                <button onClick={handleSubmit}>Payment</button>
                             </div>
                         </div>
                     </div>
@@ -133,7 +169,7 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingcost }) => {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
+            <Footer />
         </section>
     );
 };
