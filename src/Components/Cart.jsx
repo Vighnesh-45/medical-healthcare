@@ -11,6 +11,7 @@ const Cart = ({ cart }) => {
     const navigate = useNavigate();
     const [file, setFile] = useState(null);
     const [selectedIds, setSelectedIds] = useState([]);
+    const [image, setImage] = useState(null);
 
     const handleUpload = async () => {
         if (!file) {
@@ -22,8 +23,11 @@ const Cart = ({ cart }) => {
             const formData = new FormData();
             formData.append('file', file);
 
-            const response = await axios.post("https://api-k7vh.onrender.com/upload", formData);
+            const response = await axios.post("http://localhost:8000/upload", formData);
             console.log("File upload successful", response.data);
+
+            // Assuming response.data contains image information
+            setImage(response.data.image);
 
             // You can handle the response as needed
         } catch (error) {
