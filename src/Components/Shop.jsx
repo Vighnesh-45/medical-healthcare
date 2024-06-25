@@ -53,6 +53,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
 
@@ -125,14 +126,14 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                     ))}
                 </div>
                 <div className="shop-footer">
-                    {[...Array(totalPages)].map((_, index) => (
+                    {[1, 2, 3].map((page) => (
                         <button
-                            key={index + 1}
-                            onClick={() => handlePageChange(index + 1)}
-                            className={currentPage === index + 1 ? 'active' : ''}
-                            disabled={index + 1 > totalPages}
+                            key={page}
+                            onClick={() => handlePageChange(page)}
+                            className={currentPage === page ? 'active' : ''}
+                            disabled={page > totalPages}
                         >
-                            {index + 1}
+                            {page}
                         </button>
                     ))}
                     {currentPage < totalPages && (

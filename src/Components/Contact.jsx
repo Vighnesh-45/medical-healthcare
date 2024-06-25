@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "./Contact.css";
-import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import logo from "./../assets/logo.png";
 import { FaLocationDot } from "react-icons/fa6";
@@ -83,7 +82,6 @@ const Contact = () => {
 
     return (
         <section className='contact-main'>
-            {/* <Navbar /> */}
             <div className="contact-container">
                 <div className="contact-header">
                     <img src={logo} alt="Logo" />

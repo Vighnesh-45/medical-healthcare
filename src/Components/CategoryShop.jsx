@@ -15,7 +15,7 @@ const CategoryShop = ({ addToCart }) => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [sortOption, setSortOption] = useState('default');
-    const itemsPerPage = 12;
+    const [itemsPerPage, setItemsPerPage] = useState(12);
 
     const getData = async () => {
         const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all", {
@@ -38,6 +38,10 @@ const CategoryShop = ({ addToCart }) => {
         getData();
     }, []);
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [itemsPerPage]);
+
     // Filter and sort data
     const filteredData = data.filter(item => item.Categories.includes(category));
     const sortedData = [...filteredData];
@@ -54,7 +58,10 @@ const CategoryShop = ({ addToCart }) => {
     const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
     // Handle page change
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
@@ -63,10 +70,19 @@ const CategoryShop = ({ addToCart }) => {
         setSortOption(event.target.value);
     };
 
+    // Handle items per page change
+    const handleItemsPerPageChange = (event) => {
+        const value = parseInt(event.target.value, 10);
+        if (!isNaN(value) && value > 0) {
+            setItemsPerPage(value);
+        }
+    };
+
     // Handle add to cart and redirect to cart page
     const redirectToSingleProduct = (res) => {
         navigate(`/SingleProduct/${res._id}`);
     };
+
     const handleAddToCart = (product) => {
         addToCart(product);
         navigate('/cart');
@@ -93,7 +109,11 @@ const CategoryShop = ({ addToCart }) => {
                     <div className="shop-nav-right">
                         <div className="nav-btn">
                             <p>Show</p>
-                            <input type="number" />
+                            <input
+                                type="number"
+                                value={itemsPerPage}
+                                onChange={handleItemsPerPageChange}
+                            />
                             <p>Sort by</p>
                             <select name="medicine" id="med" value={sortOption} onChange={handleSortChange}>
                                 <option value="default">Default</option>
