@@ -5,21 +5,34 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import Footer from './Layout/Footer';
 import Advertise from './Layout/Advertise';
+import axios from 'axios';
 
 const Cart = ({ cart }) => {
     const navigate = useNavigate();
+    const [file, setFile] = useState(null);
     const [selectedIds, setSelectedIds] = useState([]);
-    const [fileUploads, setFileUploads] = useState(cart.map(() => null)); // Initialize with null for each cart item
+
+    const handleUpload = async () => {
+        if (!file) {
+            console.error("No file selected");
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await axios.post("https://api-k7vh.onrender.com/upload", formData);
+            console.log("File upload successful", response.data);
+
+            // You can handle the response as needed
+        } catch (error) {
+            console.error("Error uploading file:", error);
+        }
+    };
 
     const calculateSubtotal = () => {
         return cart.reduce((total, item) => total + item.SP, 0);
-    };
-
-    const handleFileUpload = (index, event) => {
-        const file = event.target.files[0];
-        const updatedUploads = [...fileUploads];
-        updatedUploads[index] = file;
-        setFileUploads(updatedUploads);
     };
 
     const handleCheckout = () => {
@@ -29,7 +42,7 @@ const Cart = ({ cart }) => {
         setSelectedIds(ids);
 
         // Navigate to the Shipping page with selected IDs and file uploads
-        navigate('/Shipping', { state: { selectedIds: ids, fileUploads } });
+        navigate('/Shipping', { state: { selectedIds: ids } });
     };
 
     return (
@@ -64,9 +77,9 @@ const Cart = ({ cart }) => {
                                             <input
                                                 type="file"
                                                 accept=".jpg,.jpeg,.png,.pdf"
-                                                onChange={(event) => handleFileUpload(index, event)}
+                                                onChange={e => setFile(e.target.files[0])}
                                             />
-                                            {fileUploads[index] && <span>{fileUploads[index].name}</span>}
+                                            <button onClick={handleUpload}>Upload</button>
                                         </td>
                                     </tr>
                                 ))}
