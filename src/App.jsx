@@ -9,7 +9,6 @@ import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 import Shipping from './Components/Shipping';
 import ProductComparison from './Components/ProductComparison';
-// import ShoppingCart from './Components/ShoppingCart';
 import Profile from './Components/Profile';
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';

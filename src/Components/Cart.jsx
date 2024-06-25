@@ -1,18 +1,25 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import logo from "./../assets/logo.png";
 import "./Cart.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Footer from './Layout/Footer';
 import Advertise from './Layout/Advertise';
 
 const Cart = ({ cart }) => {
     const navigate = useNavigate();
     const [selectedIds, setSelectedIds] = useState([]);
+    const [fileUploads, setFileUploads] = useState(cart.map(() => null)); // Initialize with null for each cart item
 
     const calculateSubtotal = () => {
         return cart.reduce((total, item) => total + item.SP, 0);
+    };
+
+    const handleFileUpload = (index, event) => {
+        const file = event.target.files[0];
+        const updatedUploads = [...fileUploads];
+        updatedUploads[index] = file;
+        setFileUploads(updatedUploads);
     };
 
     const handleCheckout = () => {
@@ -21,8 +28,8 @@ const Cart = ({ cart }) => {
         // Set selectedIds state to pass it to the Shipping page
         setSelectedIds(ids);
 
-        // Navigate to the Shipping page with selected IDs
-        navigate('/Shipping', { state: { selectedIds: ids } });
+        // Navigate to the Shipping page with selected IDs and file uploads
+        navigate('/Shipping', { state: { selectedIds: ids, fileUploads } });
     };
 
     return (
@@ -37,6 +44,7 @@ const Cart = ({ cart }) => {
                 <div className="cart-overview">
                     <div className="cart-left">
                         <table className="cart-table">
+                            <thead>
                                 <tr>
                                     <th>Product</th>
                                     <th>Price</th>
@@ -44,15 +52,25 @@ const Cart = ({ cart }) => {
                                     <th>Subtotal</th>
                                     <th>Add Prescription</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 {cart.map((item, index) => (
                                     <tr key={index} className="cart-item">
                                         <td>{item.Heading}</td>
                                         <td>Rs. {item.SP}</td>
                                         <td>1</td>
                                         <td>Rs. {item.SP}</td>
-                                        <td><input type="file" accept='image/*' /></td>
+                                        <td>
+                                            <input
+                                                type="file"
+                                                accept=".jpg,.jpeg,.png,.pdf"
+                                                onChange={(event) => handleFileUpload(index, event)}
+                                            />
+                                            {fileUploads[index] && <span>{fileUploads[index].name}</span>}
+                                        </td>
                                     </tr>
                                 ))}
+                            </tbody>
                         </table>
                     </div>
                     <div className="cart-total">
