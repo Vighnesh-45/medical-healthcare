@@ -176,6 +176,7 @@ input:focus{
         justify-content: center;
         & .card-one {
           width: 70%;
+          height: 28rem;
         }
       }
       & .shop-footer {

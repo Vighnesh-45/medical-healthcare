@@ -67,8 +67,8 @@
 /* Navbar Responsive */
 @media only screen and (max-width: 767px) {
   .navbar-main {
+    width: 100%;
     & .navbar-container {
-      width: 100%;
       display: flex;
       & .logo {
         width: 100%;
@@ -93,14 +93,13 @@
           text-align: center;
           padding-top: 2rem;
           margin-top: 5rem;
-          height: 43%;
-          background-color: #5bb82f;
+          height: 40%;
+          background-color: white;
           & li {
-            justify-content: center;
             margin: 0.8rem;
             font-size: 1rem;
             & a {
-              font-size: 0.8rem;
+              font-size: 1.2rem;
               padding: 0;
             }
           }

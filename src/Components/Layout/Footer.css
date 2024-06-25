@@ -82,6 +82,7 @@
 
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .footer-main {
+    width: 100%;
     & .footer-container {
       display: flex;
       flex-direction: column;

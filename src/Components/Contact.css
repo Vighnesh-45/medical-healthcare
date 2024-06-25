@@ -119,22 +119,29 @@
 
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .contact-main {
+    width: 100% !important;
     & .contact-container {
       & .contact-content {
+        & .contact-content-header {
+          & h2 {
+            font-size: 1.4rem;
+          }
+          & p{
+            font-size: 1rem;
+          }
+        }
         & .contact-content-main {
           display: flex;
           flex-direction: column;
           & .contact-content-right {
             margin-left: 3rem;
             & form {
+              width: 100%;
               & input {
                 width: 85%;
               }
               & textarea {
                 width: 85%;
-              }
-              & button {
-                margin-left: 6rem;
               }
             }
           }
