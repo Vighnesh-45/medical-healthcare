@@ -60,34 +60,32 @@ const Cart = ({ cart }) => {
                 </div>
                 <div className="cart-overview">
                     <div className="cart-left">
-                        <table className="cart-table">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Subtotal</th>
-                                    <th>Add Prescription</th>
+                        <table>
+
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Add Prescription</th>
+                            </tr>
+
+                            {cart.map((item, index) => (
+                                <tr key={index} className="cart-item">
+                                    <td>{item.Heading}</td>
+                                    <td>Rs. {item.SP}</td>
+                                    <td>1</td>
+                                    <td>Rs. {item.SP}</td>
+                                    <td>
+                                        <input
+                                            type="file"
+                                            accept=".jpg,.jpeg,.png,.pdf"
+                                            onChange={e => setFile(e.target.files[0])}
+                                        />
+                                        <button onClick={handleUpload}>Upload</button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {cart.map((item, index) => (
-                                    <tr key={index} className="cart-item">
-                                        <td>{item.Heading}</td>
-                                        <td>Rs. {item.SP}</td>
-                                        <td>1</td>
-                                        <td>Rs. {item.SP}</td>
-                                        <td>
-                                            <input
-                                                type="file"
-                                                accept=".jpg,.jpeg,.png,.pdf"
-                                                onChange={e => setFile(e.target.files[0])}
-                                            />
-                                            <button onClick={handleUpload}>Upload</button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
+                            ))}
                         </table>
                     </div>
                     <div className="cart-total">
