@@ -24,7 +24,6 @@
           & .step {
             display: flex;
             align-items: center;
-            position: relative;
 
             & .circle {
               width: 24px;
@@ -325,9 +324,12 @@
         & .shipping-details {
           width: 100%;
           font-size: 1rem;
+          padding: 0.5rem !important;
 
           & .progress-steps {
             width: 100%;
+            display: flex;
+            gap: 0rem !important;
           }
 
           & .card-left {
@@ -337,8 +339,13 @@
           }
         }
 
+        & .payment-btn {
+          gap: 0rem !important;
+        }
+
         & .shipping-summary {
-          width: 100% !important;
+          width: 74% !important;
+          display: flex;
         }
       }
     }
