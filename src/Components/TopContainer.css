@@ -27,24 +27,25 @@
         }
         & .buy-now {
           margin-top: 1rem;
-          & button {
-            height: 1.5rem;
-            width: 4rem;
+          & input {
+            height: 2rem;
+            padding: 0.5rem;
+            width: 12rem;
             border: none;
-            background-color: #5bb82f;
-            color: white;
+            color: black;
             font-size: 1rem;
-            border-radius: 0.3rem;
-            cursor: pointer;
-          }
-          & ul {
-            list-style: none;
-            background: transparent;
-            & li {
-              font-size: 1rem;
-              padding: 0.5rem 0;
-              background-color: transparent;
-              cursor: pointer;
+            border: 1px solid #5bb82f;
+            & ul {
+              list-style: none;
+              background: transparent;
+              
+              & li {
+                font-size: 1rem;
+                padding: 0.5rem 0;
+                background-color: transparent;
+                cursor: pointer;
+                margin-top: 1rem;
+              }
             }
           }
         }

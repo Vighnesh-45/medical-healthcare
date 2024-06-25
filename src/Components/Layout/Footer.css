@@ -82,13 +82,19 @@
 
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .footer-main {
-    width: 100%;
+    width: 95%;
     & .footer-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 3rem;
       & .medicine {
+        text-align: center;
+      }
+      & .links{
+        text-align: center;
+      }
+      & .help{
         text-align: center;
       }
       & .contact {

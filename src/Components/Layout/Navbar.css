@@ -93,7 +93,7 @@
           text-align: center;
           padding-top: 2rem;
           margin-top: 5rem;
-          height: 40%;
+          height: 43%;
           background-color: white;
           & li {
             margin: 0.8rem;
@@ -129,7 +129,7 @@
 /* Wishlist.css */
 .wishlist-main {
   width: 30vw;
-  height: 70vh;
+  height: 75vh;
   position: fixed;
   top: 0;
   right: 0;
@@ -270,6 +270,7 @@
 @media only screen and (max-width: 1023px) {
   .shoppingcart-container {
     width: 40%;
+    background-color: white;
   }
 }
 

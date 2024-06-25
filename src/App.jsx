@@ -26,6 +26,7 @@ import DoctorLogin from './Components/Auth/DoctorLogin';
 import DoctorSignup from './Components/Auth/DoctorSignup';
 
 
+
 const App = () => {
   const [cart, setCart] = useState([]);
   const [singleProduct, setSingleProduct] = useState([]);
