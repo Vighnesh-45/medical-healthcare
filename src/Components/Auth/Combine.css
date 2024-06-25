@@ -5,29 +5,54 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       gap: 1rem;
-      & input {
-        width: 40%;
-        height: 3rem;
-        background-color: #c2eda8;
-        border-radius: 0.5rem;
-        border: none;
+      & .email {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        & input {
+          width: 25rem;
+          height: 2rem;
+          padding: 1rem;
+          background-color: #c2eda8;
+          border-radius: 0.5rem;
+          border: none;
+        }
       }
-    }
-    & button {
-      background-color: #5bb82f;
-      color: white;
-      border: none;
-      padding: 1rem;
-      margin-top: 1rem;
-      border-radius: 0.5rem;
-      cursor: pointer;
+      & .password {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        & input {
+          width: 25rem;
+          height: 2rem;
+          padding: 1rem;
+          background-color: #c2eda8;
+          border-radius: 0.5rem;
+          border: none;
+        }
+      }
+      & button {
+        border: none;
+        background-color: #5bb82f;
+        color: white;
+        border: none;
+        padding: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 1rem;
+        cursor: pointer;
+      }
     }
     & .new-account {
       display: flex;
+      justify-content: center;
       gap: 1rem;
       align-items: baseline;
-      height: 4rem;
+      height: 3rem;
       & button {
         border: none;
         background: transparent;
@@ -39,9 +64,43 @@
         cursor: pointer;
       }
     }
+    & .google-auth {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      & button {
+        background-color: #5bb82f;
+        color: white;
+        border: none;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 1rem;
+        cursor: pointer;
+      }
+    }
   }
 }
 
+/* Login Responsive */
+@media only screen and (min-width: 120px) and (max-width: 767px) {
+  .login-main {
+    width: 100% !;
+    & .login-container {
+      & .login-form {
+        & .email {
+          & input {
+            width: 15rem;
+          }
+        }
+        & .password {
+          & input {
+            width: 15rem;
+          }
+        }
+      }
+    }
+  }
+}
 /* SignUp CSS */
 .signup-main {
   & .signup-container {

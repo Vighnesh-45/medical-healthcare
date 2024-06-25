@@ -44,18 +44,24 @@ const Login = () => {
             <div className="login-container">
                 <div className="login-form">
                     <h2>Sign In</h2>
-                    <label htmlFor="">Email</label>
-                    <input type="text" placeholder="Enter your Email" value={email}
-                        onChange={(e) => setEmail(e.target.value)} />
-                    <label htmlFor="">Password</label>
-                    <input type="password" placeholder="Enter your Password" name="Pass" value={pass}
-                        onChange={(e) => setPass(e.target.value)} />
+                    <div className="email">
+                        <label htmlFor="">Email</label>
+                        <input type="text" placeholder="Enter your Email" value={email}
+                            onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <div className="password">
+                        <label htmlFor="">Password</label>
+                        <input type="password" placeholder="Enter your Password" name="Pass" value={pass}
+                            onChange={(e) => setPass(e.target.value)} />
+                    </div>
+                    <button onClick={handleSubmit}>Sign In</button>
                 </div>
-                <button onClick={handleSubmit}>Sign In</button>
-                <button onClick={handleGoogleLogin}>Sign In with Google</button>
                 <div className="new-account">
                     <p>Don't have an account?</p>
                     <Link to="/Signup"><button>Sign up</button></Link>
+                </div>
+                <div className="google-auth">
+                    <button onClick={handleGoogleLogin}>Sign In with Google</button>
                 </div>
             </div>
         </section>
