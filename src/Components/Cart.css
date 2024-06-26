@@ -7,6 +7,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
       & h2 {
         font-size: 3rem;
         display: flex;
@@ -15,40 +16,48 @@
         justify-content: center;
         line-height: 1.5;
       }
+
       & img {
         height: 5rem;
         width: 5rem;
       }
+
       & p {
         font-size: 2rem;
       }
     }
+
     & .cart-overview {
       display: flex;
       justify-content: space-around;
+
       & .cart-left {
-        & .cart-table {
+        & table {
           display: flex;
           flex-direction: column;
           border-collapse: collapse;
           text-indent: 0;
           gap: 1rem;
           margin-top: 1rem;
+
           & tr {
             display: flex;
             gap: 2rem;
             font-size: 1.2rem;
+
             & th {
               font-weight: bold;
               text-align: left;
               width: 10rem;
               text-align: center;
             }
+
             & td {
               width: 100%;
               padding: 0.5rem;
               font-size: 1rem;
               text-align: center;
+
               & input {
                 width: 11rem;
                 font-size: 0.8rem;
@@ -56,32 +65,38 @@
               }
             }
           }
+
           & .cart-item {
             display: flex;
             gap: 1rem;
             width: 100%;
+
             & tr {
               display: flex;
               gap: 1.5rem;
               width: 20rem;
               font-size: 1.2rem;
+
               & td {
                 border: 1px solid #ccc;
                 font-size: 1rem;
                 text-align: center;
                 width: 10rem;
                 background-color: yellowgreen;
+
               }
             }
           }
         }
       }
+
       & .cart-total {
         margin-top: 1rem;
         margin-bottom: 1rem;
         height: 18rem;
         width: 20rem;
         background-color: #e0f6d1;
+
         & .total-header {
           & h2 {
             text-align: center;
@@ -89,25 +104,30 @@
             margin-bottom: 2rem;
           }
         }
+
         & .total-content {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 3rem;
+
           & h4 {
             font-size: 1.8rem;
             line-height: 2;
           }
+
           & p {
             font-size: 1.4rem;
             line-height: 2;
           }
         }
+
         & .checkout-btn {
           display: flex;
           align-items: center;
           justify-content: center;
           margin-top: 2rem;
+
           & button {
             background: transparent;
             font-size: 1.2rem;
@@ -128,41 +148,44 @@
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .cart-main {
     width: 100%;
+
     & .cart-container {
       & .cart-overview {
         display: flex;
         flex-direction: column;
+
         & .cart-left {
-          & .cart-table {
-            display: flex;
-            flex-direction: column;
-            & thead {
-              & tr {
-                margin-left: 0.1rem;
-                & th {
-                  font-size: 0.5rem;
-                  text-align: center;
+          & table {
+
+            width: 100%;
+            border-collapse: collapse !important;
+
+            & tr {
+              font-size: 0.5rem  !important;
+              & td,
+              th {
+                font-size: 0.5rem !important;
+                
+
+                & input {
+                  font-size: 0.5rem !important;
+                  width: 3.5rem;
+                  padding: 0;
+                  margin: 0;
+                  border: none;
+                  display: flex;
+                  flex-direction: column;
                 }
-              }
-            }
-            & tbody {
-              & tr {
-                width: 5%;
-                & td {
-                  font-size: 0.5rem;
-                  width: 2rem;
-                  & input {
-                    font-size: 0.5rem;
-                    width: 3.5rem;
-                    padding: 0;
-                    margin: 0;
-                    border: none;
-                  }
+
+                & button {
+                  font-size: 0.2rem;
                 }
+
               }
             }
           }
         }
+
         & .cart-total {
           width: 90%;
           display: flex;
@@ -170,6 +193,7 @@
           align-items: center;
           justify-content: center;
           margin-left: 1rem;
+
           & h4 {
             font-size: 1rem !important;
           }
@@ -177,4 +201,5 @@
       }
     }
   }
+
 }

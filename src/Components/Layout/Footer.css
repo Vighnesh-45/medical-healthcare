@@ -56,21 +56,19 @@
         & button {
           background: transparent;
           border: none;
-          border-bottom: 0.001rem black solid;
+          padding: 1rem;
           cursor: pointer;
           font-size: 1rem;
           font-weight: 300;
         }
         & input {
-          border: none;
-          border-bottom: 0.001rem black solid;
+          /* padding: 1rem; */
         }
       }
     }
   }
   hr {
     width: 90%;
-    display: inline-block;
     margin: 0 2rem;
   }
   .right-reserved {
@@ -82,7 +80,6 @@
 
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .footer-main {
-    width: 95%;
     & .footer-container {
       display: flex;
       flex-direction: column;
@@ -105,11 +102,20 @@
           & button {
             margin-top: 2rem;
           }
+          & input{
+            padding: 0.5rem;
+          }
         }
       }
+     
       & .right-reserved {
         text-align: center;
+        
       }
+    }
+    & hr{
+      margin: 0 !important;
+      width: 100% !important;
     }
   }
 }

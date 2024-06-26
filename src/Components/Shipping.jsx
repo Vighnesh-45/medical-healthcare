@@ -2,15 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./Shipping.css";
 import Footer from './Layout/Footer';
-
+import "./Profile.css";
 const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
     const [counts, setCounts] = useState({});
     const [orderDetails, setOrderDetails] = useState([]);
     const [savedAddress, setSavedAddress] = useState('');
-    const [addressLine, setAddressLine] = useState('');
-    const [streetName, setStreetName] = useState('');
-    const [postcode, setPostcode] = useState('');
-    const [shippingMode, setShippingMode] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        mobile: '',
+        altmobile: '',
+        address: '',
+        altadd: '',
+        landmark: '',
+        pin: '',
+        city: '',
+        state: '',
+        tag: '',
+        shippingmode: '',
+    });
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         if (!selectedIds || selectedIds.length === 0) {
@@ -48,41 +58,45 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
         }));
     };
 
-    const handleSubmit = async () => {
-        const formData = {
-            savedAddress,
-            addressLine,
-            streetName,
-            postcode,
-            shippingMode,
-            cart,
-            counts,
-        };
-
-        try {
-            const response = await fetch('https://api-k7vh.onrender.com/medical/response/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Form submitted successfully:', data);
-                window.alert('Form submitted successfully');
-                // Navigate to payment page or show success message
-            } else {
-                const errorMessage = await response.text();
-                console.error('Failed to submit form:', errorMessage);
-                window.alert(`Failed to submit form: ${errorMessage}`);
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        if (name === 'mobile' || name === 'altmobile' || name === 'pin') {
+            if (/^\d*$/.test(value)) {
+                setFormData({
+                    ...formData,
+                    [name]: value
+                });
             }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            window.alert(`Error submitting form: ${error.message}`);
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            });
         }
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newErrors = {};
+
+        if (!formData.name) newErrors.name = "Name is required.";
+        if (!formData.mobile) newErrors.mobile = "Mobile number is required.";
+        if (!formData.altmobile) newErrors.altmobile = "Alternate mobile number is required.";
+        if (!formData.address) newErrors.address = "Address Line 1 is required.";
+        if (!formData.altadd) newErrors.altadd = "Alternate Address is required.";
+        if (!formData.pin) newErrors.pin = "Pincode is required.";
+        if (!formData.city) newErrors.city = "City is required.";
+        if (!formData.state) newErrors.state = "State is required.";
+        if (!formData.tag) newErrors.tag = "tag is required.";
+        if (!formData.shippingmode) newErrors.shippingmode = "shippingmode is required.";
+        setErrors(newErrors);
+
+        if (Object.keys(newErrors).length === 0) {
+            // Perform the form submission or other logic here
+            console.log('Form submitted successfully:', formData);
+        }
+    };
+
 
     return (
         <section className="shipping-main">
@@ -112,28 +126,101 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                                     <option value="add2">456, Electric Avenue</option>
                                 </select>
                             </div>
-                            <div className="shipping-address">
-                                <label>First line of Address</label>
-                                <input type="text" placeholder="Enter your address" value={addressLine} onChange={(e) => setAddressLine(e.target.value)} />
-                                <label>Street Name</label>
-                                <input type="text" placeholder="123 Electric Avenue" value={streetName} onChange={(e) => setStreetName(e.target.value)} />
-                            </div>
-                            <div className="shipping-info">
-                                <div className="shipping-post">
-                                    <label>Postcode</label>
-                                    <input type="text" placeholder="ABC-123" value={postcode} onChange={(e) => setPostcode(e.target.value)} />
+                            <form onSubmit={handleSubmit} className='shipping-address'>
+                                <div className="user-address">
+                                    
+                                        <label htmlFor="address">Address Line 1</label>
+                                        <input
+                                            type="text"
+                                            id="address"
+                                            name="address"
+                                            value={formData.address}
+                                            onChange={handleInputChange}
+                                        />
+                                        {errors.address && <p style={{ color: 'red' }}>{errors.address}</p>}
+                                    {/* </div> */}
+                                    
+                                        <label htmlFor="altadd">Alternate Address</label>
+                                        <input
+                                            type="text"
+                                            id="altadd"
+                                            name="altadd"
+                                            value={formData.altadd}
+                                            onChange={handleInputChange}
+                                        />
+                                        {errors.altadd && <p style={{ color: 'red' }}>{errors.altadd}</p>}
+                                    
+                                </div>
+                                <div className="user-landmark">
+                                    <label htmlFor="landmark">Landmark (Optional)</label>
+                                    <input
+                                        type="text"
+                                        id="landmark"
+                                        name="landmark"
+                                        value={formData.landmark}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
+                                <div className="pin-city">
+                                    <div className="pin">
+                                        <label htmlFor="pin">Pincode</label>
+                                        <input
+                                            type="text"
+                                            id="pin"
+                                            name="pin"
+                                            value={formData.pin}
+                                            onChange={handleInputChange}
+                                            pattern="\d*"
+                                            maxLength="6"
+                                        />
+                                        {errors.pin && <p style={{ color: 'red' }}>{errors.pin}</p>}
+                                    </div>
+                                    <div className="city">
+                                        <label htmlFor="city">City</label>
+                                        <input
+                                            type="text"
+                                            id="city"
+                                            name="city"
+                                            value={formData.city}
+                                            onChange={handleInputChange}
+                                        />
+                                        {errors.city && <p style={{ color: 'red' }}>{errors.city}</p>}
+                                    </div>
+                                </div>
+                                <div className="state-tag">
+                                    
+                                        <label htmlFor="state">State</label>
+                                        <input
+                                            type="text"
+                                            id="state"
+                                            name="state"
+                                            value={formData.state}
+                                            onChange={handleInputChange}
+                                        />
+                                        {errors.state && <p style={{ color: 'red' }}>{errors.state}</p>}
+                                    
                                 </div>
                                 <div className="shipping-mode">
                                     <label>Select Shipping</label>
-                                    <select name="Mode of Shipping" value={shippingMode} onChange={(e) => setShippingMode(e.target.value)}>
+                                    <select name="ShippingMode" value={formData.ShippingMode} onChange={handleInputChange}>
+                                        <option value="">Select</option>
                                         <option value="cod">Cash on Delivery</option>
                                         <option value="online">Online Payment</option>
                                     </select>
+                                    {errors.ShippingMode && <p className="error-message">{errors.ShippingMode}</p>}
                                 </div>
-                            </div>
+
+                                <div className="default-address">
+                                    <input type="checkbox" id="default-address" name="default-address" />
+                                    <p>Use this as my default shipping address</p>
+                                </div>
+
+                            </form>
+
+
                             <div className="payment-btn">
                                 <Link to="/Shop"><button>Cancel Order</button></Link>
-                                <button onClick={handleSubmit}>Payment</button>
+                                <button className='payment' onClick={handleSubmit}>Payment</button>
                             </div>
                         </div>
                     </div>
@@ -170,7 +257,7 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                 </div>
             </div>
             <Footer />
-        </section>
+        </section >
     );
 };
 

@@ -6,11 +6,13 @@
       gap: 2rem;
       margin-top: 0.5rem;
       margin-bottom: 2rem;
+
       & .shipping-details {
-        height: 38rem;
+        width: 40%;
         padding: 3rem;
         background-color: #d4f7c5;
         border-radius: 0.4rem;
+
         & .progress-steps {
           display: flex;
           gap: 2rem;
@@ -22,7 +24,6 @@
           & .step {
             display: flex;
             align-items: center;
-            position: relative;
 
             & .circle {
               width: 24px;
@@ -59,23 +60,26 @@
             }
           }
         }
+
         & .card-left {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
           align-items: center;
           gap: 2rem;
+
           & h2 {
             font-size: 1.5rem;
           }
+
           & .saved-address {
             display: flex;
             gap: 2rem;
             align-items: center;
             color: #4a5568;
             font-weight: 500;
+
             & select {
-              width: 10rem;
               height: 2.5rem;
               padding: 0.5rem;
               background-color: #c2eda8;
@@ -87,163 +91,223 @@
               }
             }
           }
+
           & .shipping-address {
             display: flex;
             flex-direction: column;
             gap: 1rem;
             color: #4a5568;
             font-weight: 500;
+
+            & .user-address {
+              display: flex;
+              flex-direction: column;
+            }
+
+            & .user-landmark {
+              display: flex;
+              flex-direction: column;
+            }
+
+            & .pin-city {
+              display: flex;
+              gap: 1rem;
+
+              & .pin {
+                display: flex;
+                flex-direction: column;
+              }
+
+              & .city {
+                display: flex;
+                flex-direction: column;
+              }
+            }
+
+            & .state-tag {
+              display: flex;
+              flex-direction: column;
+            }
+
+            & label {
+              height: 2rem;
+              padding: 0.5rem;
+            }
+
             & input {
-              width: 25rem;
               height: 2rem;
               background-color: #c2eda8;
               border: none;
               padding: 0.5rem;
             }
           }
-          & .shipping-info {
+
+          & .shipping-mode {
             display: flex;
-            gap: 2rem;
-            & .shipping-post {
-              display: flex;
-              flex-direction: column;
-              gap: 1rem;
-              color: #4a5568;
-              font-weight: 500;
-              & input {
-                width: 12rem;
-                height: 2.5rem;
-                background-color: #c2eda8;
+            flex-direction: column;
+            gap: 1rem;
+            color: #4a5568;
+            font-weight: 500;
+
+            & select {
+              width: 10rem;
+              height: 3.5rem;
+              padding: 0.5rem;
+              background-color: #c2eda8;
+              border: none;
+              border-radius: 0.3rem;
+
+              & select:focus {
                 border: none;
-                border-radius: 0.3rem;
-                padding: 0.5rem;
+                outline: none;
               }
-            }
-            & .shipping-mode {
-              display: flex;
-              flex-direction: column;
-              gap: 1rem;
-              color: #4a5568;
-              font-weight: 500;
-              & select {
-                width: 10rem;
-                height: 3.5rem;
-                padding: 0.5rem;
-                background-color: #c2eda8;
-                border: none;
-                border-radius: 0.3rem;
-                & select:focus {
-                  border: none;
-                  outline: none;
-                }
-                & option {
-                  background-color: white;
-                }
+
+              & option {
+                background-color: white;
               }
             }
           }
-          & .payment-btn {
-            display: flex;
-            gap: 2rem;
-            & a {
-              border-radius: 0.4rem;
-              & button {
-                background: transparent;
-                border: none;
-                padding: 0.8rem;
-                font-size: 1rem;
-                width: 10rem;
-                cursor: pointer;
-                color: #4a5568;
-                font-weight: 500;
-              }
+
+        }
+
+        & .default-address {
+          display: flex;
+          gap: 1rem;
+
+          & p {
+            padding: 0.5rem 0;
+          }
+        }
+
+        & .payment-btn {
+          display: flex;
+          gap: 2rem;
+
+          & a {
+            border-radius: 0.4rem;
+
+            & button {
+              background: transparent;
+              border: none;
+              padding: 0.8rem;
+              font-size: 1rem;
+              width: 10rem;
+              cursor: pointer;
+              color: #4a5568;
+              font-weight: 500;
             }
+          }
+
+          & button {
+            background-color: #5BB82F;
+            border: none;
+            padding: 0.8rem;
+            font-size: 1rem;
+            width: 10rem;
+            cursor: pointer;
+            color: #000000;
+            font-weight: 500;
           }
         }
       }
-      & .shipping-summary {
-        height: fit-content;
-        width: fit-content;
-        background-color: #d4f7c5;
+    }
+
+    & .shipping-summary {
+      height: fit-content;
+      width: fit-content;
+      background-color: #d4f7c5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 0.4rem;
+      padding: 3rem;
+      gap: 1rem;
+
+      & h3 {
+        text-align: center;
+        font-size: 1.5rem;
+      }
+
+      & .summary-card {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        border-radius: 0.4rem;
-        padding: 3rem;
-        gap: 1rem;
-        & h3 {
-          text-align: center;
-          font-size: 1.5rem;
+        gap: 2rem;
+        margin-top: 2rem;
+        border-bottom: 1px solid black;
+
+        & .card-one {
+          height: fit-content;
+          width: auto;
+          display: flex;
+          background-color: #c2eda8;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+
+          & img {
+            height: 12rem;
+            width: 60%;
+          }
         }
-        & .summary-card {
+      }
+
+      & .summary-content {
+        display: flex;
+        justify-content: space-between;
+
+        & .summmary-content-left {
+          line-height: 2.5;
+          margin-top: 1rem;
+        }
+
+        & .summmary-content-right {
           display: flex;
           flex-direction: column;
-          gap: 2rem;
-          margin-top: 2rem;
-          border-bottom: 1px solid black;
-          & .card-one {
-            height: fit-content;
-            width: auto;
+          align-items: center;
+          gap: 1rem;
+          line-height: 1.5;
+          margin-top: 1.3rem;
+
+          .counter {
             display: flex;
-            background-color: #c2eda8;
-            justify-content: center;
             align-items: center;
-            gap: 1rem;
-            & img {
-              height: 12rem;
-              width: 60%;
-            }
-          }
-        }
-        & .summary-content {
-          display: flex;
-          justify-content: space-between;
-          & .summmary-content-left {
-            line-height: 2.5;
-            margin-top: 1rem;
-          }
-          & .summmary-content-right {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            line-height: 1.5;
-            margin-top: 1.3rem;
-            .counter {
-              display: flex;
-              align-items: center;
+            border-radius: 5px;
+
+            .button {
+              background-color: #c7e3ae;
+              border: none;
+              color: #555;
+              font-size: 20px;
+              width: 2rem;
+              height: 1.5rem;
               border-radius: 5px;
-              .button {
-                background-color: #c7e3ae;
-                border: none;
-                color: #555;
-                font-size: 20px;
-                width: 2rem;
-                height: 1.5rem;
-                border-radius: 5px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-                & .decrement {
-                  margin-right: 10px;
-                }
-                &.increment {
-                  margin-left: 10px;
-                }
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              cursor: pointer;
+
+              & .decrement {
+                margin-right: 10px;
               }
-              & .count {
-                font-size: 20px;
-                color: #333;
+
+              &.increment {
+                margin-left: 10px;
               }
+            }
+
+            & .count {
+              font-size: 20px;
+              color: #333;
             }
           }
         }
       }
     }
   }
+
 }
+
 & select:focus {
   border: none;
   outline: none;
@@ -256,20 +320,32 @@
       & .shipping-cards {
         display: flex;
         flex-direction: column;
+
         & .shipping-details {
           width: 100%;
           font-size: 1rem;
+          padding: 0.5rem !important;
+
           & .progress-steps {
             width: 100%;
+            display: flex;
+            gap: 0rem !important;
           }
-          & .card-left{
-            & input{
+
+          & .card-left {
+            & input {
               width: 90% !important;
             }
           }
         }
+
+        & .payment-btn {
+          gap: 0rem !important;
+        }
+
         & .shipping-summary {
-          width: 100% !important;
+          width: 74% !important;
+          display: flex;
         }
       }
     }
