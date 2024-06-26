@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Contact.css";
 import Footer from './Layout/Footer';
 import logo from "./../assets/logo.png";
@@ -16,6 +16,10 @@ const Contact = () => {
     });
 
     const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -78,7 +82,6 @@ const Contact = () => {
             }
         }
     };
-
 
     return (
         <section className='contact-main'>

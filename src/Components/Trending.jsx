@@ -56,7 +56,7 @@ const Trending = () => {
                     {randomArray.map((res, id) => (
                         <div className="card-one" key={id}>
                             <img src={res.Image} alt="" />
-                            <h2>{res.Heading}</h2>
+                            <p>{res.Heading}</p>
                             <h4>{res.Subheading}</h4>
                             <h3>Rs. {res.SP}</h3>
                         </div>

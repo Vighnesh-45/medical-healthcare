@@ -51,18 +51,16 @@
       }
       & .contact-btn {
         display: flex;
-        gap: 2rem;
-        margin-top: 2rem;
+        /* gap: 1rem; */
+        margin-top: 1rem;
         & button {
           background: transparent;
-          border: none;
-          padding: 1rem;
+          padding: 0.5rem;
           cursor: pointer;
           font-size: 1rem;
           font-weight: 300;
-        }
-        & input {
-          /* padding: 1rem; */
+          border: none;
+          margin-bottom: 1rem;
         }
       }
     }
@@ -88,10 +86,10 @@
       & .medicine {
         text-align: center;
       }
-      & .links{
+      & .links {
         text-align: center;
       }
-      & .help{
+      & .help {
         text-align: center;
       }
       & .contact {
@@ -102,18 +100,17 @@
           & button {
             margin-top: 2rem;
           }
-          & input{
+          & input {
             padding: 0.5rem;
           }
         }
       }
-     
+
       & .right-reserved {
         text-align: center;
-        
       }
     }
-    & hr{
+    & hr {
       margin: 0 !important;
       width: 100% !important;
     }
@@ -122,15 +119,45 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .footer-main {
+    width: 100%;
     & .footer-container {
-      .contact-btn {
-        & button {
-          margin-right: 2rem;
+      padding: auto;
+      & .links {
+        & ul {
+          & li {
+            font-size: 1rem;
+          }
+        }
+      }
+      & .help {
+        width: 20%;
+        & ul {
+          & li {
+            font-size: 1rem;
+          }
+        }
+      }
+      & .contact {
+        & h4 {
+          margin-left: 1rem;
+        }
+        & .contact-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: 1rem;
+          & input {
+            padding: 0.5rem;
+          }
+          & button {
+            font-size: 0.8rem;
+            margin-top: 1rem;
+          }
         }
       }
     }
     & hr {
-      width: 100%;
+      width: auto;
     }
   }
 }

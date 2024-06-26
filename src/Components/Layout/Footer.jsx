@@ -32,7 +32,7 @@ const Footer = () => {
                 <div className='contact'>
                     <h4>Newsletter</h4>
                     <div className="contact-btn">
-                        <input type="email" placeholder="Enter your Email Address" value="" />
+                        <input type="email" placeholder="Enter your Email" value="" />
                         <button>SUBSCRIBE</button>
                     </div>
                 </div>
