@@ -42,6 +42,10 @@ const CategoryShop = ({ addToCart }) => {
         setCurrentPage(1);
     }, [itemsPerPage]);
 
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
+
     // Filter and sort data
     const filteredData = data.filter(item => item.Categories.includes(category));
     const sortedData = [...filteredData];

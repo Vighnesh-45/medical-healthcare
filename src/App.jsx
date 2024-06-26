@@ -9,6 +9,7 @@ import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 import Shipping from './Components/Shipping';
 import ProductComparison from './Components/ProductComparison';
+// import ShoppingCart from './Components/ShoppingCart';
 import Profile from './Components/Profile';
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
@@ -24,7 +25,8 @@ import Navbar from './Components/Layout/Navbar'
 import OneProduct from './Components/OneProduct';
 import DoctorLogin from './Components/Auth/DoctorLogin';
 import DoctorSignup from './Components/Auth/DoctorSignup';
-
+import Success from './Components/Payment/Success';
+import Failed from './Components/Payment/Failed';
 
 
 const App = () => {
@@ -55,7 +57,8 @@ const App = () => {
         <Route path='/product/:heading' element={<OneProduct />} />
         <Route path='/Checkout' element={<Checkout />} />
         <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingCost={shippingCost} />} />
-        <Route path='/ProductComparison' element={<ProductComparison />} />
+        <Route path='/ProductComparison' element={<ProductComparison addToCart={addToCart} />} />
+        {/* <Route path='/ShoppingCart' element={<ShoppingCart />} /> */}
         <Route path='/Profile' element={<Profile />} />
         <Route path='/Admin' element={<Admin />} />
         <Route path='/AddProduct' element={<AddProduct />} />
@@ -68,6 +71,8 @@ const App = () => {
         <Route path='/ViewProducts' element={<ViewProducts />} />
         <Route path='/ViewUsers' element={<ViewUsers />} />
         <Route path='/AdminLogin' element={<AdminLogin />} />
+        <Route path='/success' element={<Success />} />
+        <Route path='/failed' element={<Failed />} />
       </Routes>
     </>
   );

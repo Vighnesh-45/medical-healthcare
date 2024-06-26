@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { addItem } from "../redux/slices/compareSlice"
 import { MdKeyboardArrowRight, MdOutlineStarPurple500 } from "react-icons/md";
 import Footer from './Layout/Footer';
 import "./SingleProduct.css";
 
 const SingleProduct = ({ addToCart }) => {
+    const dispatch = useDispatch();
     const [count, setCount] = useState(1);
     const [single, setSingle] = useState(null);
     const [error, setError] = useState(null);
@@ -101,7 +104,7 @@ const SingleProduct = ({ addToCart }) => {
                                 )}
                             </div>
                             <div className="compare-btn">
-                                <Link to='/ProductComparison'><button>+ Compare</button></Link>
+                                <Link to='/ProductComparison'><button onClick={(e) => dispatch(addItem(single))}>+ Compare</button></Link>
                             </div>
                         </div>
                         <hr />

@@ -38,6 +38,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
 
     useEffect(() => {
         getData();
+        window.scrollTo({ top: 0, behavior: 'smooth' });  // Scroll to top on component mount
     }, [itemsPerPage]);
 
     const handleAddToCart = (product) => {

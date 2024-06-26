@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import "./ProductComparison.css";
 import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
@@ -8,13 +9,18 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import Advertise from './Layout/Advertise';
 import logo from "./../assets/logo.png";
 
-const ProductComparison = ({ currentStep }) => {
+const ProductComparison = ({ addToCart }) => {
+    const items = useSelector(state => state)
+    console.log(items)
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [singleData, setSingleData] = useState({});
 
-    const nextpage = () => {
-        navigate('/Cart');
+
+    const handleAddToCart = (product) => {
+        console.log(product)
+        addToCart(product);
+        navigate('/cart');
     };
 
     const shuffleArray = (array) => {
@@ -82,11 +88,11 @@ const ProductComparison = ({ currentStep }) => {
                     <div className="add-product">
                         <h2>Add A Product</h2>
                         <select name="products" id="products">
-                            <option value="def">Default</option>
-                            <option value="">Categories</option>
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
                         </select>
                     </div>
-                    {data.slice(0, 2).map((res, id) => (
+                    {items.compare.map((res, id) => (
                         <div className="card-one" key={id}>
                             <img src={res.Image} alt="" />
                             <p>{res.Heading}</p>
@@ -104,13 +110,19 @@ const ProductComparison = ({ currentStep }) => {
                             <tbody>
                                 <tr>
                                     <th>Price</th>
-                                    <td>{singleData.SP}</td>
-                                    <td>{singleData.SP}</td>
+                                    {items.compare.map((data,id)=>{
+                                        return <td key={id}>Rs. {data.SP}</td>
+                                    })}
+                                    {/* <td>{singleData.SP}</td>
+                                    <td>{singleData.SP}</td> */}
                                 </tr>
                                 <tr>
                                     <th>Formulation</th>
-                                    <td>{singleData.Formulation}</td>
-                                    <td>{singleData.Formulation}</td>
+                                    {items.compare.map((data,id)=>{
+                                        return <td key={id}>{data.Formulation}</td>
+                                    })}
+                                    {/* <td>{singleData.Formulation}</td>
+                                    <td>{singleData.Formulation}</td> */}
                                 </tr>
                                 <tr>
                                     <th>Manufacturer</th>
@@ -119,8 +131,11 @@ const ProductComparison = ({ currentStep }) => {
                                 </tr>
                                 <tr>
                                     <th>Brand vs. Generic</th>
-                                    <td>{singleData.Brand}</td>
-                                    <td>{singleData.Brand}</td>
+                                    {items.compare.map((data,id)=>{
+                                        return <td key={id}>{data.Brand?"Brand":"Generic"}</td>
+                                    })}
+                                    {/* <td>{singleData.Brand}</td>
+                                    <td>{singleData.Brand}</td> */}
                                 </tr>
                                 <tr>
                                     <th>Storage Instructions</th>
@@ -143,9 +158,10 @@ const ProductComparison = ({ currentStep }) => {
                                     <td>{singleData.Disease}</td>
                                 </tr>
                                 <tr>
-                                    <th></th>
-                                    <td><button onClick={nextpage}>Add to Cart</button></td>
-                                    <td><button onClick={nextpage}>Add to Cart</button></td>
+                                    <th>Add to Cart</th>
+                                    {items.compare.map((data,id)=>{
+                                        return <td><button  key={id} onClick={(e) => { e.stopPropagation(); handleAddToCart(data); }}>Add to Cart</button></td>
+                                    })}
                                 </tr>
                             </tbody>
                         </table>
