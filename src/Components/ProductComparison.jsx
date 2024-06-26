@@ -10,15 +10,16 @@ import Advertise from './Layout/Advertise';
 import logo from "./../assets/logo.png";
 
 const ProductComparison = ({ addToCart }) => {
-    const items = useSelector(state => state)
-    console.log(items)
+    const items = useSelector(state => state.compare); // Adjusted to access the compare slice
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [singleData, setSingleData] = useState({});
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleAddToCart = (product) => {
-        console.log(product)
         addToCart(product);
         navigate('/cart');
     };
@@ -92,7 +93,7 @@ const ProductComparison = ({ addToCart }) => {
                             <option value="saab">Saab</option>
                         </select>
                     </div>
-                    {items.compare.map((res, id) => (
+                    {items.map((res, id) => (
                         <div className="card-one" key={id}>
                             <img src={res.Image} alt="" />
                             <p>{res.Heading}</p>
@@ -110,58 +111,57 @@ const ProductComparison = ({ addToCart }) => {
                             <tbody>
                                 <tr>
                                     <th>Price</th>
-                                    {items.compare.map((data,id)=>{
-                                        return <td key={id}>Rs. {data.SP}</td>
-                                    })}
-                                    {/* <td>{singleData.SP}</td>
-                                    <td>{singleData.SP}</td> */}
+                                    {items.map((data, id) => (
+                                        <td key={id}>Rs. {data.SP}</td>
+                                    ))}
                                 </tr>
                                 <tr>
                                     <th>Formulation</th>
-                                    {items.compare.map((data,id)=>{
-                                        return <td key={id}>{data.Formulation}</td>
-                                    })}
-                                    {/* <td>{singleData.Formulation}</td>
-                                    <td>{singleData.Formulation}</td> */}
+                                    {items.map((data, id) => (
+                                        <td key={id}>{data.Formulation}</td>
+                                    ))}
                                 </tr>
                                 <tr>
                                     <th>Manufacturer</th>
-                                    <td>{singleData.Manufacturer}</td>
-                                    <td>{singleData.Manufacturer}</td>
+                                    {items.map((data, id) => (
+                                        <td key={id}>{data.Manufacturer}</td>
+                                    ))}
                                 </tr>
                                 <tr>
                                     <th>Brand vs. Generic</th>
-                                    {items.compare.map((data,id)=>{
-                                        return <td key={id}>{data.Brand?"Brand":"Generic"}</td>
-                                    })}
-                                    {/* <td>{singleData.Brand}</td>
-                                    <td>{singleData.Brand}</td> */}
+                                    {items.map((data, id) => (
+                                        <td key={id}>{data.Brand ? "Brand" : "Generic"}</td>
+                                    ))}
                                 </tr>
                                 <tr>
                                     <th>Storage Instructions</th>
-                                    <td>{singleData.Storage}</td>
-                                    <td>{singleData.Storage}</td>
+                                    {items.map((data, id) => (
+                                        <td key={id}>{data.Storage}</td>
+                                    ))}
                                 </tr>
                                 <tr>
                                     <th>Dosage</th>
-                                    <td>{singleData.Dosage}</td>
-                                    <td>{singleData.Dosage}</td>
+                                    {items.map((data, id) => (
+                                        <td key={id}>{data.Dosage}</td>
+                                    ))}
                                 </tr>
                                 <tr>
                                     <th>Disease Category</th>
-                                    <td>{singleData.Disease}</td>
-                                    <td>{singleData.Disease}</td>
+                                    {items.map((data, id) => (
+                                        <td key={id}>{data.Disease}</td>
+                                    ))}
                                 </tr>
-                                <tr>
+                                {/* <tr>
                                     <th>Effectiveness</th>
-                                    <td>{singleData.Disease}</td>
-                                    <td>{singleData.Disease}</td>
-                                </tr>
+                                    {items.map((data, id) => (
+                                        <td key={id}>{data.Effectiveness}</td>
+                                    ))}
+                                </tr> */}
                                 <tr>
                                     <th>Add to Cart</th>
-                                    {items.compare.map((data,id)=>{
-                                        return <td><button  key={id} onClick={(e) => { e.stopPropagation(); handleAddToCart(data); }}>Add to Cart</button></td>
-                                    })}
+                                    {items.map((data, id) => (
+                                        <td key={id}><button onClick={(e) => { e.stopPropagation(); handleAddToCart(data); }}>Add to Cart</button></td>
+                                    ))}
                                 </tr>
                             </tbody>
                         </table>

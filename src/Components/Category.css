@@ -53,6 +53,11 @@
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .category-main {
     & .category-container {
+      & .category-header{
+        & h1 {
+          text-align: center;
+        }
+      }
       & .category-cards {
         display: flex;
         flex-direction: column;

@@ -136,7 +136,6 @@
           & .contact-content-right {
             margin-left: 3rem;
             & form {
-              width: 100%;
               & input {
                 width: 85%;
               }
@@ -149,4 +148,23 @@
       }
     }
   }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+  .contact-main{
+    & .contact-container{
+      & .contact-content-main{
+        & .contact-content-right{
+          & form {
+            & input {
+              width: 70%;
+          }
+          & textarea {
+            width: 70%;
+          }
+        }
+      }
+    }
+  }
+}
 }
