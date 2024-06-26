@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from "./../assets/logo.png";
 import "./Cart.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -12,6 +12,10 @@ const Cart = ({ cart }) => {
     const [file, setFile] = useState(null);
     const [selectedIds, setSelectedIds] = useState([]);
     const [image, setImage] = useState(null);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleUpload = async () => {
         if (!file) {
@@ -61,31 +65,33 @@ const Cart = ({ cart }) => {
                 <div className="cart-overview">
                     <div className="cart-left">
                         <table>
-
-                            <tr>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Subtotal</th>
-                                <th>Add Prescription</th>
-                            </tr>
-
-                            {cart.map((item, index) => (
-                                <tr key={index} className="cart-item">
-                                    <td>{item.Heading}</td>
-                                    <td>Rs. {item.SP}</td>
-                                    <td>1</td>
-                                    <td>Rs. {item.SP}</td>
-                                    <td>
-                                        <input
-                                            type="file"
-                                            accept=".jpg,.jpeg,.png,.pdf"
-                                            onChange={e => setFile(e.target.files[0])}
-                                        />
-                                        <button onClick={handleUpload}>Upload</button>
-                                    </td>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                    <th>Add Prescription</th>
                                 </tr>
-                            ))}
+                            </thead>
+                            <tbody>
+                                {cart.map((item, index) => (
+                                    <tr key={index} className="cart-item">
+                                        <td>{item.Heading}</td>
+                                        <td>Rs. {item.SP}</td>
+                                        <td>1</td>
+                                        <td>Rs. {item.SP}</td>
+                                        <td>
+                                            <input
+                                                type="file"
+                                                accept=".jpg,.jpeg,.png,.pdf"
+                                                onChange={e => setFile(e.target.files[0])}
+                                            />
+                                            <button onClick={handleUpload}>Upload</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
                         </table>
                     </div>
                     <div className="cart-total">
