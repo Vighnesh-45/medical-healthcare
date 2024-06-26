@@ -136,6 +136,7 @@
           & .contact-content-right {
             margin-left: 3rem;
             & form {
+              margin-right: 1rem;
               & input {
                 width: 85%;
               }

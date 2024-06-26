@@ -53,14 +53,16 @@
           gap: 1rem;
           & p {
             font-size: 1.2rem;
+            display: none;
           }
           & input {
             width: 10%;
             height: 1.5rem;
+            display: none;
             border: none;
           }
           & select {
-            width: 30%;
+            width: 70%;
             height: 2rem;
             border: none;
             border-radius: 0.3rem;
@@ -177,6 +179,10 @@ input:focus{
         & .card-one {
           width: 70%;
           height: 28rem;
+          & h4 {
+            text-align: center;
+            font-size: 1rem;
+          }
         }
       }
       & .shop-footer {
@@ -203,6 +209,22 @@ input:focus{
       & .shop-header {
         & img {
           width: 100% !important;
+        }
+      }
+      & .shop-cards{
+        & .card-one{
+          height: 28rem;
+          display: flex;
+          flex-direction: column;
+          & h2{
+            text-align: center;
+          }
+          & h4{
+            text-align: center;
+          }
+          & img{
+            height: 20rem;
+          }
         }
       }
       & .shop-footer {
