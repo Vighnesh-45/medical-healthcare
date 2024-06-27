@@ -16,7 +16,7 @@ const OneProduct = ({ addToCart }) => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all`);
+                const response = await fetch(`https://api-5e1h.onrender.com/medical/medicine/all`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -33,7 +33,7 @@ const OneProduct = ({ addToCart }) => {
 
         const fetchRelatedProducts = async (productId) => {
             try {
-                const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all/${productId}`);
+                const response = await fetch(`https://api-5e1h.onrender.com/medical/medicine/all/${productId}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

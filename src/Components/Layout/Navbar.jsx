@@ -20,7 +20,7 @@ const Navbar = ({ cart, setCart }) => {
   // Fetch data from API
   const getData = async () => {
     try {
-      const response = await fetch("https://api-k7vh.onrender.com/medical/categories/all");
+      const response = await fetch("https://api-5e1h.onrender.com/medical/categories/all");
       const resdata = await response.json();
       setData(resdata);
     } catch (error) {
@@ -55,7 +55,7 @@ const Navbar = ({ cart, setCart }) => {
   };
 
   const handleLinkClick = () => {
-    setIsMobileMenuOpen(false); // Close menu on link click
+    setIsMobileMenuOpen(false);
   };
 
   // Function to handle removing item from cart
@@ -109,8 +109,8 @@ const Navbar = ({ cart, setCart }) => {
             <div className="shoppingcart-header">
               <h2>Shopping Cart</h2>
               <RiCloseLine style={{ fontSize: '2.5rem', curosr: 'pointer' }} onClick={() => {
-                onButtonClick(); // Close shopping cart popup
-                handleMenuToggle(); // Close mobile menu
+                onButtonClick();
+                handleMenuToggle();
               }} />
             </div>
             <div className="cart-glance">
@@ -153,7 +153,7 @@ const Navbar = ({ cart, setCart }) => {
               }} />
             </div>
             <div className="wishlist-glance">
-            {cart.map((res, id) => (
+              {cart.map((res, id) => (
                 <div key={id} className="wishlist-content">
                   <img src={res.Image} alt="product" />
                   <h4>{res.Heading}</h4>

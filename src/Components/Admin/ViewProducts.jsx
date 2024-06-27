@@ -21,7 +21,7 @@ const ViewProducts = () => {
 
     const getData = async () => {
         try {
-            const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all", {
+            const response = await fetch("https://api-5e1h.onrender.com                / medical / medicine / all", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const ViewProducts = () => {
 
                         {data.map((res, id) => (
                             <tr key={id}>
-                                <td>{id+1}</td>
+                                <td>{id + 1}</td>
                                 <td><img src={res.Image} alt="" width="100%" height="100%" /></td>
                                 <td>{res.Heading}</td>
                                 <td>{res.Subheading}</td>

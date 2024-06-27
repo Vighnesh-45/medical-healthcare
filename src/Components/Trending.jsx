@@ -11,7 +11,7 @@ const Trending = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all");
+                const response = await fetch("https://api-5e1h.onrender.com/medical/medicine/all");
                 if (!response.ok) {
                     throw new Error(`Error fetching data: ${response.statusText}`);
                 }

@@ -34,7 +34,7 @@ const ProductComparison = ({ addToCart }) => {
 
     const getData = async () => {
         try {
-            const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all", {
+            const response = await fetch("https://api-5e1h.onrender.com                / medical / medicine / all", {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json"
@@ -54,7 +54,7 @@ const ProductComparison = ({ addToCart }) => {
 
     const getSingleData = async () => {
         try {
-            const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/get/66680fc57adcf1ef853da05f", {
+            const response = await fetch("https://api-5e1h.onrender.com            / medical / medicine / get / 66680fc57adcf1ef853da05f", {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json"

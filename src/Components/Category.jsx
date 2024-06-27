@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import "./Category.css"
-import Navbar from "./../Components/Layout/Navbar"
-import Footer from "./../Components/Layout/Footer"
-import diabetes from "./../assets/diabetes.png"
 
 const Category = () => {
     const [data, setdata] = useState([])
     const getData = async () => {
-        const response = await fetch("https://api-k7vh.onrender.com/medical/categories/all", {
+        const response = await fetch("https://api-5e1h.onrender.com/medical/categories/all", {
             method: "GET",
             header: {
                 "Content-type": "application/json"

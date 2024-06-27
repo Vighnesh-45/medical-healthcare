@@ -37,7 +37,7 @@ const AddProduct = () => {
 
     const getData = async () => {
         try {
-            const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all", {
+            const response = await fetch("https://api-5e1h.onrender.com                / medical / medicine / all", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const AddProduct = () => {
         };
 
         try {
-            const res = await fetch("https://api-k7vh.onrender.com/medical/medicine/add", {
+            const res = await fetch("https://api-5e1h.onrender.com            / medical / medicine / add", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -123,7 +123,7 @@ const AddProduct = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`https://api-k7vh.onrender.com/medical/medicine/add`, {
+            const res = await fetch(`https://api-5e1h.onrender.com/medical/medicine/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -144,7 +144,7 @@ const AddProduct = () => {
     };
     const delData = async (id) => {
         try {
-            const res = await fetch(`https://api-k7vh.onrender.com/medical/medicine/del/${id}`, {
+            const res = await fetch(`https://api-5e1h.onrender.com/medical/medicine/del/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"

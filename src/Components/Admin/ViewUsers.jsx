@@ -21,7 +21,7 @@ const ViewUsers = () => {
 
     const getData = async () => {
         try {
-            const response = await fetch("https://api-k7vh.onrender.com/medical/user/all", {
+            const response = await fetch("https://api-5e1h.onrender.com                / medical / user / all", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ const SingleProduct = ({ addToCart }) => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/get/${id}`, {
+                const response = await fetch(`https://api-5e1h.onrender.com/medical/medicine/get/${id}`, {
                     method: "GET",
                     headers: {
                         "Content-type": "application/json"

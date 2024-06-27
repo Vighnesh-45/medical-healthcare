@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import Home from "./Components/Pages/Home";
 import About from "./Components/About";
 import Contact from './Components/Contact';
@@ -9,7 +10,6 @@ import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 import Shipping from './Components/Shipping';
 import ProductComparison from './Components/ProductComparison';
-// import ShoppingCart from './Components/ShoppingCart';
 import Profile from './Components/Profile';
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
@@ -19,7 +19,6 @@ import CategoryShop from './Components/CategoryShop';
 import AddCategories from './Components/Admin/AddCategories';
 import ViewProducts from './Components/Admin/ViewProducts';
 import ViewUsers from './Components/Admin/ViewUsers';
-import { useState } from 'react';
 import AdminLogin from './Components/Admin/AdminLogin';
 import Navbar from './Components/Layout/Navbar'
 import OneProduct from './Components/OneProduct';
@@ -58,7 +57,6 @@ const App = () => {
         <Route path='/Checkout' element={<Checkout />} />
         <Route path='/Shipping' element={<Shipping cart={cart} tax={tax} shippingCost={shippingCost} />} />
         <Route path='/ProductComparison' element={<ProductComparison addToCart={addToCart} />} />
-        {/* <Route path='/ShoppingCart' element={<ShoppingCart />} /> */}
         <Route path='/Profile' element={<Profile />} />
         <Route path='/Admin' element={<Admin />} />
         <Route path='/AddProduct' element={<AddProduct />} />

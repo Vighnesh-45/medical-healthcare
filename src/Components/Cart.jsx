@@ -30,10 +30,8 @@ const Cart = ({ cart }) => {
             const response = await axios.post("http://localhost:8000/upload", formData);
             console.log("File upload successful", response.data);
 
-            // Assuming response.data contains image information
             setImage(response.data.image);
 
-            // You can handle the response as needed
         } catch (error) {
             console.error("Error uploading file:", error);
         }
@@ -46,7 +44,6 @@ const Cart = ({ cart }) => {
     const handleCheckout = () => {
         const ids = cart.map(item => item.id); // Adjust 'id' to your actual unique identifier
 
-        // Set selectedIds state to pass it to the Shipping page
         setSelectedIds(ids);
 
         // Navigate to the Shipping page with selected IDs and file uploads

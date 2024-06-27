@@ -18,7 +18,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
 
     const getData = async () => {
         try {
-            const response = await fetch("https://api-k7vh.onrender.com/medical/medicine/all", {
+            const response = await fetch("https://api-5e1h.onrender.com/medical/medicine/all", {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json"
@@ -38,7 +38,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
 
     useEffect(() => {
         getData();
-        window.scrollTo({ top: 0, behavior: 'smooth' });  // Scroll to top on component mount
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [itemsPerPage]);
 
     const handleAddToCart = (product) => {
@@ -66,7 +66,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
         const value = parseInt(event.target.value, 10);
         if (!isNaN(value) && value > 0) {
             setItemsPerPage(value);
-            setCurrentPage(1);  // Reset to the first page when items per page changes
+            setCurrentPage(1);
             setTotalPages(Math.ceil(data.length / value));
         }
     };
@@ -109,8 +109,8 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                                 type="number"
                                 value={itemsPerPage}
                                 onChange={handleItemsPerPageChange}
-                                // min="0" // Set minimum value to 1
-                                // onInput={(e) => e.target.value = Math.max(0, parseInt(e.target.value || 0))} // Ensure the value is a positive integer
+                            // min="0" // Set minimum value to 1
+                            // onInput={(e) => e.target.value = Math.max(0, parseInt(e.target.value || 0))} // Ensure the value is a positive integer
                             />
                             <p>Sort by</p>
                             <select name="medicine" id="med" value={sortOption} onChange={handleSortChange}>

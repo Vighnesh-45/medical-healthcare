@@ -29,7 +29,7 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
 
         const fetchOrderDetails = async () => {
             try {
-                const response = await fetch(`https://api-k7vh.onrender.com/medical/medicine/all?id=${selectedIds.join(',')}`);
+                const response = await fetch(`https://api-5e1h.onrender.com/medical/medicine/all?id=${selectedIds.join(',')}`);
                 if (response.ok) {
                     const data = await response.json();
                     setOrderDetails(data);
@@ -128,28 +128,28 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                             </div>
                             <form onSubmit={handleSubmit} className='shipping-address'>
                                 <div className="user-address">
-                                    
-                                        <label htmlFor="address">Address Line 1</label>
-                                        <input
-                                            type="text"
-                                            id="address"
-                                            name="address"
-                                            value={formData.address}
-                                            onChange={handleInputChange}
-                                        />
-                                        {errors.address && <p style={{ color: 'red' }}>{errors.address}</p>}
+
+                                    <label htmlFor="address">Address Line 1</label>
+                                    <input
+                                        type="text"
+                                        id="address"
+                                        name="address"
+                                        value={formData.address}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.address && <p style={{ color: 'red' }}>{errors.address}</p>}
                                     {/* </div> */}
-                                    
-                                        <label htmlFor="altadd">Alternate Address</label>
-                                        <input
-                                            type="text"
-                                            id="altadd"
-                                            name="altadd"
-                                            value={formData.altadd}
-                                            onChange={handleInputChange}
-                                        />
-                                        {errors.altadd && <p style={{ color: 'red' }}>{errors.altadd}</p>}
-                                    
+
+                                    <label htmlFor="altadd">Alternate Address</label>
+                                    <input
+                                        type="text"
+                                        id="altadd"
+                                        name="altadd"
+                                        value={formData.altadd}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.altadd && <p style={{ color: 'red' }}>{errors.altadd}</p>}
+
                                 </div>
                                 <div className="user-landmark">
                                     <label htmlFor="landmark">Landmark (Optional)</label>
@@ -188,17 +188,17 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                                     </div>
                                 </div>
                                 <div className="state-tag">
-                                    
-                                        <label htmlFor="state">State</label>
-                                        <input
-                                            type="text"
-                                            id="state"
-                                            name="state"
-                                            value={formData.state}
-                                            onChange={handleInputChange}
-                                        />
-                                        {errors.state && <p style={{ color: 'red' }}>{errors.state}</p>}
-                                    
+
+                                    <label htmlFor="state">State</label>
+                                    <input
+                                        type="text"
+                                        id="state"
+                                        name="state"
+                                        value={formData.state}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.state && <p style={{ color: 'red' }}>{errors.state}</p>}
+
                                 </div>
                                 <div className="shipping-mode">
                                     <label>Select Shipping</label>

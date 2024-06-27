@@ -55,7 +55,7 @@ const Contact = () => {
 
         if (Object.keys(newErrors).length === 0) {
             try {
-                const response = await fetch('https://api-k7vh.onrender.com/medical/response/add', {
+                const response = await fetch('https://api-5e1h.onrender.com                    / medical / response / add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
