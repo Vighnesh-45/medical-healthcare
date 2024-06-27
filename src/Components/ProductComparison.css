@@ -147,9 +147,22 @@
         justify-content: center;
         & .card-one {
           width: 70%;
+          text-align: center; 
+          & img{
+            height: 50%;
+          }
+          & h2{
+            font-size: 1.2rem;
+          }
+          & h4{
+            font-size: 1rem;
+          }
+          & h3{
+            font-size: 1.2rem;
+          }
         }
       }
-      & .product-warranty {
+      /* & .product-warranty {
         & .warranty-info {
           & .warranty-info-description {
             & p {
@@ -161,10 +174,11 @@
             }
           }
         }
-      }
+      } */
       & .product-warranty {
         & .warranty-table {
-          width: 100%;
+          width: 70%;
+          margin-left: -4rem;
           & table {
             & th,
             td {
@@ -184,6 +198,30 @@
         justify-content: center;
         & .card-one {
           width: 70%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .productcomparison-main {
+    & .productcomparison-container{
+      & .productcomparison-cards {
+        & .card-one{
+          height: 15rem;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          & img{
+            height: 10rem;
+          }
+          & h2{
+            font-size: 1rem;
+          }
+          & h3{
+            font-size: 1rem;
+          }
         }
       }
     }

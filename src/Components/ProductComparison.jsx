@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import "./ProductComparison.css";
-import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
-import aspirin from "./../assets/aspirin.png";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Advertise from './Layout/Advertise';
 import logo from "./../assets/logo.png";
@@ -96,15 +94,15 @@ const ProductComparison = ({ addToCart }) => {
                     {items.map((res, id) => (
                         <div className="card-one" key={id}>
                             <img src={res.Image} alt="" />
-                            <p>{res.Heading}</p>
-                            <p>Rs. {res.SP}</p>
+                            <h2>{res.Heading}</h2>
+                            <h3>Rs. {res.SP}</h3>
                         </div>
                     ))}
                 </div>
                 <div className="product-warranty">
                     <div className="warranty-header">
                         <hr />
-                        <h2>Warranty</h2>
+                        <h2>Product Comparison</h2>
                     </div>
                     <div className="warranty-table">
                         <table>
