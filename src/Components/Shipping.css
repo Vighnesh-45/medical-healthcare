@@ -322,7 +322,8 @@
         flex-direction: column;
 
         & .shipping-details {
-          width: 100%;
+          width: 85%;
+          margin-left: 1rem;
           font-size: 1rem;
           padding: 0.5rem !important;
 
@@ -336,16 +337,32 @@
             & input {
               width: 90% !important;
             }
+            & .shipping-mode{
+              & select{
+                width: 95%;
+              }
+            }
           }
         }
 
         & .payment-btn {
-          gap: 0rem !important;
+          gap: 1rem !important;
+          & button{
+            width: 8rem !important;
+          }
         }
 
         & .shipping-summary {
-          width: 74% !important;
+          margin-left: 1rem;
+          width: 60% !important;
           display: flex;
+          & .summmary-content-left{
+            & h4{
+              font-size: 0.9rem !important;
+              gap: 1rem !important;
+              padding-right: 0.5rem;
+            }
+          }
         }
       }
     }
