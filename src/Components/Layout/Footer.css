@@ -79,7 +79,7 @@
   }
   .right-reserved {
     & p {
-      margin: 1rem 0 0 2rem;
+      margin: 1rem 0 1rem 2rem;
     }
   }
 }
@@ -90,35 +90,47 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3rem;
+      gap: 1rem;
+      margin: 0 !important;
       & .medicine {
+        gap: 0 !important;
         text-align: center;
       }
       & .links {
         text-align: center;
+        & a{
+          line-height: 2.5rem !important;
+        }
       }
       & .help {
         text-align: center;
+        & a{
+          line-height: 2.5rem !important;
+        }
       }
       & .contact {
         text-align: center;
         & .contact-btn {
           display: flex;
           flex-direction: column;
+          gap: 0;
           & button {
-            margin-top: 2rem;
+            /* border: 0.1rem black solid; */
+            padding: 0.5rem;
+            background-color: yellowgreen;
           }
           & input {
             padding: 0.5rem;
-            border: 1px solid black;
             border: none;
             border-bottom: 1px solid black;
+            text-align: center;
           }
         }
       }
 
       & .right-reserved {
         text-align: center;
+       
       }
     }
     & hr {
