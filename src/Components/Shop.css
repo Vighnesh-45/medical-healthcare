@@ -225,22 +225,29 @@ input:focus{
     & .shop-container {
       & .shop-header {
         & img {
-          width: 15% !important;
+          width: 20% !important;
         }
       }
       & .shop-cards{
         & .card-one{
-          height: 28rem;
+          height: 25rem;
           display: flex;
           flex-direction: column;
+          text-align: center;
+          & img{
+            height: 10rem;
+          }
           & h2{
-            text-align: center;
+            font-size: 1rem;
           }
           & h4{
-            text-align: center;
+            font-size: 0.8rem;
           }
-          & img{
-            height: 20rem;
+          & h3{
+            font-size: 1rem;
+          }
+          & button{
+            height: 1.8rem;
           }
         }
       }
