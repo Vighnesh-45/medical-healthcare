@@ -17,7 +17,7 @@ const CategoryShop = ({ addToCart }) => {
     const [itemsPerPage, setItemsPerPage] = useState(12);
 
     const getData = async () => {
-        const response = await fetch("https://api-5e1h.onrender.com            / medical / medicine / all", {
+        const response = await fetch("https://api-5e1h.onrender.com/medical/medicine/all", {
             method: "GET",
             headers: {
                 "Content-type": "application/json"

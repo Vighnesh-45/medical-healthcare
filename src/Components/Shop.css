@@ -220,8 +220,7 @@ input:focus{
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .shop-main {
+@media only screen and (min-width: 768px) and (max-width: 1023px) {  .shop-main {
     & .shop-container {
       & .shop-header {
         & img {
@@ -230,7 +229,6 @@ input:focus{
       }
       & .shop-cards{
         & .card-one{
-          height: 25rem;
           display: flex;
           flex-direction: column;
           text-align: center;
