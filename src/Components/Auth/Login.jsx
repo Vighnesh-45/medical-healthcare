@@ -12,7 +12,7 @@ const Login = () => {
         e.preventDefault();
         console.log("button press")
         try {
-            const response = await fetch('https://api-5e1h.onrender.com/ medical / user / login', {
+            const response = await fetch('https://api-5e1h.onrender.com/medical/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const Login = () => {
     };
 
     const handleGoogleLogin = () => {
-        window.location.href = 'http://localhost:8000/medical/auth/google';
+        window.location.href = 'https://api-5e1h.onrender.com/medical/auth/google';
     };
 
     return (
