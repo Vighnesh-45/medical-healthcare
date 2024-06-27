@@ -45,9 +45,12 @@
           width: 80%;
           margin: 1rem;
         }
-        & p {
+        & h2 {
           font-size: 1.2rem;
           line-height: 1.5;
+          font-weight: 500;
+        }
+        & h3{
           font-weight: 500;
         }
       }
@@ -162,19 +165,6 @@
           }
         }
       }
-      /* & .product-warranty {
-        & .warranty-info {
-          & .warranty-info-description {
-            & p {
-              font-size: 1rem;
-            }
-            & button {
-              width: 4rem;
-              font-size: 0.8rem;
-            }
-          }
-        }
-      } */
       & .product-warranty {
         & .warranty-table {
           width: 70%;

@@ -62,7 +62,6 @@ const Cart = ({ cart }) => {
                 <div className="cart-overview">
                     <div className="cart-left">
                         <table>
-                            <thead>
                                 <tr>
                                     <th>Product</th>
                                     <th>Price</th>
@@ -70,7 +69,6 @@ const Cart = ({ cart }) => {
                                     <th>Subtotal</th>
                                     <th>Add Prescription</th>
                                 </tr>
-                            </thead>
                             <tbody>
                                 {cart.map((item, index) => (
                                     <tr key={index} className="cart-item">
