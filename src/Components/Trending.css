@@ -118,8 +118,21 @@
         align-items: center;
         justify-content: center;
         & .card-one {
-          width: 70%;
-          height: 25rem;
+          width: 65%;
+          height: 20rem;
+          text-align: center;
+          & img{
+            height: 50% !important;
+          }
+          & p{
+            font-size: 1.2rem;
+          }
+          & h4{
+            font-size: 1rem;
+          }
+          & h3{
+            font-size: 1.2rem;
+          }
         }
       }
       & .show-button {
