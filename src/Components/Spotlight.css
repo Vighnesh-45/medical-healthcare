@@ -83,8 +83,13 @@
           font-size: 1.2rem;
         }
         & .spotlight-right-header{
+          
           & button {
             font-size: 1rem;
+            border: none !important;
+          }
+          & img{
+            width: 3rem !important;
           }
         }
       }
