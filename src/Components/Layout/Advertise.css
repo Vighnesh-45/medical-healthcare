@@ -35,6 +35,17 @@
       flex-direction: column;
       height: auto;
       margin-left: 2rem;
+      & .advertise-content{
+        & .content1{
+          & h2{
+            font-size: 1rem !important;
+          }
+          & p{
+            font-size: 1rem !important;
+            margin-left: 2.5rem !important;
+          }
+        }
+      }
     }
   }
 }
