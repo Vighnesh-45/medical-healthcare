@@ -93,7 +93,6 @@ const CategoryShop = ({ addToCart }) => {
 
     return (
         <section className="shop-main">
-            {/* <Navbar /> */}
             <div className="shop-container">
                 <div className="shop-header">
                     <img src={logo} alt="" />
