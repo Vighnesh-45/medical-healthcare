@@ -195,8 +195,8 @@
 }
 /* ShoppingCart.css */
 .shoppingcart-main {
-  width: 30vw;
-  height: 100vh;
+  width: 45vw;
+  height: 50vh;
   position: fixed;
   top: 0;
   right: 0;
@@ -266,9 +266,9 @@
 }
 
 /* Responsive ShoppingCart */
-@media only screen and (max-width: 1023px) {
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
   .shoppingcart-container {
-    width: 40%;
+    width: 100% !important;
     background-color: white;
   }
 }
