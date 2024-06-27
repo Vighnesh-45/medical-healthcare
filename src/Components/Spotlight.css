@@ -101,6 +101,7 @@
         & .card-one {
           width: 70%;
           height: 25rem;
+          text-align: center;
           & p{
             font-size: 1.2rem;
           }
