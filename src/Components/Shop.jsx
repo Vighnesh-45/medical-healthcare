@@ -109,8 +109,6 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                                 type="number"
                                 value={itemsPerPage}
                                 onChange={handleItemsPerPageChange}
-                            // min="0" // Set minimum value to 1
-                            // onInput={(e) => e.target.value = Math.max(0, parseInt(e.target.value || 0))} // Ensure the value is a positive integer
                             />
                             <p>Sort by</p>
                             <select name="medicine" id="med" value={sortOption} onChange={handleSortChange}>

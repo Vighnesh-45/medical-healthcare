@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import "./Spotlight.css"
 import rightarrow from "./../assets/right-arrow.png"
-import aspirin from "./../assets/aspirin.png"
-import { IoShareSocialSharp } from "react-icons/io5";
-import { MdCompareArrows } from "react-icons/md";
-import { IoIosHeartEmpty } from "react-icons/io";
 
 
 
