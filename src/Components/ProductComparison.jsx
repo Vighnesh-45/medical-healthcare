@@ -87,8 +87,8 @@ const ProductComparison = ({ addToCart }) => {
                     <div className="add-product">
                         <h2>Add A Product</h2>
                         <select name="products" id="products">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
+                            <option value="def">Default</option>
+                            <option value="cat">Category</option>
                         </select>
                     </div>
                     {items.map((res, id) => (

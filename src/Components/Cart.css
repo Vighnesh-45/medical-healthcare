@@ -97,6 +97,7 @@
         background-color: #e0f6d1;
 
         & .total-header {
+          margin-top: 1rem;
           & h2 {
             text-align: center;
             font-size: 2rem;
@@ -176,7 +177,7 @@
                 }
 
                 & button {
-                  font-size: 0.2rem;
+                  font-size: 0.5rem;
                 }
 
               }
@@ -200,4 +201,50 @@
     }
   }
 
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .cart-main{
+    width: 100% !important;
+    & .cart-container{
+      & .cart-overview{
+        display: flex;
+        gap: 2rem;
+        & .cart-left{
+          width: 25rem;
+          & table{
+            & tr{
+              & th{
+                font-size: 0.8rem !important;
+              }
+              & td{
+                font-size: 0.8rem !important;
+                margin-left: -1rem;
+                & input{
+                  font-size: 0.8rem !important;
+                  width: 5.5rem;
+                }
+              }
+            }
+          }
+        }
+        & .cart-total{
+          width: 12rem;
+          & .total-header{
+            & h2{
+              font-size: 1.5rem !important;
+            }
+          }
+          & .total-content{
+            & h4{
+              font-size: 1.2rem !important;
+            }
+            & p{
+              font-size: 1.2rem !important;
+            }
+          }
+        }
+      }
+    }
+  }
 }
