@@ -208,7 +208,7 @@ input:focus{
     & .shop-container {
       & .shop-header {
         & img {
-          width: 100% !important;
+          width: 15% !important;
         }
       }
       & .shop-cards{

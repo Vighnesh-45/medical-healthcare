@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Shop.css";
 import logo from "./../assets/logo.png";
-import Navbar from './Layout/Navbar';
 import Footer from './Layout/Footer';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { VscSettings } from "react-icons/vsc";
