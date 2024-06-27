@@ -63,8 +63,8 @@ input:focus {
     & .topcontainer-container {
       & .header-box {
         float: none;
-        margin: 0;
-        width: fit-content;
+        margin: auto;
+        width: 60%;
       }
     }
   }
