@@ -30,7 +30,7 @@ const TopContainer = () => {
     setSearchTerm(value);
     const filtered = suggestions.filter(suggestion =>
       suggestion.toLowerCase().includes(value.toLowerCase())
-    );
+    ).slice(0, 5);  // Limit to 5 suggestions
     setFilteredSuggestions(filtered);
   };
 
