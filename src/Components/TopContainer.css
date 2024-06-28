@@ -36,8 +36,8 @@
             font-size: 1rem;
             border: 1px solid #5bb82f;
             & ul {
-              list-style: none;
               background: transparent;
+              list-style: none;
               & li {
                 font-size: 1rem;
                 padding: 0.5rem 0;

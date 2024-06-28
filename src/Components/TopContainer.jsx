@@ -59,7 +59,7 @@ const TopContainer = () => {
                 onBlur={() => setTimeout(() => setIsInputFocused(false), 100)}
               />
               {isInputFocused && filteredSuggestions.length > 0 && (
-                <ul>
+                <ul style={{ listStyleType: 'none', padding: 0, margin: 0}}>
                   {filteredSuggestions.map((suggestion, index) => (
                     <li key={index} onMouseDown={() => handleSuggestionClick(suggestion)}>
                       {suggestion}

@@ -59,7 +59,7 @@ const Spotlight = () => {
                     {randomArray.map((res, id) => (
                         <div className="card-one" key={id}>
                             <img src={res.Image} alt="" />
-                            <p>{res.Heading}</p>
+                            <h2>{res.Heading}</h2>
                             <h4>{res.Subheading}</h4>
                             <h3>Rs. {res.SP}</h3>
                         </div>
