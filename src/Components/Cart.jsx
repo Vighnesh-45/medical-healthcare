@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import Footer from './Layout/Footer';
 import Advertise from './Layout/Advertise';
 import axios from 'axios';
+import { MdDelete } from "react-icons/md";
+
 
 const Cart = ({ cart }) => {
     const navigate = useNavigate();
@@ -62,13 +64,14 @@ const Cart = ({ cart }) => {
                 <div className="cart-overview">
                     <div className="cart-left">
                         <table>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Subtotal</th>
-                                    <th>Add Prescription</th>
-                                </tr>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Add Prescription</th>
+                                <th>Delete</th>
+                            </tr>
                             <tbody>
                                 {cart.map((item, index) => (
                                     <tr key={index} className="cart-item">
@@ -83,6 +86,8 @@ const Cart = ({ cart }) => {
                                                 onChange={e => setFile(e.target.files[0])}
                                             />
                                             <button onClick={handleUpload}>Upload</button>
+                                        </td>
+                                        <td><MdDelete className='del-icon'/>
                                         </td>
                                     </tr>
                                 ))}
