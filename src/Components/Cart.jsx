@@ -8,12 +8,16 @@ import Advertise from './Layout/Advertise';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
 
-
 const Cart = ({ cart }) => {
     const navigate = useNavigate();
     const [file, setFile] = useState(null);
     const [selectedIds, setSelectedIds] = useState([]);
     const [image, setImage] = useState(null);
+    const [cartItems, setCartItems] = useState(cart); // State to manage cart items
+
+    useEffect(() => {
+        setCartItems(cart); // Update cartItems state when cart prop changes
+    }, [cart]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -40,16 +44,22 @@ const Cart = ({ cart }) => {
     };
 
     const calculateSubtotal = () => {
-        return cart.reduce((total, item) => total + item.SP, 0);
+        return cartItems.reduce((total, item) => total + item.SP, 0);
     };
 
     const handleCheckout = () => {
-        const ids = cart.map(item => item.id); // Adjust 'id' to your actual unique identifier
+        const ids = cartItems.map(item => item.id); // Adjust 'id' to your actual unique identifier
 
         setSelectedIds(ids);
 
         // Navigate to the Shipping page with selected IDs and file uploads
         navigate('/Shipping', { state: { selectedIds: ids } });
+    };
+
+    const handleDeleteItem = (index) => {
+        const updatedCart = [...cartItems];
+        updatedCart.splice(index, 1); // Remove the item at the specified index
+        setCartItems(updatedCart); // Update cartItems state with the modified cart
     };
 
     return (
@@ -64,16 +74,18 @@ const Cart = ({ cart }) => {
                 <div className="cart-overview">
                     <div className="cart-left">
                         <table>
-                            <tr>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Subtotal</th>
-                                <th>Add Prescription</th>
-                                <th>Delete</th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                    <th>Add Prescription</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                {cart.map((item, index) => (
+                                {cartItems.map((item, index) => (
                                     <tr key={index} className="cart-item">
                                         <td>{item.Heading}</td>
                                         <td>Rs. {item.SP}</td>
@@ -87,7 +99,8 @@ const Cart = ({ cart }) => {
                                             />
                                             <button onClick={handleUpload}>Upload</button>
                                         </td>
-                                        <td><MdDelete className='del-icon'/>
+                                        <td>
+                                            <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
                                         </td>
                                     </tr>
                                 ))}

@@ -105,34 +105,39 @@
         }
       }
     }
-    & h2 {
-      text-align: center;
+    & .product-header {
+      margin-top: 3rem;
+      & h2 {
+        font-size: 2rem;
+        text-align: center;
+      }
     }
-    & .productcomparison-related {
+    & .singleproduct-cards {
       display: flex;
       justify-content: center;
       gap: 2rem;
       margin-top: 2rem;
-      margin-bottom: 1rem;
       & .card-one {
-        cursor: pointer;
-        height: 100%;
-        width: 20%;
+        height: 20rem;
+        width: 15%;
         display: flex;
-        background-color: #c2eda8;
+        background-color: rgb(84, 243, 84);
         flex-direction: column;
-        justify-content: space-between;
-        border-radius: 0.4rem;
+        justify-content: space-around;
+        flex-wrap: wrap;
         align-items: center;
+        text-align: center;
         & img {
-          height: 15rem;
-          width: 80%;
-          margin: 1rem;
+          height: 10rem;
         }
-        & p {
+        & h2 {
           font-size: 1.2rem;
-          line-height: 1.5;
-          font-weight: 500;
+        }
+        & h3 {
+          font-size: 1rem;
+        }
+        & h4 {
+          font-size: 1rem;
         }
       }
     }
@@ -186,7 +191,7 @@
           }
         }
       }
-      & .productcomparison-related {
+      & .singleproduct-cards {
         display: flex;
         flex-direction: column;
         align-items: center;

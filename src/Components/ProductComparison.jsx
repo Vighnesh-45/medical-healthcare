@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import "./ProductComparison.css";
@@ -8,14 +8,33 @@ import Advertise from './Layout/Advertise';
 import logo from "./../assets/logo.png";
 
 const ProductComparison = ({ addToCart }) => {
-    const items = useSelector(state => state.compare); // Adjusted to access the compare slice
+    const items = useSelector(state => state.compare);
     const navigate = useNavigate();
-    const [data, setData] = useState([]);
-    const [singleData, setSingleData] = useState({});
+    const [relatedProducts, setRelatedProducts] = useState([]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        fetchData();
     }, []);
+
+    const fetchData = async () => {
+        try {
+            // Fetch all products
+            const response = await fetch("https://api-5e1h.onrender.com/medical/medicine/all");
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            // Shuffle and filter related products
+            const shuffledData = shuffleArray(data);
+            const filteredProducts = shuffledData.filter(product => !items.some(item => item.id === product.id));
+            const related = filteredProducts.slice(0, 4);
+            setRelatedProducts(related);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
 
     const handleAddToCart = (product) => {
         addToCart(product);
@@ -23,65 +42,24 @@ const ProductComparison = ({ addToCart }) => {
     };
 
     const shuffleArray = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+        let currentIndex = array.length, temporaryValue, randomIndex;
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
         }
         return array;
     };
 
-    const getData = async () => {
-        try {
-            const response = await fetch("https://api-5e1h.onrender.com                / medical / medicine / all", {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json"
-                }
-            });
-            const resData = await response.json();
-            if (response.ok) {
-                const shuffledData = shuffleArray(resData);
-                setData(shuffledData);
-            } else {
-                console.log("Error fetching data");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    };
-
-    const getSingleData = async () => {
-        try {
-            const response = await fetch("https://api-5e1h.onrender.com            / medical / medicine / get / 66680fc57adcf1ef853da05f", {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json"
-                }
-            });
-            const resData = await response.json();
-            if (response.ok) {
-                setSingleData(resData);
-            } else {
-                console.log("Error fetching single data");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    };
-
-    useEffect(() => {
-        getData();
-        getSingleData();
-    }, []);
-
     return (
         <section className="productcomparison-main">
-            {/* <Navbar /> */}
             <div className="productcomparison-container">
                 <div className="productcomparison-header">
                     <img src={logo} alt="" />
                     <h2>Product Comparison</h2>
-                    <p>Home <MdKeyboardArrowRight className='right-arrow'/>Comparison</p>
+                    <p>Home <MdKeyboardArrowRight className='right-arrow' /> Comparison</p>
                 </div>
                 <div className="productcomparison-cards">
                     <div className="add-product">
@@ -149,12 +127,6 @@ const ProductComparison = ({ addToCart }) => {
                                         <td key={id}>{data.Disease}</td>
                                     ))}
                                 </tr>
-                                {/* <tr>
-                                    <th>Effectiveness</th>
-                                    {items.map((data, id) => (
-                                        <td key={id}>{data.Effectiveness}</td>
-                                    ))}
-                                </tr> */}
                                 <tr>
                                     <th>Add to Cart</th>
                                     {items.map((data, id) => (
@@ -165,21 +137,28 @@ const ProductComparison = ({ addToCart }) => {
                         </table>
                     </div>
                 </div>
-                <h2>Related Products</h2>
-                <div className="productcomparison-related">
-                    {data.slice(0, 4).map((res, id) => (
-                        <div className="card-one" key={id}>
-                            <img src={res.Image} alt="" />
-                            <p>{res.Heading}</p>
-                            <p>Rs. {res.SP}</p>
-                        </div>
-                    ))}
+                <div className="product-header">
+                    <h2>Related Products</h2>
+                </div>
+                <div className="singleproduct-cards">
+                    {relatedProducts.length > 0 ? (
+                        relatedProducts.map((res, id) => (
+                            <div className="card-one" key={id}>
+                                <img src={res.Image} alt={res.Heading} />
+                                <h2>{res.Heading}</h2>
+                                <h4>{res.Subheading}</h4>
+                                <h3>Rs. {res.SP}</h3>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No related products available</p>
+                    )}
                 </div>
             </div>
             <Advertise />
             <Footer />
         </section>
     );
-}
+};
 
 export default ProductComparison;

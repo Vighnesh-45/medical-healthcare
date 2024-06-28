@@ -11,6 +11,7 @@ const SingleProduct = ({ addToCart }) => {
     const [count, setCount] = useState(1);
     const [single, setSingle] = useState(null);
     const [error, setError] = useState(null);
+    const [relatedProducts, setRelatedProducts] = useState([]);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -32,6 +33,21 @@ const SingleProduct = ({ addToCart }) => {
                 }
                 const resData = await response.json();
                 setSingle(resData);
+
+                // Fetch related products from all products endpoint and shuffle them
+                const relatedResponse = await fetch(`https://api-5e1h.onrender.com/medical/medicine/all`);
+                if (!relatedResponse.ok) {
+                    throw new Error(`HTTP error! status: ${relatedResponse.status}`);
+                }
+                const relatedData = await relatedResponse.json();
+                // Shuffle the array
+                const shuffledProducts = shuffleArray(relatedData);
+                // Exclude the current product from related products list
+                const filteredProducts = shuffledProducts.filter(product => product.id !== id);
+                // Take first 4 products as related products
+                const slicedProducts = filteredProducts.slice(0, 4);
+                setRelatedProducts(slicedProducts);
+
             } catch (error) {
                 console.error("Error fetching product:", error);
                 setError(error.message);
@@ -50,8 +66,36 @@ const SingleProduct = ({ addToCart }) => {
         navigate('/cart');
     };
 
+    const shuffleArray = (array) => {
+        let currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (currentIndex !== 0) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    };
+
     if (error) {
-        return <div>Error: {error}</div>;
+        return (
+            <div className="singleproduct-main">
+                <div className="singleproduct-container">
+                    <div className="singleproduct-header">
+                        <p>Error fetching product:</p>
+                        <p>{error}</p>
+                    </div>
+                </div>
+                <Footer />
+            </div>
+        );
     }
 
     return (
@@ -117,7 +161,7 @@ const SingleProduct = ({ addToCart }) => {
                 <div className="product-header">
                     <h2>Related Products</h2>
                 </div>
-                {/* <div className="singleproduct-cards">
+                <div className="singleproduct-cards">
                     {relatedProducts.length > 0 ? (
                         relatedProducts.map((res) => (
                             <div className="card-one" key={res.id}>
@@ -130,7 +174,7 @@ const SingleProduct = ({ addToCart }) => {
                     ) : (
                         <p>No related products available</p>
                     )}
-                </div> */}
+                </div>
                 <div className="show-button">
                     <Link to="/Shop"><button>Show More</button></Link>
                 </div>
