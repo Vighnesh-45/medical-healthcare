@@ -28,7 +28,7 @@ const Category = () => {
         <section className="category-main">
             <div className="category-container">
                 <div className="category-header">
-                    <h1>Browse The Categories</h1>
+                    <h6>Browse The Categories</h6>
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
                 </div>
                 <div className="category-cards">
