@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Shipping.css";
 import Footer from './Layout/Footer';
 import "./Profile.css";
+
 const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
     const [counts, setCounts] = useState({});
     const [orderDetails, setOrderDetails] = useState([]);
@@ -21,6 +22,11 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
         shippingmode: '',
     });
     const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        // Scroll to top when the component mounts
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         if (!selectedIds || selectedIds.length === 0) {
@@ -97,7 +103,6 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
         }
     };
 
-
     return (
         <section className="shipping-main">
             <div className="shipping-container">
@@ -128,7 +133,6 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                             </div>
                             <form onSubmit={handleSubmit} className='shipping-address'>
                                 <div className="user-address">
-
                                     <label htmlFor="address">Address Line 1</label>
                                     <input
                                         type="text"
@@ -139,7 +143,6 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                                     />
                                     {errors.address && <p style={{ color: 'red' }}>{errors.address}</p>}
                                     {/* </div> */}
-
                                     <label htmlFor="altadd">Alternate Address</label>
                                     <input
                                         type="text"
@@ -149,7 +152,6 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                                         onChange={handleInputChange}
                                     />
                                     {errors.altadd && <p style={{ color: 'red' }}>{errors.altadd}</p>}
-
                                 </div>
                                 <div className="user-landmark">
                                     <label htmlFor="landmark">Landmark (Optional)</label>
@@ -188,7 +190,6 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                                     </div>
                                 </div>
                                 <div className="state-tag">
-
                                     <label htmlFor="state">State</label>
                                     <input
                                         type="text"
@@ -198,7 +199,6 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                                         onChange={handleInputChange}
                                     />
                                     {errors.state && <p style={{ color: 'red' }}>{errors.state}</p>}
-
                                 </div>
                                 <div className="shipping-mode">
                                     <label>Select Shipping</label>
@@ -209,15 +209,11 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                                     </select>
                                     {errors.ShippingMode && <p className="error-message">{errors.ShippingMode}</p>}
                                 </div>
-
                                 <div className="default-address">
                                     <input type="checkbox" id="default-address" name="default-address" />
                                     <p>Use this as my default shipping address</p>
                                 </div>
-
                             </form>
-
-
                             <div className="payment-btn">
                                 <Link to="/Shop"><button>Cancel Order</button></Link>
                                 <button className='payment' onClick={handleSubmit}>Payment</button>
@@ -257,7 +253,7 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                 </div>
             </div>
             <Footer />
-        </section >
+        </section>
     );
 };
 

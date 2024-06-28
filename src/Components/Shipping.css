@@ -12,6 +12,7 @@
         padding: 3rem;
         background-color: #d4f7c5;
         border-radius: 0.4rem;
+        height: fit-content;
 
         & .progress-steps {
           display: flex;
@@ -237,7 +238,7 @@
         border-bottom: 1px solid black;
 
         & .card-one {
-          height: fit-content;
+          height: 12rem;
           width: auto;
           display: flex;
           background-color: #c2eda8;
@@ -246,7 +247,7 @@
           gap: 1rem;
 
           & img {
-            height: 12rem;
+            height: 10rem;
             width: 60%;
           }
         }
