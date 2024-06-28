@@ -81,7 +81,7 @@ const ProductComparison = ({ addToCart }) => {
                 <div className="productcomparison-header">
                     <img src={logo} alt="" />
                     <h2>Product Comparison</h2>
-                    <p>Home <MdKeyboardArrowRight />Comparison</p>
+                    <p>Home <MdKeyboardArrowRight className='right-arrow'/>Comparison</p>
                 </div>
                 <div className="productcomparison-cards">
                     <div className="add-product">

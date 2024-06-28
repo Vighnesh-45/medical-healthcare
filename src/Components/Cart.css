@@ -23,7 +23,12 @@
       }
 
       & p {
+        display: flex;
+        text-align: center;
         font-size: 2rem;
+        & .right-arrow{
+          margin-top: 0.5rem;
+        }
       }
     }
 

@@ -89,7 +89,7 @@ const Contact = () => {
                 <div className="contact-header">
                     <img src={logo} alt="Logo" />
                     <h2>Contact
-                        <p>Home<MdKeyboardArrowRight />Contact</p>
+                        <p>Home<MdKeyboardArrowRight className='right-arrow'/>Contact</p>
                     </h2>
                 </div>
                 <div className="contact-content">

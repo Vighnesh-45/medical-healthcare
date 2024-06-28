@@ -58,7 +58,7 @@ const Cart = ({ cart }) => {
                 <div className="cart-header">
                     <img src={logo} alt="" />
                     <h2>Cart
-                        <p>Home<MdKeyboardArrowRight />Cart</p>
+                        <p>Home<MdKeyboardArrowRight className='right-arrow'/>Cart</p>
                     </h2>
                 </div>
                 <div className="cart-overview">
