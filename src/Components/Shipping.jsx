@@ -233,7 +233,7 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                                 </div>
                                 <div className="summary-content">
                                     <div className="summmary-content-left">
-                                        <h4>{item.Heading}</h4>
+                                        <h3>{item.Heading}</h3>
                                         <p>Subtotal</p>
                                         <p>Tax</p>
                                         <p>Shipping</p>
@@ -248,7 +248,7 @@ const Shipping = ({ cart, currentStep, selectedIds, tax, shippingCost }) => {
                                         <h4>{item.SP * (counts[index] || 1)}</h4>
                                         <p>{tax}</p>
                                         <p>{shippingCost}</p>
-                                        <h4>{item.SP * (counts[index] || 1) + shippingCost}</h4>
+                                        <h4>{item.SP * tax * (counts[index] || 1) + shippingCost}</h4>
                                     </div>
                                 </div>
                             </div>

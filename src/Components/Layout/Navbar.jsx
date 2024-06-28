@@ -108,7 +108,7 @@ const Navbar = ({ cart, setCart }) => {
           <div className="shoppingcart-container">
             <div className="shoppingcart-header">
               <h2>Shopping Cart</h2>
-              <RiCloseLine style={{ fontSize: '2.5rem', curosr: 'pointer' }} onClick={() => {
+              <RiCloseLine style={{ fontSize: '2.5rem', cursor: 'pointer' }} onClick={() => {
                 onButtonClick();
                 handleMenuToggle();
               }} />

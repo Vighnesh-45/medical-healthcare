@@ -31,7 +31,7 @@ import Failed from './Components/Payment/Failed';
 const App = () => {
   const [cart, setCart] = useState([]);
   const [singleProduct, setSingleProduct] = useState([]);
-  const tax = "9%";
+  const tax = "0.9";
   const shippingCost = 30;
 
   const addToCart = (product) => {
