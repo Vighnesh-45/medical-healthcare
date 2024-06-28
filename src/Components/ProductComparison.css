@@ -35,6 +35,7 @@
       justify-content: space-evenly;
       gap: 2rem;
       margin-top: 2rem;
+      margin-bottom: 1rem;
       & .card-one {
         cursor: pointer;
         height: 100%;
@@ -51,12 +52,18 @@
           margin: 1rem;
         }
         & h2 {
-          font-size: 1.2rem;
-          line-height: 1.5;
-          font-weight: 500;
+          font-size: 1rem;
+          padding: 0.5rem;
+          text-align: center;
         }
-        & h3{
-          font-weight: 500;
+        & h3 {
+          font-size: 1.2rem;
+          padding: 0.5rem;
+        }
+        & h4 {
+          font-size: 1rem;
+          padding: 0.5rem;
+          text-align: center;
         }
       }
       & .add-product {
@@ -112,35 +119,6 @@
         text-align: center;
       }
     }
-    & .singleproduct-cards {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      & .card-one {
-        height: 20rem;
-        width: 15%;
-        display: flex;
-        background-color: rgb(84, 243, 84);
-        flex-direction: column;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        align-items: center;
-        text-align: center;
-        & img {
-          height: 10rem;
-        }
-        & h2 {
-          font-size: 1.2rem;
-        }
-        & h3 {
-          font-size: 1rem;
-        }
-        & h4 {
-          font-size: 1rem;
-        }
-      }
-    }
   }
 }
 
@@ -191,7 +169,7 @@
           }
         }
       }
-      & .singleproduct-cards {
+      & .productcomparison-cards {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -209,17 +187,20 @@
     & .productcomparison-container{
       & .productcomparison-cards {
         & .card-one{
-          height: 15rem;
           display: flex;
           flex-direction: column;
           text-align: center;
-          & img{
+          height: 20rem;
+          & img {
             height: 10rem;
           }
-          & h2{
+          & h2 {
             font-size: 1rem;
           }
-          & h3{
+          & h4 {
+            font-size: 0.8rem;
+          }
+          & h3 {
             font-size: 1rem;
           }
         }

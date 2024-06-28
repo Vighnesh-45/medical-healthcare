@@ -140,7 +140,7 @@ const ProductComparison = ({ addToCart }) => {
                 <div className="product-header">
                     <h2>Related Products</h2>
                 </div>
-                <div className="singleproduct-cards">
+                <div className="productcomparison-cards">
                     {relatedProducts.length > 0 ? (
                         relatedProducts.map((res, id) => (
                             <div className="card-one" key={id}>

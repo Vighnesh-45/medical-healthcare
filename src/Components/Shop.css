@@ -23,7 +23,7 @@
         display: flex;
         text-align: center;
         font-size: 2rem;
-        & .right-arrow{
+        & .right-arrow {
           margin-top: 0.5rem;
         }
       }
@@ -117,7 +117,7 @@
           font-size: 1rem;
           border-radius: 0.3rem;
           cursor: pointer;
-          background-color: #5BB82F;
+          background-color: #5bb82f;
           height: 3rem;
           width: 8rem;
           margin-top: 1rem;
@@ -153,12 +153,12 @@
     }
   }
 }
-select:focus{
+select:focus {
   border: none;
   outline: none;
 }
 
-input:focus{
+input:focus {
   border: none;
   outline: none;
 }
@@ -176,9 +176,9 @@ input:focus{
         }
         & .shop-nav-right {
           display: flex;
-          & select{
+          & select {
             width: 15rem !important;
-            & option{
+            & option {
               font-size: 0.5rem !important;
               width: 2rem !important;
             }
@@ -194,16 +194,16 @@ input:focus{
           width: 70%;
           text-align: center;
           /* height: 30rem; */
-          & img{
+          & img {
             height: 50%;
           }
-          & h2{
+          & h2 {
             font-size: 1.2rem;
           }
-          & h4{
+          & h4 {
             font-size: 1rem;
           }
-          & h3{
+          & h3 {
             font-size: 1.2rem;
           }
         }
@@ -226,31 +226,32 @@ input:focus{
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1023px) {  .shop-main {
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .shop-main {
     & .shop-container {
       & .shop-header {
         & img {
           width: 20% !important;
         }
       }
-      & .shop-cards{
-        & .card-one{
+      & .shop-cards {
+        & .card-one {
           display: flex;
           flex-direction: column;
           text-align: center;
-          & img{
+          & img {
             height: 10rem;
           }
-          & h2{
+          & h2 {
             font-size: 1rem;
           }
-          & h4{
+          & h4 {
             font-size: 0.8rem;
           }
-          & h3{
+          & h3 {
             font-size: 1rem;
           }
-          & button{
+          & button {
             height: 1.8rem;
           }
         }
