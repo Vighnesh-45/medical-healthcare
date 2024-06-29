@@ -38,7 +38,7 @@
       margin-bottom: 1rem;
       & .card-one {
         cursor: pointer;
-        height: 25rem;
+        height: 20rem;
         width: 20%;
         display: flex;
         background-color: #c2eda8;
@@ -47,7 +47,7 @@
         border-radius: 0.4rem;
         align-items: center;
         & img {
-          height: 15rem;
+          height: 13rem;
           width: 80%;
           margin: 1rem;
         }
@@ -81,12 +81,14 @@
       }
     }
     & .product-warranty {
-      margin-top: 1rem;
+      margin-top: 2rem;
       display: flex;
       flex-direction: column;
+      gap: 1rem;
       & .warranty-header {
         & h2 {
           text-align: center;
+          margin-top: 1rem;
         }
       }
       & .warranty-table {
