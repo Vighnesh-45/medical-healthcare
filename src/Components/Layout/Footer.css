@@ -115,9 +115,9 @@
           flex-direction: column;
           gap: 0;
           & button {
-            /* border: 0.1rem black solid; */
             padding: 0.5rem;
-            background-color: yellowgreen;
+            background-color: #5BB82F;
+            color: white;
           }
           & input {
             padding: 0.5rem;

@@ -141,8 +141,8 @@
       gap: 2rem;
       margin-top: 2rem;
       & .card-one {
-        height: 20rem;
-        width: 15%;
+        height: 22rem;
+        width: 20%;
         display: flex;
         background-color: #c2eda8;
         flex-direction: column;

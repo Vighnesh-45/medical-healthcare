@@ -206,7 +206,7 @@
             font-size: 1rem;
             width: 10rem;
             cursor: pointer;
-            color: #000000;
+            color: white;
             font-weight: 500;
           }
         }
@@ -328,7 +328,7 @@
         flex-direction: column;
 
         & .shipping-details {
-          width: 85%;
+          width: 86%;
           margin-left: 1rem;
           font-size: 1rem;
           padding: 0.5rem !important;
@@ -337,15 +337,26 @@
             width: 100%;
             display: flex;
             gap: 0rem !important;
+            & span {
+              font-size: 0.8rem;
+            }
           }
 
           & .card-left {
             & input {
-              width: 90% !important;
+              width: 88% !important;
             }
             & .shipping-mode{
               & select{
-                width: 95%;
+                width: 55%;
+              }
+            }
+            & .default-address{
+              display: flex;
+              align-items: center;
+              & input {
+                width: 5rem !important;
+                height: 1rem;
               }
             }
           }
@@ -353,6 +364,7 @@
 
         & .payment-btn {
           gap: 1rem !important;
+          margin-bottom: 1rem;
           & button{
             width: 8rem !important;
           }
@@ -369,6 +381,22 @@
               padding-right: 0.5rem;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+  .shipping-main{
+    & .shipping-container{
+      & .shipping-cards{
+        & .shipping-details{
+          width: 40%;
+        }
+        & .shipping-summary{
+          width: 25%;
+          margin-left: -2rem;
         }
       }
     }
