@@ -10,7 +10,11 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("button press")
+        console.log("Button pressed");
+
+        // Log the payload
+        console.log("Payload:", { Email: email, Pass: pass });
+
         try {
             const response = await fetch('https://api-5e1h.onrender.com/medical/user/login', {
                 method: 'POST',
@@ -21,6 +25,8 @@ const Login = () => {
             });
 
             if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Error response from server:', errorData);
                 throw new Error('Login failed');
             }
 
@@ -28,7 +34,7 @@ const Login = () => {
             console.log(data);
             localStorage.setItem('userToken', data.token);
             localStorage.setItem('userRole', data.role);
-            navigate('/')
+            navigate('/');
 
         } catch (error) {
             console.error('Login error:', error);
@@ -45,14 +51,24 @@ const Login = () => {
                 <div className="login-form">
                     <h2>Sign In</h2>
                     <div className="email">
-                        <label htmlFor="">Email</label>
-                        <input type="text" placeholder="Enter your Email" value={email}
-                            onChange={(e) => setEmail(e.target.value)} />
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            placeholder="Enter your Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
                     </div>
                     <div className="password">
-                        <label htmlFor="">Password</label>
-                        <input type="password" placeholder="Enter your Password" name="Pass" value={pass}
-                            onChange={(e) => setPass(e.target.value)} />
+                        <label htmlFor="pass">Password</label>
+                        <input
+                            type="password"
+                            placeholder="Enter your Password"
+                            value={pass}
+                            onChange={(e) => setPass(e.target.value)}
+                            required
+                        />
                     </div>
                     <button onClick={handleSubmit}>Sign In</button>
                 </div>
@@ -65,7 +81,7 @@ const Login = () => {
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
 export default Login;

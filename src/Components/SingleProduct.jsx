@@ -6,6 +6,12 @@ import { MdKeyboardArrowRight, MdOutlineStarPurple500 } from "react-icons/md";
 import Footer from './Layout/Footer';
 import "./SingleProduct.css";
 
+// Check login status function
+const checkLoginStatus = () => {
+    const token = localStorage.getItem('userToken');
+    return !!token;
+};
+
 const SingleProduct = ({ addToCart }) => {
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
@@ -14,6 +20,18 @@ const SingleProduct = ({ addToCart }) => {
     const [relatedProducts, setRelatedProducts] = useState([]);
     const { id } = useParams();
     const navigate = useNavigate();
+
+    // Login state
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(checkLoginStatus());
+
+    // Redirect to login if not logged in
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/login');
+        }
+    }, [isLoggedIn, navigate]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -34,17 +52,13 @@ const SingleProduct = ({ addToCart }) => {
                 const resData = await response.json();
                 setSingle(resData);
 
-                // Fetch related products from all products endpoint and shuffle them
                 const relatedResponse = await fetch(`https://api-5e1h.onrender.com/medical/medicine/all`);
                 if (!relatedResponse.ok) {
                     throw new Error(`HTTP error! status: ${relatedResponse.status}`);
                 }
                 const relatedData = await relatedResponse.json();
-                // Shuffle the array
                 const shuffledProducts = shuffleArray(relatedData);
-                // Exclude the current product from related products list
                 const filteredProducts = shuffledProducts.filter(product => product.id !== id);
-                // Take first 4 products as related products
                 const slicedProducts = filteredProducts.slice(0, 4);
                 setRelatedProducts(slicedProducts);
 
@@ -68,21 +82,81 @@ const SingleProduct = ({ addToCart }) => {
 
     const shuffleArray = (array) => {
         let currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
         while (currentIndex !== 0) {
-            // Pick a remaining element...
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
-
-            // And swap it with the current element.
             temporaryValue = array[currentIndex];
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
-
         return array;
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log("Button pressed");
+
+        console.log("Payload:", { Email: email, Pass: pass });
+
+        try {
+            const response = await fetch('https://api-5e1h.onrender.com/medical/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ Email: email, Pass: pass }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Error response from server:', errorData);
+                throw new Error('Login failed');
+            }
+
+            const data = await response.json();
+            console.log(data);
+            localStorage.setItem('userToken', data.token);
+            localStorage.setItem('userRole', data.role);
+            setIsLoggedIn(true);
+            navigate('/');
+
+        } catch (error) {
+            console.error('Login error:', error);
+        }
+    };
+
+    if (!isLoggedIn) {
+        return (
+            <section className="login-section">
+                <div className="login-container">
+                    <h2>Login</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label htmlFor="email">Email:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                value={pass}
+                                onChange={(e) => setPass(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            </section>
+        );
+    }
 
     if (error) {
         return (
