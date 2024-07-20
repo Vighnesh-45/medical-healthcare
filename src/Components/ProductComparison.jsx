@@ -15,19 +15,32 @@ const ProductComparison = ({ addToCart }) => {
     useEffect(() => {
         window.scrollTo(0, 0);
         fetchData();
+
+        // Set interval to fetch data every minute (60000 milliseconds)
+        const interval = setInterval(() => {
+            fetchData();
+        }, 60000);
+
+        // Clear interval on component unmount
+        return () => clearInterval(interval);
     }, []);
 
     const fetchData = async () => {
         try {
-            // Fetch all products
-            const response = await fetch("https://api-5e1h.onrender.com/medical/medicine/all");
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
+            const [productResponse, relatedResponse] = await Promise.all([
+                fetch("https://api-5e1h.onrender.com/medical/medicine/all"),
+                fetch("https://api-5e1h.onrender.com/medical/medicine/related")
+            ]);
 
-            // Shuffle and filter related products
-            const shuffledData = shuffleArray(data);
+            if (!productResponse.ok || !relatedResponse.ok) {
+                throw new Error(`HTTP error! status: ${productResponse.status}, ${relatedResponse.status}`);
+            }
+
+            const productData = await productResponse.json();
+            const relatedData = await relatedResponse.json();
+
+            // Process and filter product comparison data
+            const shuffledData = shuffleArray(productData);
             const filteredProducts = shuffledData.filter(product => !items.some(item => item.id === product.id));
             const related = filteredProducts.slice(0, 4);
             setRelatedProducts(related);
@@ -140,7 +153,7 @@ const ProductComparison = ({ addToCart }) => {
                 <div className="product-header">
                     <h2>Related Products</h2>
                 </div>
-                <div className="productcomparison-cards">
+                <div className="relatedproduct-cards">
                     {relatedProducts.length > 0 ? (
                         relatedProducts.map((res, id) => (
                             <div className="card-one" key={id}>
