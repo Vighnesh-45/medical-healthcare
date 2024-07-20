@@ -23,22 +23,44 @@ const Contact = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        let newFormData = { ...formData };
+
+        // Validate name field for alphabets only
+        if (name === 'Name') {
+            if (/^[a-zA-Z]*$/.test(value) || value === '') {
+                newFormData[name] = value;
+                setFormData(newFormData);
+                // Clear error when user starts typing again
+                if (errors[name]) {
+                    setErrors({ ...errors, [name]: '' });
+                }
+            }
+        } else {
+            newFormData[name] = value;
+            setFormData(newFormData);
+            // Clear error when user starts typing again
+            if (errors[name]) {
+                setErrors({ ...errors, [name]: '' });
+            }
+        }
     };
 
     const validateEmail = (email) => {
+        // Basic email validation regex
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
+        return re.test(email);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = {};
 
-        if (!formData.Name.trim()) newErrors.Name = "Name is required.";
+        if (!formData.Name.trim()) {
+            newErrors.Name = "Name is required.";
+        } else if (!/^[a-zA-Z]*$/.test(formData.Name)) {
+            newErrors.Name = "Name should only contain alphabets.";
+        }
+
         if (!formData.Email.trim()) {
             newErrors.Email = "Email is required.";
         } else if (!validateEmail(formData.Email)) {
@@ -49,13 +71,15 @@ const Contact = () => {
             newErrors.Subject = "Subject is required.";
         }
 
-        if (!formData.Message.trim()) newErrors.Message = "Message is required.";
+        if (!formData.Message.trim()) {
+            newErrors.Message = "Message is required.";
+        }
 
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
             try {
-                const response = await fetch('https://api-5e1h.onrender.com                    / medical / response / add', {
+                const response = await fetch('https://api-5e1h.onrender.com/medical/response/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -125,7 +149,7 @@ const Contact = () => {
                                     value={formData.Name}
                                     onChange={handleChange}
                                 />
-                                {errors.Name && <p style={{ color: 'red' }}>{errors.Name}</p>}
+                                {errors.Name && <p className="error">{errors.Name}</p>}
 
                                 <label htmlFor="Email">Email</label>
                                 <input
@@ -135,7 +159,7 @@ const Contact = () => {
                                     value={formData.Email}
                                     onChange={handleChange}
                                 />
-                                {errors.Email && <p style={{ color: 'red' }}>{errors.Email}</p>}
+                                {errors.Email && <p className="error">{errors.Email}</p>}
 
                                 <label htmlFor="Subject">Subject</label>
                                 <input
@@ -145,7 +169,7 @@ const Contact = () => {
                                     value={formData.Subject}
                                     onChange={handleChange}
                                 />
-                                {errors.Subject && <p style={{ color: 'red' }}>{errors.Subject}</p>}
+                                {errors.Subject && <p className="error">{errors.Subject}</p>}
 
                                 <label htmlFor="Message">Message</label>
                                 <textarea
@@ -155,7 +179,7 @@ const Contact = () => {
                                     value={formData.Message}
                                     onChange={handleChange}
                                 ></textarea>
-                                {errors.Message && <p style={{ color: 'red' }}>{errors.Message}</p>}
+                                {errors.Message && <p className="error">{errors.Message}</p>}
 
                                 <button type="submit">Submit</button>
                             </form>
