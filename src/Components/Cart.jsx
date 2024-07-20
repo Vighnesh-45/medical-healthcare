@@ -68,45 +68,21 @@ const Cart = ({ cart }) => {
                 <div className="cart-header">
                     <img src={logo} alt="" />
                     <h2>Cart
-                        <p>Home<MdKeyboardArrowRight className='right-arrow'/>Cart</p>
+                        <p>Home<MdKeyboardArrowRight className='right-arrow' />Cart</p>
                     </h2>
                 </div>
                 <div className="cart-overview">
-                    <div className="cart-left">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Subtotal</th>
-                                    <th>Add Prescription</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {cartItems.map((item, index) => (
-                                    <tr key={index} className="cart-item">
-                                        <td>{item.Heading}</td>
-                                        <td>Rs. {item.SP}</td>
-                                        <td>1</td>
-                                        <td>Rs. {item.SP}</td>
-                                        <td>
-                                            <input
-                                                type="file"
-                                                accept=".jpg,.jpeg,.png,.pdf"
-                                                onChange={e => setFile(e.target.files[0])}
-                                            />
-                                            <button onClick={handleUpload}>Upload</button>
-                                        </td>
-                                        <td>
-                                            <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                    <div key={index} className="cart-left">
+                        <img src={item.Image} alt={item.Heading} />
+                        <div key={index} className="cart-item">
+                            <h2>{item.Heading}</h2>
+                            <p>Rs. {item.SP}</p>
+                            <p>1</p>
+                            <p>Rs. {item.SP}</p>
+                            <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
+                        </div>
                     </div>
+
                     <div className="cart-total">
                         <div className="total-header">
                             <h2>Cart Totals</h2>
