@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiCloseLine, RiCloseCircleFill } from "react-icons/ri";
 import logo from "./../../assets/logo.png";
 import person from "./../../assets/person.png";
@@ -15,7 +15,8 @@ const Navbar = ({ cart, setCart }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileMenuWishOpen, setIsMobileMenuWishOpen] = useState(false);
   const [data, setData] = useState([]);
-  const [click, setClick] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State for login status
+  const navigate = useNavigate(); // Add navigate hook
 
   // Fetch data from API
   const getData = async () => {
@@ -32,6 +33,14 @@ const Navbar = ({ cart, setCart }) => {
     console.log(cart)
     getData();
   }, [cart, setCart]);
+
+  // Check if user is logged in when component mounts
+  useEffect(() => {
+    const token = localStorage.getItem('token'); // Replace 'token' with your actual token key
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   // Function to handle redirection to profile page
   const redirectToProfile = () => {
@@ -56,6 +65,16 @@ const Navbar = ({ cart, setCart }) => {
 
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleLogin = () => {
+    navigate(`/Login`);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove token from local storage
+    setIsLoggedIn(false); // Update login status
+    navigate(`/Login`); // Redirect to login page
   };
 
   // Function to handle removing item from cart
@@ -98,7 +117,13 @@ const Navbar = ({ cart, setCart }) => {
             <img src={person} alt="person" onClick={redirectToProfile} />
             <img src={heart} alt="heart" onClick={onButtonWishClick} />
             <img src={cartimg} alt="cart" onClick={onButtonClick} />
+            {isLoggedIn ? (
+              <button className="logout" onClick={handleLogout}>Logout</button>
+            ) : (
+              <button className="login" onClick={handleLogin}>Login</button>
+            )}
           </div>
+
         </div>
       </section>
 

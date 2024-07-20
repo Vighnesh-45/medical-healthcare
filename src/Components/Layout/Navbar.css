@@ -73,6 +73,13 @@
         height: 2rem;
         cursor: pointer;
       }
+      & button{
+        background-color: #5bb82f;
+        color: white;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        border: none;
+      }
     }
   }
 }
