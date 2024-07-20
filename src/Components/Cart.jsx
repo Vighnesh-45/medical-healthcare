@@ -72,16 +72,18 @@ const Cart = ({ cart }) => {
                     </h2>
                 </div>
                 <div className="cart-overview">
-                    <div key={index} className="cart-left">
-                        <img src={item.Image} alt={item.Heading} />
-                        <div key={index} className="cart-item">
-                            <h2>{item.Heading}</h2>
-                            <p>Rs. {item.SP}</p>
-                            <p>1</p>
-                            <p>Rs. {item.SP}</p>
-                            <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
+                    {cartItems.map((item, index) => (
+                        <div key={index} className="cart-left">
+                            <img src={item.Image} alt={item.Heading} />
+                            <div className="cart-item">
+                                <h2>{item.Heading}</h2>
+                                <p>Rs. {item.SP}</p>
+                                <p>1</p>
+                                <p>Rs. {item.SP}</p>
+                                <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
+                            </div>
                         </div>
-                    </div>
+                    ))}
 
                     <div className="cart-total">
                         <div className="total-header">
