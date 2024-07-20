@@ -121,6 +121,44 @@
         text-align: center;
       }
     }
+    & .relatedproduct-cards{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      .card-one {
+        cursor: pointer;
+        height: 25rem;
+        width: 20%;
+        display: flex;
+        background-color: #c2eda8;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 0.4rem;
+        align-items: center;
+        & img {
+          height: 15rem;
+          width: 80%;
+          margin: 1rem;
+        }
+        & h2 {
+          font-size: 1rem;
+          padding: 0.5rem;
+          text-align: center;
+        }
+        & h3 {
+          font-size: 1.2rem;
+          padding: 0.5rem;
+        }
+        & h4 {
+          font-size: 1rem;
+          padding: 0.5rem;
+          text-align: center;
+        }
+      }
+    }
   }
 }
 
