@@ -3,25 +3,27 @@ import { Link } from "react-router-dom"
 import "./Category.css"
 
 const Category = () => {
-    const [data, setdata] = useState([])
+    const [data, setData] = useState([])
+    
     const getData = async () => {
         const response = await fetch("https://api-5e1h.onrender.com/medical/categories/all", {
             method: "GET",
-            header: {
+            headers: {
                 "Content-type": "application/json"
             }
         })
-        const resdata = await response.json();
+        const resData = await response.json()
 
-        if (!resdata) {
+        if (!resData) {
             console.log("error")
         } else {
-            console.log(resdata)
-            setdata(resdata);
+            console.log(resData)
+            setData(resData)
         }
     }
+
     useEffect(() => {
-        getData();
+        getData()
     }, [])
 
     return (
@@ -33,21 +35,19 @@ const Category = () => {
                 </div>
                 <div className="category-cards">
                     {data.map((res, id) => {
-                        console.log(res)
                         return (
-                            <>
-                                <Link to='/CategoryShop' state={{ category: res.Heading }}>
-                                    <div className="card-one">
-                                        <img src={res.Image} alt="" />
-                                        <h2>{res.Heading}</h2>
-                                    </div>
-                                </Link>
-                            </>
+                            <Link to='/CategoryShop' state={{ category: res.Heading }} key={id}>
+                                <div className="card-one">
+                                    <img src={res.Image} alt={res.Heading} />
+                                    <h2>{res.Heading}</h2>
+                                    <button>{res.Heading}</button>
+                                </div>
+                            </Link>
                         )
                     })}
                 </div>
             </div>
-        </section >
+        </section>
     )
 }
 
