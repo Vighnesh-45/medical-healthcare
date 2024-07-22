@@ -15,6 +15,12 @@ const CategoryShop = ({ addToCart }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [sortOption, setSortOption] = useState('default');
     const [itemsPerPage, setItemsPerPage] = useState(12);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [ratingFilter, setRatingFilter] = useState('');
+    const [priceFilter, setPriceFilter] = useState({ min: '', max: '' });
+    const [genericBrandFilter, setGenericBrandFilter] = useState('');
+    const [formulationFilter, setFormulationFilter] = useState('');
+    const [companyNameFilter, setCompanyNameFilter] = useState('');
 
     const getData = async () => {
         const response = await fetch("https://api-5e1h.onrender.com/medical/medicine/all", {
@@ -47,12 +53,37 @@ const CategoryShop = ({ addToCart }) => {
 
     // Filter and sort data
     const filteredData = data.filter(item => item.Categories.includes(category));
-    const sortedData = [...filteredData];
+    let sortedData = [...filteredData];
 
     if (sortOption === 'low') {
         sortedData.sort((a, b) => a.SP - b.SP);
     } else if (sortOption === 'high') {
         sortedData.sort((a, b) => b.SP - a.SP);
+    }
+
+    if (ratingFilter) {
+        sortedData = sortedData.filter(item => item.Rating >= ratingFilter);
+    }
+
+    if (priceFilter.min || priceFilter.max) {
+        sortedData = sortedData.filter(item => {
+            const price = item.SP;
+            const min = priceFilter.min ? parseFloat(priceFilter.min) : 0;
+            const max = priceFilter.max ? parseFloat(priceFilter.max) : Infinity;
+            return price >= min && price <= max;
+        });
+    }
+
+    if (genericBrandFilter) {
+        sortedData = sortedData.filter(item => item.Type === genericBrandFilter);
+    }
+
+    if (formulationFilter) {
+        sortedData = sortedData.filter(item => item.Formulation.toLowerCase().includes(formulationFilter.toLowerCase()));
+    }
+
+    if (companyNameFilter) {
+        sortedData = sortedData.filter(item => item.CompanyName.toLowerCase().includes(companyNameFilter.toLowerCase()));
     }
 
     // Calculate the index range of the current page
@@ -91,6 +122,43 @@ const CategoryShop = ({ addToCart }) => {
         navigate('/cart');
     };
 
+    const handleFilterButtonClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleApplyFilters = () => {
+        setCurrentPage(1);
+        setIsModalOpen(false);
+    };
+
+    const handleRatingChange = (event) => {
+        setRatingFilter(event.target.value);
+    };
+
+    const handlePriceChange = (event) => {
+        const { name, value } = event.target;
+        setPriceFilter((prevPriceFilter) => ({
+            ...prevPriceFilter,
+            [name]: value
+        }));
+    };
+
+    const handleGenericBrandChange = (event) => {
+        setGenericBrandFilter(event.target.value);
+    };
+
+    const handleFormulationChange = (event) => {
+        setFormulationFilter(event.target.value);
+    };
+
+    const handleCompanyNameChange = (event) => {
+        setCompanyNameFilter(event.target.value);
+    };
+
     return (
         <section className="shop-main">
             <div className="shop-container">
@@ -101,7 +169,7 @@ const CategoryShop = ({ addToCart }) => {
                     </h2>
                 </div>
                 <div className="shop-nav">
-                    <div className="nav-icons">
+                    <div className="nav-icons" onClick={handleFilterButtonClick}>
                         <VscSettings />
                         <p>Filter</p>
                         <hr />
@@ -170,6 +238,75 @@ const CategoryShop = ({ addToCart }) => {
                         </button>
                     )}
                 </div>
+                {isModalOpen && (
+                    <div className="modal">
+                        <div className="modal-content">
+                            <span className="close" onClick={handleModalClose}>&times;</span>
+                            <h2>Filters</h2>
+                            <div className="filter-options">
+                                <div className="filter-option">
+                                    <label htmlFor="rating">Rating:</label>
+                                    <select id="rating" value={ratingFilter} onChange={handleRatingChange}>
+                                        <option value="">All</option>
+                                        <option value="1">1 Star & Up</option>
+                                        <option value="2">2 Stars & Up</option>
+                                        <option value="3">3 Stars & Up</option>
+                                        <option value="4">4 Stars & Up</option>
+                                        <option value="5">5 Stars</option>
+                                    </select>
+                                </div>
+                                <div className="filter-option">
+                                    <label htmlFor="price-min">Price Range:</label>
+                                    <input
+                                        type="number"
+                                        id="price-min"
+                                        name="min"
+                                        placeholder="Min"
+                                        value={priceFilter.min}
+                                        onChange={handlePriceChange}
+                                    /> <br />
+                                    <input
+                                        type="number"
+                                        id="price-max"
+                                        name="max"
+                                        placeholder="Max"
+                                        value={priceFilter.max}
+                                        onChange={handlePriceChange}
+                                    />
+                                </div>
+                                <div className="filter-option">
+                                    <label htmlFor="generic-brand">Generic vs Brand:</label>
+                                    <select id="generic-brand" value={genericBrandFilter} onChange={handleGenericBrandChange}>
+                                        <option value="">All</option>
+                                        <option value="Generic">Generic</option>
+                                        <option value="Brand">Brand</option>
+                                    </select>
+                                </div>
+                                <div className="filter-option">
+                                    <label htmlFor="formulation">Formulation:</label>
+                                    <input
+                                        type="text"
+                                        id="formulation"
+                                        placeholder="e.g., Tablet, Syrup"
+                                        value={formulationFilter}
+                                        onChange={handleFormulationChange}
+                                    />
+                                </div>
+                                <div className="filter-option">
+                                    <label htmlFor="company-name">Company Name:</label>
+                                    <input
+                                        type="text"
+                                        id="company-name"
+                                        placeholder="Company Name"
+                                        value={companyNameFilter}
+                                        onChange={handleCompanyNameChange}
+                                    />
+                                </div>
+                            </div>
+                            <button onClick={handleApplyFilters}>Apply Filters</button>
+                        </div>
+                    </div>
+                )}
                 <Advertise />
             </div>
             <Footer />

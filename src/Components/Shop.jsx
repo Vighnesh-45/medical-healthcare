@@ -268,6 +268,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                                     <input
                                         type="text"
                                         id="formulation"
+                                        placeholder="e.g., Tablet, Syrup"
                                         value={formulationFilter}
                                         onChange={handleFormulationChange}
                                     />
@@ -277,6 +278,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                                     <input
                                         type="text"
                                         id="companyName"
+                                        placeholder="Company Name"
                                         value={companyNameFilter}
                                         onChange={handleCompanyNameChange}
                                     />
