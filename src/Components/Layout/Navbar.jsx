@@ -33,11 +33,11 @@ const Navbar = ({ cart, setCart }) => {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('userToken');
     if (token) {
       setIsLoggedIn(true);
     }
-  }, []);
+  });
 
   const handleProfileRedirect = () => {
     navigate('/profile');
@@ -60,7 +60,7 @@ const Navbar = ({ cart, setCart }) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('userToken');
     setIsLoggedIn(false);
     navigate('/login');
   };
