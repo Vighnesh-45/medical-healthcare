@@ -5,6 +5,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1rem 5rem;
       & h2 {
         font-size: 2rem;
         color: grey;
@@ -40,8 +41,8 @@
       gap: 2rem;
       margin-top: 2rem;
       & .card-one {
-        height: 100%;
-        width: 20%;
+        height: 20rem;
+        width: 18%;
         display: flex;
         background-color: #c2eda8;
         flex-direction: column;
@@ -49,7 +50,7 @@
         border-radius: 0.4rem;
         align-items: center;
         & img {
-          height: 15rem;
+          height: 10rem;
           width: 80%;
           margin: 1rem;
         }

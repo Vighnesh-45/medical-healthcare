@@ -60,6 +60,7 @@ input:focus {
 @media only screen and (min-width: 120px) and (max-width: 767px) {
   .topcontainer-main {
     & .topcontainer-container {
+      padding-top: 2rem;
       & .header-box {
         float: none;
         margin: auto;
