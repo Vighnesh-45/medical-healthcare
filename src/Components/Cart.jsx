@@ -23,6 +23,13 @@ const Cart = ({ cart }) => {
         window.scrollTo(0, 0);
     }, []);
 
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn'); // Check login status from local storage
+        if (!isLoggedIn) {
+            navigate('/login'); // Redirect to login page if not logged in
+        }
+    }, [navigate]);
+
     const handleUpload = async () => {
         if (!file) {
             console.error("No file selected");

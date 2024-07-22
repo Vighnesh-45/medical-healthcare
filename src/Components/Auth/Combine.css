@@ -47,6 +47,15 @@
         cursor: pointer;
       }
     }
+    & button:disabled {
+      background-color: rgb(32, 161, 32);
+      cursor: not-allowed;
+  }
+  
+  .new-account, .google-auth {
+      margin-top: 15px;
+      text-align: center;
+  }
     & .new-account {
       display: flex;
       justify-content: center;

@@ -7,10 +7,15 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Button pressed");
+
+        setLoading(true);
+        setMessage('Logging in, please wait...');
 
         // Log the payload
         console.log("Payload:", { Email: email, Pass: pass });
@@ -27,6 +32,8 @@ const Login = () => {
             if (!response.ok) {
                 const errorData = await response.json();
                 console.error('Error response from server:', errorData);
+                setLoading(false);
+                setMessage('Login failed. Please try again.');
                 throw new Error('Login failed');
             }
 
@@ -34,10 +41,15 @@ const Login = () => {
             console.log(data);
             localStorage.setItem('userToken', data.token);
             localStorage.setItem('userRole', data.role);
-            navigate('/');
+            setMessage('Login successful! Redirecting...');
+            setTimeout(() => {
+                navigate('/');
+            }, 2000);
 
         } catch (error) {
             console.error('Login error:', error);
+            setLoading(false);
+            setMessage('An error occurred. Please try again.');
         }
     };
 
@@ -70,7 +82,14 @@ const Login = () => {
                             required
                         />
                     </div>
-                    <button onClick={handleSubmit}>Sign In</button>
+                    <button onClick={handleSubmit} disabled={loading}>
+                        {loading ? (
+                            <>
+                                Signing In... <span className="spinner"></span>
+                            </>
+                        ) : 'Sign In'}
+                    </button>
+                    {message && <p>{message}</p>}
                 </div>
                 <div className="new-account">
                     <p>Don't have an account?</p>
