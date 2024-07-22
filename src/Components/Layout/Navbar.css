@@ -91,6 +91,7 @@
 
     & .navbar-container {
       display: flex;
+      width: 90%;
 
       & .logo {
         width: 100%;
@@ -100,8 +101,8 @@
         }
 
         & img {
-          height: 4rem;
-          width: 5rem;
+          height: 3rem;
+          width: 4rem;
         }
       }
 
@@ -118,7 +119,7 @@
           flex-direction: column;
           text-align: center;
           padding-top: 2rem;
-          margin-top: 5rem;
+          margin-top: 5rem; 
           background-color: white;
 
           & li {
@@ -148,9 +149,12 @@
         display: flex;
         justify-content: space-around;
         margin-left: 1rem;
-
         & img {
+          height: 1rem !important;
           margin-right: 0;
+        }
+        & button {
+          font-size: 0.6rem;
         }
       }
     }

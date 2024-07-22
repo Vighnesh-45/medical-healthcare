@@ -105,13 +105,14 @@ const Navbar = ({ cart, setCart }) => {
               <li><Link to='/About' onClick={handleLinkClick}>About</Link></li>
               <li><Link to='/Contact' onClick={handleLinkClick}>Contact</Link></li>
             </ul>
-            <div className="hamburger" onClick={handleMenuToggle}>
+            <div className="hamburger" onClick={handleMenuToggle} style={{ height: "1rem" }}>
               {isMobileMenuOpen ? (
-                <FaTimes size={20} style={{ color: "black" }} />
+                <FaTimes size={20} style={{ color: "black", height: "1rem" }} />
               ) : (
-                <FaBars size={20} style={{ color: "black" }} />
+                <FaBars size={20} style={{ color: "black", height: "1rem" }} />
               )}
             </div>
+
           </nav>
           <div className="nav-right">
             <img src={person} alt="person" onClick={redirectToProfile} />

@@ -3,8 +3,6 @@ import { Link } from "react-router-dom"
 import "./Spotlight.css"
 import rightarrow from "./../assets/right-arrow.png"
 
-
-
 const Spotlight = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -50,7 +48,7 @@ const Spotlight = () => {
         <section className="spotlight-main">
             <div className="spotlight-container">
                 <div className="spotlight-header">
-                    <h2>In The Spotlight</h2>
+                    <h2>Spotlight</h2>
                     <div className="spotlight-right-header">
                         <Link to='/Shop'><button>View All<img src={rightarrow} /></button></Link>
                     </div>

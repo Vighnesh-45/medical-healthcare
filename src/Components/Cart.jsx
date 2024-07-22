@@ -74,13 +74,17 @@ const Cart = ({ cart }) => {
                 <div className="cart-overview">
                     {cartItems.map((item, index) => (
                         <div key={index} className="cart-left">
-                            <img src={item.Image} alt={item.Heading} />
+                            <div className="left-img">
+                                <img src={item.Image} alt={item.Heading} />
+                            </div>
                             <div className="cart-item">
-                                <h2>{item.Heading}</h2>
-                                <p>Rs. {item.SP}</p>
-                                <p>1</p>
-                                <p>Rs. {item.SP}</p>
-                                <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
+                                <h3>{item.Heading}</h3>
+                                <h4>{item.Manufacturer}</h4>
+                                <h2>Rs. {item.SP}</h2>
+                                <p>Quantity</p>
+                                <div className="delete-section">
+                                    <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
+                                </div>
                             </div>
                         </div>
                     ))}

@@ -75,13 +75,6 @@ const ProductComparison = ({ addToCart }) => {
                     <p>Home <MdKeyboardArrowRight className='right-arrow' /> Comparison</p>
                 </div>
                 <div className="productcomparison-cards">
-                    <div className="add-product">
-                        <h2>Add A Product</h2>
-                        <select name="products" id="products">
-                            <option value="def">Default</option>
-                            <option value="cat">Category</option>
-                        </select>
-                    </div>
                     {items.map((res, id) => (
                         <div className="card-one" key={id}>
                             <img src={res.Image} alt="" />

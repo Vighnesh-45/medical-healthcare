@@ -104,8 +104,10 @@
         align-items: center;
         justify-content: center;
         gap: 2rem;
+        & .trending-left-header{
         & h2 {
           font-size: 1.2rem;
+        }
         }
         & .trending-right-header{
           & button {

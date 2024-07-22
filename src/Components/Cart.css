@@ -39,8 +39,12 @@
 
       & .cart-left {
         display: flex;
-        flex-direction: row;
-
+        justify-content: space-evenly;
+        & .left-img {}
+      }
+      & .cart-item {
+        display: flex;
+        flex-direction: column;
       }
 
       & .del-icon {
