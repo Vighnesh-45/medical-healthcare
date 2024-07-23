@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Profile.css";
 import Footer from './Layout/Footer';
 import Advertise from './Layout/Advertise'; 
@@ -21,6 +21,31 @@ const Profile = () => {
         state: ''
     });
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Fetch profile info from the API
+        fetch('https://api-5e1h.onrender.com/medical/user/all')  // Replace with your API endpoint
+            .then(response => response.json())
+            .then(data => {
+                setFormData({
+                    name: data.name || '',
+                    mobile: data.mobile || '',
+                    altmobile: data.altmobile || '',
+                    address: data.address || '',
+                    altadd: data.altadd || '',
+                    landmark: data.landmark || '',
+                    pin: data.pin || '',
+                    city: data.city || '',
+                    state: data.state || ''
+                });
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching profile data:', error);
+                setLoading(false);
+            });
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -39,10 +64,10 @@ const Profile = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = {};
-
+    
         if (!formData.name) newErrors.name = "Name is required.";
         if (!formData.mobile) newErrors.mobile = "Mobile number is required.";
         if (!formData.altmobile) newErrors.altmobile = "Alternate mobile number is required.";
@@ -51,14 +76,40 @@ const Profile = () => {
         if (!formData.pin) newErrors.pin = "Pincode is required.";
         if (!formData.city) newErrors.city = "City is required.";
         if (!formData.state) newErrors.state = "State is required.";
-
+    
         setErrors(newErrors);
-
+    
         if (Object.keys(newErrors).length === 0) {
-            // Perform the form submission or other logic here
-            console.log('Form submitted successfully:', formData);
+            // Perform the form submission
+            try {
+                const response = await fetch('https://api-5e1h.onrender.com/medical/user/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+    
+                if (response.ok) {
+                    const responseData = await response.json();
+                    console.log('Form submitted successfully:', responseData);
+                    // Handle successful response (e.g., show a success message or redirect)
+                } else {
+                    const errorText = await response.text();
+                    console.error('Error submitting form:', response.statusText, errorText);
+                    // Handle error response (e.g., show an error message)
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                // Handle fetch error (e.g., show an error message)
+            }
         }
     };
+    
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <section className="profile-main">
@@ -72,7 +123,7 @@ const Profile = () => {
                 <div className="profile-card">
                     <div className="profile-sidebar">
                         <div className="profile-info">
-                            <h2>Joe Don</h2>
+                            <h2>{formData.name}</h2>
                             <p>ICM4125698</p>
                         </div>
                         <div className="sidebar-feature">
@@ -201,12 +252,6 @@ const Profile = () => {
                                         onChange={handleInputChange}
                                     />
                                     {errors.state && <p style={{ color: 'red' }}>{errors.state}</p>}
-                                </div>
-                                <div className="tag">
-                                    <label htmlFor="tag">Tag</label>
-                                    <button type="button">Home</button>
-                                    <button type="button">Work</button>
-                                    <button type="button">Other</button>
                                 </div>
                             </div>
                             <div className="default-address">
