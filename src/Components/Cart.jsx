@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from "./../assets/logo.png";
 import "./Cart.css";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Footer from './Layout/Footer';
 import Advertise from './Layout/Advertise';
 import axios from 'axios';
@@ -10,10 +10,11 @@ import { MdDelete } from "react-icons/md";
 
 const Cart = ({ cart }) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [file, setFile] = useState(null);
     const [selectedIds, setSelectedIds] = useState([]);
     const [image, setImage] = useState(null);
-    const [cartItems, setCartItems] = useState(cart); // State to manage cart items
+    const [cartItems, setCartItems] = useState(cart);
 
     useEffect(() => {
         setCartItems(cart); // Update cartItems state when cart prop changes
@@ -24,11 +25,22 @@ const Cart = ({ cart }) => {
     }, []);
 
     useEffect(() => {
-        const isLoggedIn = localStorage.getItem('isLoggedIn'); // Check login status from local storage
+        const isLoggedIn = localStorage.getItem('userToken');
+        console.log(isLoggedIn);
         if (!isLoggedIn) {
-            navigate('/login'); // Redirect to login page if not logged in
+            handleLoginRedirect('/cart');
         }
-    }, [navigate]);
+    }, []);
+
+    useEffect(() => {
+        if (location.state && location.state.product && location.state.quantity) {
+            const newProduct = {
+                ...location.state.product,
+                quantity: location.state.quantity
+            };
+            setCartItems((prevItems) => [...prevItems, newProduct]);
+        }
+    }, [location.state]);
 
     const handleUpload = async () => {
         if (!file) {
@@ -44,29 +56,29 @@ const Cart = ({ cart }) => {
             console.log("File upload successful", response.data);
 
             setImage(response.data.image);
-
         } catch (error) {
             console.error("Error uploading file:", error);
         }
     };
 
     const calculateSubtotal = () => {
-        return cartItems.reduce((total, item) => total + item.SP, 0);
+        return cartItems.reduce((total, item) => total + item.SP * item.quantity, 0);
     };
 
     const handleCheckout = () => {
-        const ids = cartItems.map(item => item.id); // Adjust 'id' to your actual unique identifier
-
+        const ids = cartItems.map(item => item.id);
         setSelectedIds(ids);
-
-        // Navigate to the Shipping page with selected IDs and file uploads
         navigate('/Shipping', { state: { selectedIds: ids } });
     };
 
     const handleDeleteItem = (index) => {
         const updatedCart = [...cartItems];
-        updatedCart.splice(index, 1); // Remove the item at the specified index
-        setCartItems(updatedCart); // Update cartItems state with the modified cart
+        updatedCart.splice(index, 1);
+        setCartItems(updatedCart);
+    };
+
+    const handleLoginRedirect = (target) => {
+        navigate('/login', { state: { from: target } });
     };
 
     return (
@@ -88,7 +100,7 @@ const Cart = ({ cart }) => {
                                 <h3>{item.Heading}</h3>
                                 <h4>{item.Manufacturer}</h4>
                                 <h2>Rs. {item.SP}</h2>
-                                <p>Quantity</p>
+                                <p>Quantity: {item.quantity}</p>
                                 <div className="delete-section">
                                     <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
                                 </div>

@@ -28,14 +28,20 @@ const SingleProduct = ({ addToCart }) => {
 
     // Redirect to login if not logged in
     useEffect(() => {
+        const isLoggedIn = localStorage.getItem('userToken'); 
+        console.log(isLoggedIn);
+        // Check login status from local storage
         if (!isLoggedIn) {
-            navigate('/login');
+            handleLoginRedirect(`/singleproduct/${id}`)  // Redirect to login page if not logged in
         }
-    }, [isLoggedIn, navigate]);
-
+    }, []);
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+    
+    const handleLoginRedirect = (target) => {
+        navigate('/login', { state: { from: target } });
+    };
 
     useEffect(() => {
         const fetchProduct = async () => {

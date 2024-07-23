@@ -40,11 +40,28 @@
       & .cart-left {
         display: flex;
         justify-content: space-evenly;
-        & .left-img {}
+        gap: 2rem;
+        margin: 3rem 0;
+
+        & .left-img img {
+          width: 12rem;
+          height: 12rem;
+        }
+
       }
+
       & .cart-item {
         display: flex;
         flex-direction: column;
+        & h3{
+          font-size: 2rem;
+        }
+        & h4{
+          font-size: 1.5rem;
+        }
+        & h2{
+          font-size: 1rem;
+        }
       }
 
       & .del-icon {

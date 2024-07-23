@@ -1,18 +1,26 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import './Combine.css';
 
 const Login = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { from } = location.state || { from: "/" };
+    const [navg, setNavg] = useState(from)
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
 
+    useEffect(()=>{
+        console.log(from);
+    },[])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Button pressed");
+        console.log(from);
 
         setLoading(true);
         setMessage('Logging in, please wait...');
@@ -43,7 +51,7 @@ const Login = () => {
             localStorage.setItem('userRole', data.role);
             setMessage('Login successful! Redirecting...');
             setTimeout(() => {
-                navigate('/');
+                navigate(from);
             }, 2000);
 
         } catch (error) {
