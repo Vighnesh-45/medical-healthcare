@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addItem } from "../redux/slices/compareSlice";
-import { MdKeyboardArrowRight, MdOutlineStarPurple500 } from "react-icons/md";
+import { MdKeyboardArrowRight, MdOutlineStarPurple500, MdOutlineStarHalf } from "react-icons/md";
 import Footer from './Layout/Footer';
 import "./SingleProduct.css";
 
@@ -125,6 +125,20 @@ const SingleProduct = ({ addToCart }) => {
         }
     };
 
+    const renderStars = (rating) => {
+        const stars = [];
+        for (let i = 0; i < 5; i++) {
+            if (i < Math.floor(rating)) {
+                stars.push(<MdOutlineStarPurple500 key={i} className="star-filled" />);
+            } else if (i < rating) {
+                stars.push(<MdOutlineStarHalf key={i} className="star-half" />);
+            } else {
+                stars.push(<MdOutlineStarPurple500 key={i} className="star-empty" />);
+            }
+        }
+        return stars;
+    };
+
     if (!isLoggedIn) {
         return (
             <section className="login-section">
@@ -206,14 +220,15 @@ const SingleProduct = ({ addToCart }) => {
                             <h5>Disclaimer</h5>
                             <p>The contents here are for informational purposes only and not intended to be a substitute for professional medical advice, diagnosis, or treatment. Please seek the advice of a physician or other qualified health provider with any questions you may have regarding a medical condition. The content on the Platform should not be considered or used as a substitute for professional and qualified medical advice. Please consult your doctor for any query pertaining to medicines, tests and/or diseases, as we support, and do not replace the doctor-patient relationship.</p>
                         </div>
+                         {single ? (
                         <div className="product-review">
-                            <MdOutlineStarPurple500 />
-                            <MdOutlineStarPurple500 />
-                            <MdOutlineStarPurple500 />
-                            <MdOutlineStarPurple500 />
+                            {renderStars(single.Rating.Review)}
                             <hr />
-                            <p>4 out of 5 stars</p>
+                            <p>{single.Rating.Review} out of 5 stars</p>
                         </div>
+                         ) : (
+                            <p>No product details available</p>
+                         )}
                         <div className="product-btn">
                             <div className="counter-container">
                                 <button className="counter-button" onClick={decrement}>-</button>

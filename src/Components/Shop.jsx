@@ -19,6 +19,7 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
     const [genericBrandFilter, setGenericBrandFilter] = useState('');
     const [formulationFilter, setFormulationFilter] = useState('');
     const [companyNameFilter, setCompanyNameFilter] = useState('');
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     const getData = async () => {
@@ -38,6 +39,8 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
             }
         } catch (error) {
             console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -158,12 +161,12 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                 <div className="shop-header">
                     <img src={logo} alt="" />
                     <h2>Shop
-                        <p>Home<MdKeyboardArrowRight className='right-arrow'/>Shop</p>
+                        <p>Home<MdKeyboardArrowRight className='right-arrow' />Shop</p>
                     </h2>
                 </div>
                 <div className="shop-nav">
                     <div className="nav-icons" onClick={handleFilterButtonClick}>
-                        <VscSettings className='filter-icon'/>
+                        <VscSettings className='filter-icon' />
                         <p>Filter</p>
                         <hr />
                         <p>Showing {((currentPage - 1) * itemsPerPage) + 1}–{Math.min(currentPage * itemsPerPage, data.length)} of {data.length} results</p>
@@ -186,38 +189,46 @@ const Shop = ({ cart, addToCart, addToSingle }) => {
                         </div>
                     </div>
                 </div>
-                <div className="shop-cards">
-                    {getPaginatedData().map((res, id) => (
-                        <div onClick={() => handleSingleProduct(res)} className="card-one" key={id}>
-                            <img src={res.Image} alt="" />
-                            <h2>{res.Heading}</h2>
-                            <h4>{res.Subheading}</h4>
-                            <h3>Rs. {res.SP}</h3>
-                            <button onClick={(e) => { e.stopPropagation(); handleAddToCart(res); }}>Add to Cart</button>
+                {loading ? (
+                    <div className='loader'>
+                        <span class="bouncing-text">Loading...!</span>
+                    </div>
+                ) : (
+                    <>
+                        <div className="shop-cards">
+                            {getPaginatedData().map((res, id) => (
+                                <div onClick={() => handleSingleProduct(res)} className="card-one" key={id}>
+                                    <img src={res.Image} alt="" />
+                                    <h2>{res.Heading}</h2>
+                                    <h4>{res.Subheading}</h4>
+                                    <h3>Rs. {res.SP}</h3>
+                                    <button onClick={(e) => { e.stopPropagation(); handleAddToCart(res); }}>Add to Cart</button>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-                <div className="shop-footer">
-                    {[1, 2, 3].map((page) => (
-                        <button
-                            key={page}
-                            onClick={() => handlePageChange(page)}
-                            className={currentPage === page ? 'active' : ''}
-                            disabled={page > totalPages}
-                        >
-                            {page}
-                        </button>
-                    ))}
-                    {currentPage < totalPages && (
-                        <button
-                            className='next'
-                            onClick={() => handlePageChange(currentPage + 1)}
-                            disabled={currentPage >= totalPages}
-                        >
-                            Next
-                        </button>
-                    )}
-                </div>
+                        <div className="shop-footer">
+                            {[1, 2, 3].map((page) => (
+                                <button
+                                    key={page}
+                                    onClick={() => handlePageChange(page)}
+                                    className={currentPage === page ? 'active' : ''}
+                                    disabled={page > totalPages}
+                                >
+                                    {page}
+                                </button>
+                            ))}
+                            {currentPage < totalPages && (
+                                <button
+                                    className='next'
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={currentPage >= totalPages}
+                                >
+                                    Next
+                                </button>
+                            )}
+                        </div>
+                    </>
+                )}
                 {isModalOpen && (
                     <div className="modal">
                         <div className="modal-content">

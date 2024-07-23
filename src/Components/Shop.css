@@ -229,6 +229,33 @@
         color: white;
       }
     }
+    & .loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40vh;
+      .bouncing-text {
+        animation: bounce 5s infinite;
+        display: inline-block;
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(50px);
+  }
+  40% {
+    transform: translateY(-60px);
+  }
+  60% {
+    transform: translateY(-15px);
   }
 }
 select:focus {
