@@ -6,7 +6,6 @@ import { MdKeyboardArrowRight, MdOutlineStarPurple500, MdOutlineStarHalf } from 
 import Footer from './Layout/Footer';
 import "./SingleProduct.css";
 
-// Check login status function
 const checkLoginStatus = () => {
     const token = localStorage.getItem('userToken');
     return !!token;
@@ -21,24 +20,21 @@ const SingleProduct = ({ addToCart }) => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    // Login state
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(checkLoginStatus());
 
-    // Redirect to login if not logged in
     useEffect(() => {
-        const isLoggedIn = localStorage.getItem('userToken'); 
-        console.log(isLoggedIn);
-        // Check login status from local storage
+        const isLoggedIn = localStorage.getItem('userToken');
         if (!isLoggedIn) {
-            handleLoginRedirect(`/singleproduct/${id}`)  // Redirect to login page if not logged in
+            handleLoginRedirect(`/singleproduct/${id}`);
         }
     }, []);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-    
+
     const handleLoginRedirect = (target) => {
         navigate('/login', { state: { from: target } });
     };
@@ -83,7 +79,7 @@ const SingleProduct = ({ addToCart }) => {
     const handleAddToCart = (product) => {
         const productWithQuantity = { ...product, quantity: count };
         addToCart(productWithQuantity);
-        navigate('/cart');
+        navigate('/cart', { state: { product: productWithQuantity } });
     };
 
     const shuffleArray = (array) => {
@@ -100,9 +96,6 @@ const SingleProduct = ({ addToCart }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Button pressed");
-
-        console.log("Payload:", { Email: email, Pass: pass });
 
         try {
             const response = await fetch('https://api-5e1h.onrender.com/medical/user/login', {
@@ -120,7 +113,6 @@ const SingleProduct = ({ addToCart }) => {
             }
 
             const data = await response.json();
-            console.log(data);
             localStorage.setItem('userToken', data.token);
             localStorage.setItem('userRole', data.role);
             setIsLoggedIn(true);
@@ -226,15 +218,15 @@ const SingleProduct = ({ addToCart }) => {
                             <h5>Disclaimer</h5>
                             <p>The contents here are for informational purposes only and not intended to be a substitute for professional medical advice, diagnosis, or treatment. Please seek the advice of a physician or other qualified health provider with any questions you may have regarding a medical condition. The content on the Platform should not be considered or used as a substitute for professional and qualified medical advice. Please consult your doctor for any query pertaining to medicines, tests and/or diseases, as we support, and do not replace the doctor-patient relationship.</p>
                         </div>
-                         {single ? (
-                        <div className="product-review">
-                            {renderStars(single.Rating.Review)}
-                            <hr />
-                            <p>{single.Rating.Review} out of 5 stars</p>
-                        </div>
-                         ) : (
+                        {single ? (
+                            <div className="product-review">
+                                {renderStars(single.Rating.Review)}
+                                <hr />
+                                <p>{single.Rating.Review} out of 5 stars</p>
+                            </div>
+                        ) : (
                             <p>No product details available</p>
-                         )}
+                        )}
                         <div className="product-btn">
                             <div className="counter-container">
                                 <button className="counter-button" onClick={decrement}>-</button>
@@ -254,24 +246,18 @@ const SingleProduct = ({ addToCart }) => {
                     </div>
                 </div>
                 <div className="product-header">
-                    <h2>Related Products</h2>
+                    <h3>Related Products</h3>
                 </div>
-                <div className="singleproduct-cards">
-                    {relatedProducts.length > 0 ? (
-                        relatedProducts.map((res) => (
-                            <div className="card-one" key={res.id}>
-                                <img src={res.Image} alt={res.Heading} />
-                                <h2>{res.Heading}</h2>
-                                <h4>{res.Subheading}</h4>
-                                <h3>Rs. {res.SP}</h3>
-                            </div>
-                        ))
-                    ) : (
-                        <p>No related products available</p>
-                    )}
-                </div>
-                <div className="show-button">
-                    <Link to="/Shop"><button>Show More</button></Link>
+                <div className="related-products">
+                    {relatedProducts.map((product) => (
+                        <div key={product.id} className="related-product-card">
+                            <Link to={`/singleproduct/${product.id}`}>
+                                <img src={product.Image} alt={product.Heading} />
+                                <h4>{product.Heading}</h4>
+                                <p>Rs. {product.SP}</p>
+                            </Link>
+                        </div>
+                    ))}
                 </div>
             </div>
             <Footer />

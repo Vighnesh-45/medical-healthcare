@@ -37,11 +37,17 @@
       display: flex;
       justify-content: space-around;
 
+      & .cart-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem 0;
+      }
+
       & .cart-left {
         display: flex;
         justify-content: space-evenly;
         gap: 2rem;
-        margin: 3rem 0;
+        margin: 1rem 0;
 
         & .left-img img {
           width: 12rem;
@@ -53,13 +59,16 @@
       & .cart-item {
         display: flex;
         flex-direction: column;
-        & h3{
+
+        & h3 {
           font-size: 2rem;
         }
-        & h4{
+
+        & h4 {
           font-size: 1.5rem;
         }
-        & h2{
+
+        & h2 {
           font-size: 1rem;
         }
       }

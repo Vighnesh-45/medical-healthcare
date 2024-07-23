@@ -62,7 +62,11 @@ const Cart = ({ cart }) => {
     };
 
     const calculateSubtotal = () => {
-        return cartItems.reduce((total, item) => total + item.SP * item.quantity, 0);
+        return cartItems.reduce((total, item) => {
+            const itemPrice = parseFloat(item.SP) || 0;
+            const itemQuantity = parseInt(item.quantity, 10) || 0;
+            return total + (itemPrice * itemQuantity);
+        }, 0);
     };
 
     const handleCheckout = () => {
@@ -91,22 +95,24 @@ const Cart = ({ cart }) => {
                     </h2>
                 </div>
                 <div className="cart-overview">
-                    {cartItems.map((item, index) => (
-                        <div key={index} className="cart-left">
-                            <div className="left-img">
-                                <img src={item.Image} alt={item.Heading} />
-                            </div>
-                            <div className="cart-item">
-                                <h3>{item.Heading}</h3>
-                                <h4>{item.Manufacturer}</h4>
-                                <h2>Rs. {item.SP}</h2>
-                                <p>Quantity: {item.quantity}</p>
-                                <div className="delete-section">
-                                    <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
+                    <div className="cart-flex">
+                        {cartItems.map((item, index) => (
+                            <div key={index} className="cart-left">
+                                <div className="left-img">
+                                    <img src={item.Image} alt={item.Heading} />
+                                </div>
+                                <div className="cart-item">
+                                    <h3>{item.Heading}</h3>
+                                    <h4>{item.Manufacturer}</h4>
+                                    <h2>Rs. {item.SP}</h2>
+                                    <p>Quantity: {item.quantity}</p>
+                                    <div className="delete-section">
+                                        <MdDelete className='del-icon' onClick={() => handleDeleteItem(index)} />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
 
                     <div className="cart-total">
                         <div className="total-header">
